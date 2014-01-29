@@ -1,0 +1,7 @@
+parameters:
+#    infostander_admin.example.class: Infostander\AdminBundle\Example
+
+services:
+#    infostander_admin.example:
+#        class: %infostander_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,4 @@
+infostander_admin:
+    resource: "@InfostanderAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
