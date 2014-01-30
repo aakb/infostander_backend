@@ -5,3 +5,8 @@ services:
 #    infostander_user.example:
 #        class: %infostander_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    infostander_user.registration.form.type:
+        class: Infostander\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: infostander_user_registration }
