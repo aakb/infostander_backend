@@ -20,13 +20,13 @@ class RegistrationFormType extends BaseType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle', 'attr' => array('class'=>'form-control')))
-            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'attr' => array('class'=>'form-control')))
+            ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle', 'attr' => array('class'=>'form-control', 'placeholder' => 'form.email')))
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle', 'attr' => array('class'=>'form-control', 'placeholder' => 'form.username')))
             ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
                 'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array('label' => 'form.password', 'attr' => array('class'=>'form-control')),
-                'second_options' => array('label' => 'form.password_confirmation', 'attr' => array('class'=>'form-control')),
+                'first_options' => array('label' => 'form.password', 'attr' => array('class'=>'form-control', 'placeholder'=>'form.password')),
+                'second_options' => array('label' => 'form.password_confirmation', 'attr' => array('class'=>'form-control form-register form-last', 'placeholder'=>'form.password_confirmation')),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
         ;
