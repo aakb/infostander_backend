@@ -39,4 +39,28 @@ class ScreenController extends Controller
       'form' => $form->createView(),
     ));
   }
+
+  public function deleteAction($id) {
+    $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->find($id);
+
+    if ($screen != null) {
+      $manager = $this->getDoctrine()->getManager();
+      $manager->remove($screen);
+      $manager->flush();
+    }
+    return $this->redirect($this->generateUrl("infostander_admin_screen"));
+  }
+
+  public function newTokenAction($id) {
+    $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->find($id);
+
+    if ($screen != null) {
+      $screen->setToken(rand(10000, 99999));
+
+      $manager = $this->getDoctrine()->getManager();
+      $manager->persist($screen);
+      $manager->flush();
+    }
+    return $this->redirect($this->generateUrl("infostander_admin_screen"));
+  }
 }

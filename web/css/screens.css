@@ -1,0 +1,26 @@
+.screen-div {
+  background-color: #ddd;
+  padding: 5px;
+}
+
+.screen-div-even {
+  background-color: #ccc;
+}
+
+.screen-form-button {
+  float: right;
+  padding-left: 10px;
+}
+
+.screen-title {
+  font-size: 140%;
+  font-weight: bold;
+}
+
+.screen-description {
+  font-style: italic;
+}
+
+.screen-div-top {
+  min-height: 80px;
+}

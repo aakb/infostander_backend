@@ -1,17 +1,37 @@
 {%  extends '::loggedin.html.twig' %}
 
+{% block stylesheets %}
+    <link href="/css/screens.css" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     <div class="container">
-        <p>På denne side kan du administrere dine skærme.</p>
+        <div class="screen-div-top">
+            <p>På denne side kan du administrere dine skærme.</p>
+            <form action="{{ path('infostander_admin_screen_add') }}" method="get">
+                <span class="btn-group btn-group-xs">
+                    <button type="submit" class="btn btn-default">Tilføj skærm</button>
+                </span>
+            </form>
+        </div>
         {% for screen in screens %}
-            <div class="screen-div">
-                <div class="screen-header">
-                    <span class="screen-title">{{ screen.title }}</span>
-                    <span class="screen-token">{{ screen.token }}</span>
-                </div>
-                <div class="screen-description">{{ screen.description }}</div>
+        <div class="screen-div {{ cycle(['screen-div-odd', 'screen-div-even'], loop.index) }}">
+            <div class="screen-header">
+                <span class="screen-title">{{ screen.title }}</span>
+                <span class="screen-token">(Token: {{ screen.token }})</span>
+                <form class="screen-form-button" action="{{ path('infostander_admin_screen_delete', { 'id': screen.id }) }}" method="post">
+                    <span class="btn-group btn-group-xs">
+                        <button type="submit" class="btn btn-default" onclick="return confirm('Bekræft sletning?')">Slet skærm</button>
+                    </span>
+                </form>
+                <form class="screen-form-button" action="{{ path('infostander_admin_screen_newtoken', { 'id': screen.id }) }}" method="post">
+                    <span class="btn-group btn-group-xs">
+                        <button type="submit" class="btn btn-default">Ny token</button>
+                    </span>
+                </form>
             </div>
-
+            <div class="screen-description">{{ screen.description }}</div>
+        </div>
         {% endfor %}
     </div>
 {% endblock %}
