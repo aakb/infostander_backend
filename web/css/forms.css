@@ -23,9 +23,7 @@
   z-index: 2;
 }
 .form-signin input {
-  margin-bottom: -1px;
-  margin-top: 0px;
-  border-radius: 0;
+  margin-bottom: 10px;
 }
 
 .form-signin .form-last {

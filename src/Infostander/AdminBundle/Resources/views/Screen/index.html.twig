@@ -1,5 +1,7 @@
 {%  extends '::loggedin.html.twig' %}
 
+{% trans_default_domain 'InfostanderAdminBundle' %}
+
 {% block stylesheets %}
     <link href="/css/screens.css" rel="stylesheet">
 {% endblock %}
@@ -7,10 +9,11 @@
 {% block body %}
     <div class="container">
         <div class="screen-div-top">
-            <p>På denne side kan du administrere dine skærme.</p>
-            <form action="{{ path('infostander_admin_screen_add') }}" method="get">
+            <h2>Skærmadministration</h2>
+            <p>{{ 'screen.index.information'|trans }}.</p>
+            <form class="screen-form-button-nofloat" action="{{ path('infostander_admin_screen_add') }}" method="get">
                 <span class="btn-group btn-group-xs">
-                    <button type="submit" class="btn btn-default">Tilføj skærm</button>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.add'|trans }}</button>
                 </span>
             </form>
         </div>
@@ -21,12 +24,12 @@
                 <span class="screen-token">(Token: {{ screen.token }})</span>
                 <form class="screen-form-button" action="{{ path('infostander_admin_screen_delete', { 'id': screen.id }) }}" method="post">
                     <span class="btn-group btn-group-xs">
-                        <button type="submit" class="btn btn-default" onclick="return confirm('Bekræft sletning?')">Slet skærm</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block" onclick="return confirm('{{ 'screen.index.confirm_delete'|trans }}?')">{{ 'screen.index.delete'|trans }}</button>
                     </span>
                 </form>
                 <form class="screen-form-button" action="{{ path('infostander_admin_screen_newtoken', { 'id': screen.id }) }}" method="post">
                     <span class="btn-group btn-group-xs">
-                        <button type="submit" class="btn btn-default">Ny token</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.new_token'|trans }}</button>
                     </span>
                 </form>
             </div>

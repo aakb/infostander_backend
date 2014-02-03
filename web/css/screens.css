@@ -12,6 +12,10 @@
   padding-left: 10px;
 }
 
+.screen-form-button-nofloat {
+  margin-bottom: 20px;
+}
+
 .screen-title {
   font-size: 140%;
   font-weight: bold;
@@ -19,8 +23,4 @@
 
 .screen-description {
   font-style: italic;
-}
-
-.screen-div-top {
-  min-height: 80px;
 }

@@ -1,0 +1,13 @@
+screen:
+  add:
+    title: Titel
+    description: Beskrivelse
+    save: Gem
+    information: På denne side kan du oprette en ny skærm
+  index:
+    token: Token
+    new_token: Ny token
+    delete: Slet skærm
+    confirm_delete: Bekræft sletning
+    add: Tilføj skærm
+    information: På denne side kan du administrere dine skærme
