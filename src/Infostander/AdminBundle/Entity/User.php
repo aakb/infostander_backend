@@ -1,6 +1,4 @@
 <?php
-// src/Infostander/AdminBundle/Entity/User.php
-
 namespace Infostander\AdminBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;

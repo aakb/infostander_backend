@@ -5,3 +5,7 @@ infostander_admin_homepage:
 infostander_admin_screen:
     pattern:  /screen
     defaults: { _controller: InfostanderAdminBundle:Screen:index }
+
+infostander_admin_screen_add:
+    pattern: /screen/add
+    defaults: { _controller: InfostanderAdminBundle:Screen:add }

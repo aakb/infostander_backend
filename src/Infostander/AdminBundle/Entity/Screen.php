@@ -6,6 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="Screens")
  */
 class Screen
 {
@@ -23,33 +24,40 @@ class Screen
   protected $title;
 
   /**
-   * @ORM\Column(type="string", length=255)
-   * @Assert\NotBlank()
+   * @ORM\Column(type="text")
    */
   protected $description;
 
-  public function getId()
-  {
+  /**
+   * @ORM\Column(type="integer")
+   */
+  protected $token;
+
+  public function getId() {
     return $this->id;
   }
 
-  public function getTitle()
-  {
+  public function getTitle() {
     return $this->title;
   }
 
-  public function setTitle($title)
-  {
+  public function setTitle($title) {
     $this->title = $title;
   }
 
-  public function getDescription()
-  {
+  public function getDescription() {
     return $this->description;
   }
 
-  public function setDescription($description)
-  {
+  public function setDescription($description) {
     $this->description = $description;
+  }
+
+  public function getToken() {
+    return $this->$token;
+  }
+
+  public function setToken($token) {
+    $this->token = $token;
   }
 }
