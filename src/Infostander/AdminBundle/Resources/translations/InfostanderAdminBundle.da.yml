@@ -2,7 +2,7 @@ screen:
   add:
     title: Titel
     description: Beskrivelse
-    save: Gem
+    save: Opret skærm
     information: På denne side kan du oprette en ny skærm
   index:
     token: Token
