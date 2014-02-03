@@ -23,6 +23,6 @@ class User extends BaseUser
   {
     parent::__construct();
 
-    $this->setRoles("ROLE_ADMIN");
+    $this->addRole("ROLE_ADMIN");
   }
 }
