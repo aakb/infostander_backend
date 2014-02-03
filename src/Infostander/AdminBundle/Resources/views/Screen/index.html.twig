@@ -20,8 +20,6 @@
         {% for screen in screens %}
         <div class="screen-div {{ cycle(['screen-div-odd', 'screen-div-even'], loop.index) }}">
             <div class="screen-header">
-                <span class="screen-title">{{ screen.title }}</span>
-                <span class="screen-token">(Token: {{ screen.token }})</span>
                 <form class="screen-form-button" action="{{ path('infostander_admin_screen_delete', { 'id': screen.id }) }}" method="post">
                     <span class="btn-group btn-group-xs">
                         <button type="submit" class="btn btn-lg btn-primary btn-block" onclick="return confirm('{{ 'screen.index.confirm_delete'|trans }}?')">{{ 'screen.index.delete'|trans }}</button>
@@ -32,6 +30,8 @@
                         <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.new_token'|trans }}</button>
                     </span>
                 </form>
+                <div class="screen-title">{{ screen.title }}</div>
+                <div class="screen-token">(Token: {{ screen.token }})</div>
             </div>
             <div class="screen-description">{{ screen.description }}</div>
         </div>
