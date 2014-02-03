@@ -3,6 +3,15 @@
 {% block body %}
     <div class="container">
         <p>På denne side kan du administrere dine skærme.</p>
-        
+        {% for screen in screens %}
+            <div class="screen-div">
+                <div class="screen-header">
+                    <span class="screen-title">{{ screen.title }}</span>
+                    <span class="screen-token">{{ screen.token }}</span>
+                </div>
+                <div class="screen-description">{{ screen.description }}</div>
+            </div>
+
+        {% endfor %}
     </div>
 {% endblock %}

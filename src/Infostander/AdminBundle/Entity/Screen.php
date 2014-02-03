@@ -54,7 +54,7 @@ class Screen
   }
 
   public function getToken() {
-    return $this->$token;
+    return $this->token;
   }
 
   public function setToken($token) {

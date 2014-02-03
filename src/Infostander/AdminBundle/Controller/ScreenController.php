@@ -10,7 +10,11 @@ class ScreenController extends Controller
 {
     public function indexAction()
     {
-      return $this->render('InfostanderAdminBundle:Screen:index.html.twig');
+      $screens = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findAll();
+      return $this->render(
+        'InfostanderAdminBundle:Screen:index.html.twig',
+        array('screens' => $screens)
+      );
     }
 
   public function addAction(Request $request)
