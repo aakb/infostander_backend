@@ -9,7 +9,7 @@
 {% block body %}
     <div class="container">
         <div class="screen-div-top">
-            <h2>Skærmadministration</h2>
+            <h2>{{ 'screen.index.title'|trans }}</h2>
             <p>{{ 'screen.index.information'|trans }}.</p>
             <form class="screen-form-button-nofloat" action="{{ path('infostander_admin_screen_add') }}" method="get">
                 <span class="btn-group btn-group-xs">

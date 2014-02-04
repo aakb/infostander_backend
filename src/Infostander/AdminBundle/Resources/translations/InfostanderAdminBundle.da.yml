@@ -5,6 +5,7 @@ screen:
     save: Opret skærm
     information: På denne side kan du oprette en ny skærm
   index:
+    title: Skærme
     token: Token
     new_token: Ny token
     delete: Slet skærm
@@ -21,3 +22,6 @@ slide:
     change: Ændrer billede
     select: Vælg billede
     delete: Fjern billede
+  index:
+    title: Slides
+    information: På denne side kan du se hvilke slides er blevet uploadet

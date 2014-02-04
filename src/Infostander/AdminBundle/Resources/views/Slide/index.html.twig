@@ -3,11 +3,17 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-    <link href="/css/screens.css" rel="stylesheet">
+    <link href="/css/slides.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
     <div class="container">
-        Slides
+        <h2>{{ 'slide.index.title'|trans }}</h2>
+        <p>{{ 'slide.index.information'|trans }}.</p>
+
+{% for slide in slides %}
+    <img class="slides-thumb" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
+{% endfor %}
+
     </div>
 {% endblock %}

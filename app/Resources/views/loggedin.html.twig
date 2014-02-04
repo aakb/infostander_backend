@@ -9,7 +9,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{{ path('infostander_admin_homepage') }}">Start</a></li>
-                <li><a href="{{ path('infostander_admin_screen') }}">Skærmadministration</a></li>
+                <li><a href="{{ path('infostander_admin_slide') }}">Slides</a></li>
+                <li><a href="{{ path('infostander_admin_screen') }}">Skærme</a></li>
                 {% if is_granted("ROLE_SUPER_ADMIN") %}
                     <li><a href="{{ path('fos_user_registration_register') }}">Opret bruger</a></li>
                 {% endif %}
