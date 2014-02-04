@@ -11,3 +11,13 @@ screen:
     confirm_delete: Bekræft sletning
     add: Tilføj skærm
     information: På denne side kan du administrere dine skærme
+slide:
+  add:
+    title: Titel
+    description: Beskrivelse
+    save: Opret slide
+    image: Vælg billede
+    information: På denne side kan du oprette slides
+    change: Ændrer billede
+    select: Vælg billede
+    delete: Fjern billede

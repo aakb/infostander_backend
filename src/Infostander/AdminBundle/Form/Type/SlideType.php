@@ -12,7 +12,7 @@ class SlideType extends AbstractType
   {
     $builder->add('title', 'text', array('label' => 'slide.add.title', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'slide.add.title')));
     $builder->add('description', 'textarea', array('label' => 'slide.add.description', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('rows' => '5', 'class' => 'form-control form-last', 'placeholder' => 'slide.add.description')));
-    $builder->add('image', 'file', array('label' => 'slide.add.image'));
+    $builder->add('image', 'file', array('label' => 'slide.add.image', 'translation_domain' => 'InfostanderAdminBundle'));
     $builder->add('save', 'submit', array('label' => 'slide.add.save', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'btn btn-lg btn-primary btn-block')));
   }
 

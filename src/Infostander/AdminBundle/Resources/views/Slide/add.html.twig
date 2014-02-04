@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
     <link href="/css/forms.css" rel="stylesheet">
-    <link href="/css/slide.css" rel="stylesheet">
+    <link href="/css/jasny-bootstrap.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -20,8 +20,21 @@
             {{ form_widget(form.title) }}
             {{ form_widget(form.description) }}
 
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 300px; height: 150px;"></div>
+                <div>
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">{{ 'slide.add.select'|trans }}</span><span class="fileinput-exists">{{ 'slide.add.change'|trans }}</span>{{ form_widget(form.image) }}</span>
+                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">{{ 'slide.add.delete'|trans }}</a>
+                </div>
+            </div>
+
             {{ form_rest(form) }}
+
         </form>
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/jasny-bootstrap.min.js"></script>
 {% endblock %}
