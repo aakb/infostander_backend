@@ -2,6 +2,10 @@ body {
   background-color: #eee;
 }
 
-.navbar-right {
-  padding-right: 20px;
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0px;
+}
+
+.footer {
+  height: 80px;
 }
