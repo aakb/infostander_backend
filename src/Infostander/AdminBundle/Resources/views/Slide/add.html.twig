@@ -4,14 +4,14 @@
 
 {% block stylesheets %}
     <link href="/css/forms.css" rel="stylesheet">
-    <link href="/css/screens.css" rel="stylesheet">
+    <link href="/css/slide.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
     <div class="container">
-        <p>{{ 'screen.add.information'|trans }}.</p>
-        <form action="{{ path('infostander_admin_screen_add') }}" {{ form_enctype(form) }} method="POST" class="form-signin fos_user_registration_register">
-            <h2 class="form-signin-heading">{{ 'screen.add.save'|trans }}</h2>
+        <p>{{ 'slide.add.information'|trans }}.</p>
+        <form action="{{ path('infostander_admin_slide_add') }}" {{ form_enctype(form) }} method="POST" class="form-signin fos_user_registration_register">
+            <h2 class="form-signin-heading">{{ 'slide.add.save'|trans }}</h2>
 
             {{ form_errors(form) }}
             {{ form_errors(form.title) }}

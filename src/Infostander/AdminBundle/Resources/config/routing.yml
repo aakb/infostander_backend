@@ -17,3 +17,15 @@ infostander_admin_screen_delete:
 infostander_admin_screen_newtoken:
     path:      /screen/newtoken/{id}
     defaults:  { _controller: InfostanderAdminBundle:Screen:newToken }
+
+infostander_admin_slide:
+    pattern: /slide
+    defaults: { _controller: InfostanderAdminBundle:Slide:index }
+
+infostander_admin_slide_add:
+    pattern: /slide/add
+    defaults: { _controller: InfostanderAdminBundle:Slide:add }
+
+infostander_admin_slide_delete:
+    path:      /slide/delete/{id}
+    defaults:  { _controller: InfostanderAdminBundle:Slide:delete }

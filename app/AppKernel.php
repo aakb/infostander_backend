@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Infostander\AdminBundle\InfostanderAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Infostander\UserBundle\InfostanderUserBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -6,3 +6,4 @@
 /vendor/
 .idea/
 clearcache.sh
+/web/images/

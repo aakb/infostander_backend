@@ -5,3 +5,7 @@ services:
         class: Infostander\AdminBundle\Form\Type\ScreenType
         tags:
             - { name: form.type, alias: screen }
+    infostander.form.type.slide:
+        class: Infostander\AdminBundle\Form\Type\SlideType
+        tags:
+            - { name: form.type, alias: slide }
