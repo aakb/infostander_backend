@@ -1,3 +1,7 @@
 .slides-thumb {
   width: 200px;
 }
+
+.slide-form-button-nofloat {
+  margin-bottom: 20px;
+}

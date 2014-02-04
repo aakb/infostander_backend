@@ -10,6 +10,11 @@
     <div class="container">
         <h2>{{ 'slide.index.title'|trans }}</h2>
         <p>{{ 'slide.index.information'|trans }}.</p>
+        <form class="slide-form-button-nofloat" action="{{ path('infostander_admin_slide_add') }}" method="get">
+            <span class="btn-group btn-group-xs">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'slide.index.add'|trans }}</button>
+            </span>
+        </form>
 
 {% for slide in slides %}
     <img class="slides-thumb" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
