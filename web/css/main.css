@@ -17,6 +17,7 @@ body {
 .form-button {
   display: inline-block;
   margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 @media (min-width: 768px) {

@@ -33,3 +33,13 @@ navbar:
 scheduler:
   title: Planlægning
   text: På denne side kan du planlægge hvornår hvilke slides skal vises på pylonerne
+booking:
+  index:
+    title: Planlæg
+  add:
+    information: På denne side kan du oprette en booking
+    save: Opret booking
+    title: Titel
+    startdate: Start dato og tidspunkt
+    enddate: Slut dato og tidspunkt
+    slideid: Hvilket slide skal vises?

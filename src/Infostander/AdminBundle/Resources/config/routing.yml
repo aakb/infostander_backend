@@ -29,3 +29,12 @@ infostander_admin_slide_add:
 infostander_admin_slide_delete:
     path:      /slide/delete/{id}
     defaults:  { _controller: InfostanderAdminBundle:Slide:delete }
+
+infostander_admin_booking:
+    path:      /booking
+    defaults:  { _controller: InfostanderAdminBundle:Booking:index }
+
+infostander_admin_booking_add:
+    path:      /booking/add
+    defaults:  { _controller: InfostanderAdminBundle:Booking:add }
+

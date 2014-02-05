@@ -9,3 +9,7 @@ services:
         class: Infostander\AdminBundle\Form\Type\SlideType
         tags:
             - { name: form.type, alias: slide }
+    infostander.form.type.booking:
+        class: Infostander\AdminBundle\Form\Type\BookingType
+        tags:
+            - { name: form.type, alias: booking }

@@ -1,0 +1,18 @@
+{%  extends '::loggedin.html.twig' %}
+
+{% trans_default_domain 'InfostanderAdminBundle' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="scheduler-container">
+            <h2 class="scheduler-title">{{ 'scheduler.title'|trans }}</h2>
+            <div class="scheduler-text">{{ 'scheduler.text'|trans }}</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

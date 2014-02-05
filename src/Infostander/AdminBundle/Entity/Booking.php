@@ -18,19 +18,26 @@ class Booking
   protected $id;
 
   /**
-   * @ORM\Column(type="date", name="start_date")
+   * @ORM\Column(type="integer", name="slide_id")
+   */
+  protected $slideId;
+
+  /**
+   * @ORM\Column(type="string", length=255)
+   */
+  protected $title;
+
+  /**
+   * @ORM\Column(type="datetime", name="start_date")
    */
   protected $startDate;
 
   /**
-   * @ORM\Column(type="date", name="end_date")
+   * @ORM\Column(type="datetime", name="end_date")
    */
   protected $endDate;
 
-  /**
-   * @ORM\Column(type="integer", name="slide_id")
-   */
-  protected $slideId;
+
 
   public function getId() {
     return $this->id;
@@ -45,11 +52,19 @@ class Booking
   }
 
   public function getEndDate() {
-    return $this->startDate;
+    return $this->endDate;
   }
 
-  public function setEndDate($startDate) {
-    $this->startDate = $startDate;
+  public function setEndDate($endDate) {
+    $this->endDate = $endDate;
+  }
+
+  public function getTitle() {
+    return $this->title;
+  }
+
+  public function setTitle($title) {
+    $this->title = $title;
   }
 
   public function getSlideId() {
