@@ -26,3 +26,8 @@ slide:
     title: Slides
     information: På denne side kan du se hvilke slides er blevet uploadet
     add: Tilføj slide
+navbar:
+  logout: Log ud
+scheduler:
+  title: Planlægning
+  text: På denne side kan du planlægge hvornår hvilke slides skal vises på pylonerne

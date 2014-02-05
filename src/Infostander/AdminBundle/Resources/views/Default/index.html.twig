@@ -1,8 +1,29 @@
 {%  extends '::loggedin.html.twig' %}
 
+{% trans_default_domain 'InfostanderAdminBundle' %}
+
 {% block body %}
     <div class="container">
-        <p>På denne side kan du uploade billeder og planlægge hvornår de skal vises.</p>
-
+        <div class="button-container">
+            <form class="form-button" action="{{ path('infostander_admin_slide') }}" method="get">
+                <span class="btn-group btn-group-sm">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'slide.index.title'|trans }}</button>
+                </span>
+            </form>
+            <form class="form-button" action="{{ path('infostander_admin_screen') }}" method="get">
+                <span class="btn-group btn-group-sm">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.title'|trans }}</button>
+                </span>
+            </form>
+            <form class="form-button" action="{{ path('fos_user_security_logout') }}" method="get">
+                <span class="btn-group btn-group-sm">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'navbar.logout'|trans }}</button>
+                </span>
+            </form>
+        </div>
+        <div class="scheduler-container">
+            <h2 class="scheduler-title">{{ 'scheduler.title'|trans }}</h2>
+            <div class="scheduler-text">{{ 'scheduler.text'|trans }}</div>
+        </div>
     </div>
 {% endblock %}

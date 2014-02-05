@@ -9,3 +9,18 @@ body {
 .footer {
   height: 80px;
 }
+
+.button-container {
+  margin-bottom: 10px;
+}
+
+.form-button {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-container {
+    display: none;
+  }
+}
