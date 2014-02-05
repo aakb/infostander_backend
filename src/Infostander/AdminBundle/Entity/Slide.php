@@ -56,8 +56,19 @@ class Slide
    */
   protected $imageName;
 
+  /**
+   * @ORM\Column(type="boolean")
+   */
+  protected $archived;
 
 
+  public function getArchived() {
+    return $this->archived;
+  }
+
+  public function setArchived($archived) {
+    $this->archived = $archived;
+  }
 
   public function getId() {
     return $this->id;

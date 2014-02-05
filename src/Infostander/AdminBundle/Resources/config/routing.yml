@@ -30,6 +30,10 @@ infostander_admin_slide_delete:
     path:      /slide/delete/{id}
     defaults:  { _controller: InfostanderAdminBundle:Slide:delete }
 
+infostander_admin_slide_archived:
+    path:      /slide/archived/{id}
+    defaults:  { _controller: InfostanderAdminBundle:Slide:toggleArchived }
+
 infostander_admin_booking:
     path:      /booking
     defaults:  { _controller: InfostanderAdminBundle:Booking:index }

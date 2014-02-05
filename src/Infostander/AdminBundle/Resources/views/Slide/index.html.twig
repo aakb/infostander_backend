@@ -24,6 +24,7 @@
     <div class="slide-container">
         <img class="slide-thumb img-thumbnail" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
         <div class="slide-title">
+            <span class="slide-delete glyphicon {% if slide.archived %} glyphicon-eye-close {% else %} glyphicon-eye-open {% endif %}" onclick="helpers.redirect('{{ path('infostander_admin_slide_archived', { 'id': slide.id }) }}');"></span>
             <span class="slide-delete glyphicon glyphicon-remove-circle" onclick="helpers.confirmRedirect('{{ path('infostander_admin_slide_delete', { 'id': slide.id }) }}', '{{ 'slide.index.delete'|trans }}');"></span>
             {{ slide.title }}
         </div>

@@ -48,4 +48,17 @@ class SlideController extends Controller
     }
     return $this->redirect($this->generateUrl("infostander_admin_slide"));
   }
+
+  public function toggleArchivedAction($id) {
+    $slide = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->find($id);
+
+    if ($slide != null) {
+      $manager = $this->getDoctrine()->getManager();
+
+      $slide->setArchived(!$slide->getArchived());
+
+      $manager->flush();
+    }
+    return $this->redirect($this->generateUrl("infostander_admin_slide"));
+  }
 }

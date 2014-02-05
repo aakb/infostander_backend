@@ -11,10 +11,17 @@ class BookingType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('title', 'text', array('label' => 'booking.add.title', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.title')));
-    $builder->add('slideid', 'text', array('label' => 'booking.add.slideid', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.slideid')));
+    //$builder->add('slideid', 'text', array('label' => 'booking.add.slideid', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.slideid')));
     $builder->add('startdate', 'text', array('label' => 'booking.add.startdate', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.startdate', 'data-format' => 'DD-MM-YYYY HH:mm')));
     $builder->add('enddate', 'text', array('label' => 'booking.add.enddate', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.enddate', 'data-format' => 'DD-MM-YYYY HH:mm')));
     $builder->add('save', 'submit', array('label' => 'booking.add.save', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'btn btn-lg btn-primary btn-block')));
+    $builder->add('slideid', 'choice', array(
+      'choices' => array(
+        0 => 'Published',
+        1 => 'Draft'
+      ),
+      'data' => 1
+    ));
   }
 
   public function setDefaultOptions(OptionsResolverInterface $resolver)
