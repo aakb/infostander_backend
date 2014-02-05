@@ -1,7 +1,28 @@
-.slides-thumb {
-  width: 200px;
-}
-
 .slide-form-button-nofloat {
   margin-bottom: 20px;
+}
+
+.slide-thumb {
+  display: block;
+  width: 100%;
+}
+
+.slide-title {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.slide-description {
+  margin-left: 5px;
+  font-style: italic;
+  font-size: 80%;
+}
+
+.slide-container {
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  padding: 5px;
+  margin: 5px;
+  width: 140px;
+  float: left;
 }

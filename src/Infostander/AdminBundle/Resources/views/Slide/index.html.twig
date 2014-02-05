@@ -17,7 +17,11 @@
         </form>
 
 {% for slide in slides %}
-    <img class="slides-thumb" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
+    <div class="slide-container">
+        <img class="slide-thumb img-thumbnail" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
+        <div class="slide-title">{{ slide.title }}</div>
+        <div class="slide-description">{{ slide.description }}</div>
+    </div>
 {% endfor %}
 
     </div>
