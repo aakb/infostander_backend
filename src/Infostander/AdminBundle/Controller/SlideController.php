@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SlideController extends Controller
 {
-    public function indexAction()
+    public function indexAction($showarchived)
     {
       $slides = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findAll();
       return $this->render(
         'InfostanderAdminBundle:Slide:index.html.twig',
-        array('slides' => $slides)
+        array('slides' => $slides, 'showarchived' => $showarchived)
       );
     }
 
@@ -27,6 +27,9 @@ class SlideController extends Controller
 
     if ($form->isValid()) {
       $manager = $this->getDoctrine()->getManager();
+
+      $slide->setArchived(false);
+
       $manager->persist($slide);
       $manager->flush();
 
