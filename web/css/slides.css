@@ -26,3 +26,12 @@
   width: 140px;
   float: left;
 }
+
+.slide-delete {
+  float: right;
+  margin: 2px;
+}
+
+.slide-delete:hover {
+  color: #b00;
+}

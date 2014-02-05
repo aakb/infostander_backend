@@ -25,13 +25,13 @@
                         <button type="submit" class="btn btn-lg btn-primary btn-block" onclick="return confirm('{{ 'screen.index.confirm_delete'|trans }}?')">{{ 'screen.index.delete'|trans }}</button>
                     </span>
                 </form>
-                <form class="screen-form-button" action="{{ path('infostander_admin_screen_newtoken', { 'id': screen.id }) }}" method="post">
+                <form class="screen-form-button" action="{{ path('infostander_admin_screen_new_activation_code', { 'id': screen.id }) }}" method="post">
                     <span class="btn-group btn-group-xs">
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.new_token'|trans }}</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.new_activation_code'|trans }}</button>
                     </span>
                 </form>
                 <div class="screen-title">{{ screen.title }}</div>
-                <div class="screen-token">(Token: {{ screen.token }})</div>
+                <div class="screen-token">({{ 'screen.index.activation_code'|trans }}: {{ screen.activationCode }})</div>
             </div>
             <div class="screen-description">{{ screen.description }}</div>
         </div>

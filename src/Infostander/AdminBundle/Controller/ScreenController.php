@@ -26,7 +26,8 @@ class ScreenController extends Controller
     $form->handleRequest($request);
 
     if ($form->isValid()) {
-      $screen->setToken(rand(10000, 99999));
+      $screen->setActivationCode(rand(10000, 99999));
+      $screen->setToken("");
 
       $manager = $this->getDoctrine()->getManager();
       $manager->persist($screen);
@@ -51,11 +52,11 @@ class ScreenController extends Controller
     return $this->redirect($this->generateUrl("infostander_admin_screen"));
   }
 
-  public function newTokenAction($id) {
+  public function newActivationCodeAction($id) {
     $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->find($id);
 
     if ($screen != null) {
-      $screen->setToken(rand(10000, 99999));
+      $screen->setActivationCode(rand(10000, 99999));
 
       $manager = $this->getDoctrine()->getManager();
       $manager->persist($screen);

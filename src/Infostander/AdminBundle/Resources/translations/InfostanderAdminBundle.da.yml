@@ -7,11 +7,12 @@ screen:
   index:
     title: Skærme
     token: Token
-    new_token: Ny token
+    new_activation_code: Ny kode
     delete: Slet skærm
     confirm_delete: Bekræft sletning
     add: Tilføj skærm
     information: På denne side kan du administrere dine skærme
+    activation_code: Kode
 slide:
   add:
     title: Titel
@@ -26,6 +27,7 @@ slide:
     title: Slides
     information: På denne side kan du se hvilke slides er blevet uploadet
     add: Tilføj slide
+    delete: Vil du slette slidet?
 navbar:
   logout: Log ud
 scheduler:

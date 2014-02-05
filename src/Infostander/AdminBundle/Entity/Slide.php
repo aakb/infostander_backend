@@ -8,7 +8,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="image_slide")
+ * @ORM\Table(name="infostander_slide")
  * @Vich\Uploadable
  */
 class Slide

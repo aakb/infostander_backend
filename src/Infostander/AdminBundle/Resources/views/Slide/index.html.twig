@@ -6,6 +6,10 @@
     <link href="/css/slides.css" rel="stylesheet">
 {% endblock %}
 
+{% block javascripts %}
+    <script src="/js/helpers.js"></script>
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <h2>{{ 'slide.index.title'|trans }}</h2>
@@ -19,7 +23,10 @@
 {% for slide in slides %}
     <div class="slide-container">
         <img class="slide-thumb img-thumbnail" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
-        <div class="slide-title">{{ slide.title }}</div>
+        <div class="slide-title">
+            <span class="slide-delete glyphicon glyphicon-remove-circle" onclick="helpers.confirmRedirect('{{ path('infostander_admin_slide_delete', { 'id': slide.id }) }}', '{{ 'slide.index.delete'|trans }}');"></span>
+            {{ slide.title }}
+        </div>
         <div class="slide-description">{{ slide.description }}</div>
     </div>
 {% endfor %}

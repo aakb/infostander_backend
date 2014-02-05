@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="Screens")
+ * @ORM\Table(name="infostander_screen")
  */
 class Screen
 {
@@ -29,9 +29,14 @@ class Screen
   protected $description;
 
   /**
-   * @ORM\Column(type="integer")
+   * @ORM\Column(type="text")
    */
   protected $token;
+
+  /**
+   * @ORM\Column(type="integer", name="activation_code")
+   */
+  protected $activationCode;
 
   public function getId() {
     return $this->id;
@@ -59,5 +64,13 @@ class Screen
 
   public function setToken($token) {
     $this->token = $token;
+  }
+
+  public function getActivationCode() {
+    return $this->activationCode;
+  }
+
+  public function setActivationCode($activationCode) {
+    $this->activationCode = $activationCode;
   }
 }
