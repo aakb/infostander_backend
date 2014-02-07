@@ -6,19 +6,28 @@ use Infostander\AdminBundle\Entity\Screen;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class ScreenController extends Controller
-{
-    public function indexAction()
-    {
-      $screens = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findAll();
-      return $this->render(
-        'InfostanderAdminBundle:Screen:index.html.twig',
-        array('screens' => $screens)
-      );
+class ScreenController extends Controller {
+  private function getNewActivationCode() {
+    while(true) {
+      $code = rand(100000, 999999);
+      $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findByActivationCode($code);
+      if (!isset($screen)) {
+        return $code;
+      }
     }
+  }
 
-  public function addAction(Request $request)
-  {
+  public function indexAction() {
+    $screens = $this->getDoctrine()
+      ->getRepository('InfostanderAdminBundle:Screen')->findAll();
+
+    return $this->render(
+      'InfostanderAdminBundle:Screen:index.html.twig',
+      array('screens' => $screens)
+    );
+  }
+
+  public function addAction(Request $request) {
     $screen = new Screen();
 
     $form = $this->createForm('screen', $screen);
@@ -26,7 +35,7 @@ class ScreenController extends Controller
     $form->handleRequest($request);
 
     if ($form->isValid()) {
-      $screen->setActivationCode(rand(10000, 99999));
+      $screen->setActivationCode($this->getNewActivationCode());
       $screen->setToken("");
 
       $manager = $this->getDoctrine()->getManager();
@@ -42,9 +51,10 @@ class ScreenController extends Controller
   }
 
   public function deleteAction($id) {
-    $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->find($id);
+    $screen = $this->getDoctrine()
+      ->getRepository('InfostanderAdminBundle:Screen')->find($id);
 
-    if ($screen != null) {
+    if ($screen != NULL) {
       $manager = $this->getDoctrine()->getManager();
       $manager->remove($screen);
       $manager->flush();
@@ -53,10 +63,11 @@ class ScreenController extends Controller
   }
 
   public function newActivationCodeAction($id) {
-    $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->find($id);
+    $screen = $this->getDoctrine()
+      ->getRepository('InfostanderAdminBundle:Screen')->find($id);
 
-    if ($screen != null) {
-      $screen->setActivationCode(rand(10000, 99999));
+    if ($screen != NULL) {
+      $screen->setActivationCode($this->getNewActivationCode());
 
       $manager = $this->getDoctrine()->getManager();
       $manager->persist($screen);
