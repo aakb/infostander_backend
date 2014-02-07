@@ -8,12 +8,13 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ScreenController extends Controller {
   private function getNewActivationCode() {
-    while(true) {
+    while(1) {
       $code = rand(100000, 999999);
+
       $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findByActivationCode($code);
-      if (!isset($screen)) {
+
+      if (!$screen)
         return $code;
-      }
     }
   }
 
