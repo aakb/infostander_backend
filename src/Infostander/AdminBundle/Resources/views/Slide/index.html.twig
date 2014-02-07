@@ -14,28 +14,30 @@
     <div class="container">
         <h2>{{ 'slide.index.title'|trans }}</h2>
         <p>{{ 'slide.index.information'|trans }}.</p>
-        <form class="slide-form-button-nofloat" action="{{ path('infostander_admin_slide_add') }}" method="get">
-            <span class="btn-group btn-group-xs">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'slide.index.add'|trans }}</button>
-            </span>
-        </form>
-        <form class="slide-form-button-nofloat" action="{% if showarchived %}{{ path('infostander_admin_slide', {'showarchived': 0}) }}{% else %}{{ path('infostander_admin_slide', {'showarchived': 1}) }}{% endif %}" method="get">
-            <span class="btn-group btn-group-xs">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">{% if showarchived %}{{ 'slide.index.archived.hide'|trans }}{% else %}{{ 'slide.index.archived.show'|trans }}{% endif %}</button>
-            </span>
-        </form>
+        <div>
+            <form class="form-button" action="{{ path('infostander_admin_slide_add') }}" method="get">
+                <span class="btn-group btn-group-xs">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'slide.index.add'|trans }}</button>
+                </span>
+            </form>
+            <form class="form-button" action="{% if showarchived %}{{ path('infostander_admin_slide', {'showarchived': 0}) }}{% else %}{{ path('infostander_admin_slide', {'showarchived': 1}) }}{% endif %}" method="get">
+                <span class="btn-group btn-group-xs">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{% if showarchived %}{{ 'slide.index.archived.hide'|trans }}{% else %}{{ 'slide.index.archived.show'|trans }}{% endif %}</button>
+                </span>
+            </form>
+        </div>
 
 {% for slide in slides %}
     {% if showarchived or not slide.archived %}
-    <div class="slide-container">
-        <img class="slide-thumb img-thumbnail" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
-        <div class="slide-title">
-            <span class="slide-delete glyphicon glyphicon-remove-circle" onclick="helpers.confirmRedirect('{{ path('infostander_admin_slide_delete', { 'id': slide.id }) }}', '{{ 'slide.index.delete'|trans }}');"></span>
-            <span class="slide-delete glyphicon {% if slide.archived %} glyphicon-eye-close {% else %} glyphicon-eye-open {% endif %}" onclick="helpers.redirect('{{ path('infostander_admin_slide_archived', { 'id': slide.id }) }}');"></span>
-            {{ slide.title }}
+        <div class="slide-container">
+            <img class="slide-thumb img-thumbnail" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
+            <div class="slide-title">
+                <span class="slide-delete glyphicon glyphicon-remove-circle" onclick="helpers.confirmRedirect('{{ path('infostander_admin_slide_delete', { 'id': slide.id }) }}', '{{ 'slide.index.delete'|trans }}');"></span>
+                <span class="slide-delete glyphicon {% if slide.archived %} glyphicon-eye-close {% else %} glyphicon-eye-open {% endif %}" onclick="helpers.redirect('{{ path('infostander_admin_slide_archived', { 'id': slide.id }) }}');"></span>
+                {{ slide.title }}
+            </div>
+            <div class="slide-description">{{ slide.description }}</div>
         </div>
-        <div class="slide-description">{{ slide.description }}</div>
-    </div>
     {% endif %}
 {% endfor %}
 

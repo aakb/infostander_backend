@@ -29,6 +29,9 @@ slide:
     information: På denne side kan du se hvilke slides er blevet uploadet
     add: Tilføj slide
     delete: Vil du slette slidet?
+    archived:
+      show: Vis arkiverede slides
+      hide: Gem arkiverede slides
 navbar:
   logout: Log ud
 scheduler:
