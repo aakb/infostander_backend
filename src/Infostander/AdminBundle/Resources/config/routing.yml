@@ -20,7 +20,7 @@ infostander_admin_screen_new_activation_code:
 
 infostander_admin_slide:
    pattern: /slide/{showarchived}
-   defaults: { _controller: InfostanderAdminBundle:Slide:index, showarchived: false }
+   defaults: { _controller: InfostanderAdminBundle:Slide:index, showarchived: 0 }
 
 infostander_admin_slide_add:
     pattern: /slide/add

@@ -28,6 +28,7 @@ slide:
     information: På denne side kan du se hvilke slides er blevet uploadet
     add: Tilføj slide
     delete: Vil du slette slidet?
+
 navbar:
   logout: Log ud
 scheduler:
