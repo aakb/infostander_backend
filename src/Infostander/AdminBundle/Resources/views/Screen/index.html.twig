@@ -31,7 +31,15 @@
                     </span>
                 </form>
                 <div class="screen-title">{{ screen.title }}</div>
-                <div class="screen-token">({{ 'screen.index.activation_code'|trans }}: {{ screen.activationCode }})</div>
+                {% if screen.token == "" %}
+                    <div class="screen-token screen-not-activated-text">{{ 'screen.index.activation_code'|trans }}: {{ screen.activationCode }}</div>
+                {% else %}
+                    {% if screen.activationCode == 0 %}
+                        <div class="screen-token screen-activated-text">{{ 'screen.index.activated'|trans }}</div>
+                    {% else %}
+                        <div class="screen-token screen-activated-text">{{ 'screen.index.activated'|trans }} - {{ 'screen.index.new_activation_code'|trans }}: {{ screen.activationCode }}</div>
+                    {% endif %}
+                {% endif %}
             </div>
             <div class="screen-description">{{ screen.description }}</div>
         </div>

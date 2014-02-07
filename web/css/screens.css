@@ -24,3 +24,11 @@
 .screen-description {
   font-style: italic;
 }
+
+.screen-activated-text {
+  color: #00aa00;
+}
+
+.screen-not-activated-text {
+  color: #aa0000;
+}

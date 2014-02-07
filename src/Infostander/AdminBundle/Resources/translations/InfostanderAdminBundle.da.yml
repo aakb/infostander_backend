@@ -12,7 +12,8 @@ screen:
     confirm_delete: Bekræft sletning
     add: Tilføj skærm
     information: På denne side kan du administrere dine skærme
-    activation_code: Kode
+    activation_code: Aktiveringskode
+    activated: Aktiveret
 slide:
   add:
     title: Titel
@@ -28,7 +29,6 @@ slide:
     information: På denne side kan du se hvilke slides er blevet uploadet
     add: Tilføj slide
     delete: Vil du slette slidet?
-
 navbar:
   logout: Log ud
 scheduler:
