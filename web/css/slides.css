@@ -35,3 +35,7 @@
 .slide-delete:hover {
   color: #b00;
 }
+
+.slide-inactive {
+  opacity: 0.5;
+}
