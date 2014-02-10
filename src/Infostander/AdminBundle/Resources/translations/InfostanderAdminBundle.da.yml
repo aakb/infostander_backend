@@ -40,6 +40,8 @@ scheduler:
 booking:
   index:
     title: Planlæg
+    add: Opret booking
+
   add:
     information: På denne side kan du oprette en booking
     save: Opret booking

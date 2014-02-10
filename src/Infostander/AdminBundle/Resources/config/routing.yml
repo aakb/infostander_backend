@@ -1,6 +1,6 @@
 infostander_admin_homepage:
     pattern:  /
-    defaults: { _controller: InfostanderAdminBundle:Default:index }
+    defaults: { _controller: InfostanderAdminBundle:Booking:index }
 
 infostander_admin_screen:
     pattern:  /screen
@@ -19,7 +19,7 @@ infostander_admin_screen_new_activation_code:
     defaults:  { _controller: InfostanderAdminBundle:Screen:newActivationCode }
 
 infostander_admin_slide:
-   pattern: /slide/index
+   pattern: /slide
    defaults: { _controller: InfostanderAdminBundle:Slide:index }
 
 infostander_admin_slide_toggle_showarchived:

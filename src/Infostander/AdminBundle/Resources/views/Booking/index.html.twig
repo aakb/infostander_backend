@@ -1,18 +1,26 @@
-{%  extends '::loggedin.html.twig' %}
+{% extends '::loggedin.html.twig' %}
 
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
+  <link href="/css/booking.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="scheduler-container">
-            <h2 class="scheduler-title">{{ 'scheduler.title'|trans }}</h2>
-            <div class="scheduler-text">{{ 'scheduler.text'|trans }}</div>
-        </div>
+  <div class="container">
+    <h2 class="scheduler-title">{{ 'scheduler.title'|trans }}</h2>
+    <p>{{ 'scheduler.text'|trans }}</p>
+    <form class="booking-form-button-nofloat" action="{{ path('infostander_admin_booking_add') }}" method="get">
+      <span class="btn-group btn-group-xs">
+        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'booking.index.add'|trans }}</button>
+      </span>
+    </form>
+    <div class="schedule-overview">
+
     </div>
+  </div>
 {% endblock %}
 
 {% block javascripts %}
+
 {% endblock %}
