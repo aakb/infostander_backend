@@ -14,7 +14,7 @@ class BookingController extends Controller {
   public function addAction(Request $request) {
     $booking = new Booking();
 
-    $slides = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findBy(array(), array('title' => 'asc'));
+    $slides = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findBy(array('archived' => false), array('title' => 'asc'));
 
     $form = $this->createForm('booking', $booking, array(
       'choice_options' => $slides
