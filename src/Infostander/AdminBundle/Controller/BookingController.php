@@ -6,18 +6,19 @@ use Infostander\AdminBundle\Entity\Booking;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class BookingController extends Controller
-{
-    public function indexAction()
-    {
-        return $this->render('InfostanderAdminBundle:Booking:index.html.twig');
-    }
+class BookingController extends Controller {
+  public function indexAction() {
+    return $this->render('InfostanderAdminBundle:Booking:index.html.twig');
+  }
 
-  public function addAction(Request $request)
-  {
+  public function addAction(Request $request) {
     $booking = new Booking();
 
-    $form = $this->createForm('booking', $booking);
+    $slides = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findBy(array(), array('title' => 'asc'));
+
+    $form = $this->createForm('booking', $booking, array(
+      'choice_options' => $slides
+    ));
 
     $form->handleRequest($request);
 
@@ -34,8 +35,7 @@ class BookingController extends Controller
     }
 
     return $this->render('InfostanderAdminBundle:Booking:add.html.twig', array(
-      'form' => $form->createView(),
+      'form' => $form->createView(), 'slides'=>$slides
     ));
   }
-
 }

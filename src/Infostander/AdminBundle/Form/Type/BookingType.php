@@ -11,16 +11,20 @@ class BookingType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('title', 'text', array('label' => 'booking.add.title', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.title')));
-    //$builder->add('slideid', 'text', array('label' => 'booking.add.slideid', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.slideid')));
     $builder->add('startdate', 'text', array('label' => 'booking.add.startdate', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.startdate', 'data-format' => 'DD-MM-YYYY HH:mm')));
     $builder->add('enddate', 'text', array('label' => 'booking.add.enddate', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'booking.add.enddate', 'data-format' => 'DD-MM-YYYY HH:mm')));
     $builder->add('save', 'submit', array('label' => 'booking.add.save', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'btn btn-lg btn-primary btn-block')));
+
+    $choicesArray = array();
+    if($options['choice_options']){
+      foreach ($options['choice_options'] as $slide) {
+        $choicesArray[$slide->getId()] = $slide->getTitle();
+      }
+    }
+
     $builder->add('slideid', 'choice', array(
-      'choices' => array(
-        0 => 'Published',
-        1 => 'Draft'
-      ),
-      'data' => 1
+      'choices' => $choicesArray,
+      'attr' => array('class'=>'form-control form-choice-control', 'contenteditable'=>'contenteditable')
     ));
   }
 
@@ -28,6 +32,7 @@ class BookingType extends AbstractType
   {
     $resolver->setDefaults(array(
       'data_class' => 'Infostander\AdminBundle\Entity\Booking',
+      'choice_options' => array()
     ));
   }
 

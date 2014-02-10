@@ -13,7 +13,6 @@ class SlideController extends Controller {
     $slides = $this->getDoctrine()
       ->getRepository('InfostanderAdminBundle:Slide')->findBy(array(), array('title' => 'asc'));
 
-
     // Get show archived cookie
     $showArchived = 0;
     $showArchivedCookie = $request->cookies->get('SHOW_ARCHIVED');
