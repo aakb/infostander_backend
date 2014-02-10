@@ -3,7 +3,9 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-  <link href="/css/booking.css" rel="stylesheet">
+  <link href="/css/booking.css" rel="stylesheet"/>
+  <link href="/codebase/dhtmlxscheduler.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
@@ -16,11 +18,89 @@
       </span>
     </form>
     <div class="schedule-overview">
-
+      <div id="scheduler_here" class="dhx_cal_container" style='width: 1000px; height: 500px;'>
+        <div class="dhx_cal_navline">
+          <div class="dhx_cal_prev_button">&nbsp;</div>
+          <div class="dhx_cal_next_button">&nbsp;</div>
+          <div class="dhx_cal_today_button"></div>
+          <div class="dhx_cal_date"></div>
+          <span class="btn-group btn-group-sm">
+            <div class="btn btn-lg btn-default btn-block" name="timeline_day_tab" style="margin-left: 20px;"></div>
+          </span>
+          <span class="btn-group btn-group-sm">
+            <div class="btn btn-lg btn-default btn-block" name="timeline_week_tab" style="margin-left: 20px;" ></div>
+          </span>
+          <span class="btn-group btn-group-sm">
+            <div class="btn btn-lg btn-default btn-block" name="timeline_month_tab" style="margin-left: 20px;"></div>
+          </span>
+        </div>
+        <div class="dhx_cal_header"></div>
+        <div class="dhx_cal_data"></div>
+      </div>
     </div>
   </div>
 {% endblock %}
 
 {% block javascripts %}
+  <script src="/codebase/dhtmlxscheduler.js" type="text/javascript"></script>
+  <script src="/codebase/ext/dhtmlxscheduler_timeline.js" type="text/javascript"></script>
+  <script src="/codebase/locale/locale_da.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function() {
+      scheduler.config.xml_date="%Y-%m-%d %H:%i";
+      scheduler.config.fix_tab_position = false;
 
+      scheduler.locale.labels.timeline_day_tab = "Dag";
+      scheduler.locale.labels.timeline_week_tab = "Uge";
+      scheduler.locale.labels.timeline_month_tab ="Måned";
+
+      scheduler.createTimelineView({
+        name:"timeline_day",
+        x_unit:"hour",//measuring unit of the X-Axis.
+        x_date:"%H:%i", //date format of the X-Axis
+        x_step:2,      //X-Axis step in 'x_unit's
+        x_size:12,      //X-Axis length specified as the total number of 'x_step's
+        x_start:0,     //X-Axis offset in 'x_unit's
+        x_length:12,    //number of 'x_step's that will be scrolled at a time
+        y_unit:         //sections of the view (titles of Y-Axis)
+          [{key:1, label:"sd"}],
+        y_property:"booking_id", //mapped data property
+        render:"bar"             //view mode
+      });
+
+      scheduler.createTimelineView({
+        name:"timeline_week",
+        x_unit:"day",//measuring unit of the X-Axis.
+        x_date:"%d / %m", //date format of the X-Axis
+        x_step:1,      //X-Axis step in 'x_unit's
+        x_size:7,      //X-Axis length specified as the total number of 'x_step's
+        x_start:0,     //X-Axis offset in 'x_unit's
+        x_length:7,    //number of 'x_step's that will be scrolled at a time
+        y_unit:         //sections of the view (titles of Y-Axis)
+          [{key:1, label:"sd"}],
+        y_property:"booking_id", //mapped data property
+        render:"bar"             //view mode
+      });
+
+      scheduler.createTimelineView({
+        name:"timeline_month",
+        x_unit:"day",//measuring unit of the X-Axis.
+        x_date:"%d / %m", //date format of the X-Axis
+        x_step:2,      //X-Axis step in 'x_unit's
+        x_size:15,      //X-Axis length specified as the total number of 'x_step's
+        x_start:0,     //X-Axis offset in 'x_unit's
+        x_length:15,    //number of 'x_step's that will be scrolled at a time
+        y_unit:         //sections of the view (titles of Y-Axis)
+          [{key:1, label:"sd"}],
+        y_property:"booking_id", //mapped data property
+        render:"bar"             //view mode
+      });
+
+      scheduler.init('scheduler_here', new Date(),"timeline_month");
+
+      scheduler.parse([{id:1, text:"Møde", start_date:"2014-02-04 14:00",end_date:"2014-02-06 17:00", booking_id: "1"}], "json");
+    });
+
+
+  </script>
 {% endblock %}
