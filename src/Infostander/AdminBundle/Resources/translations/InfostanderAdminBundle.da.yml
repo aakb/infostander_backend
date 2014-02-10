@@ -31,7 +31,7 @@ slide:
     delete: Vil du slette slidet?
     archived:
       show: Vis arkiverede slides
-      hide: Gem arkiverede slides
+      hide: Skjul arkiverede slides
 navbar:
   logout: Log ud
 scheduler:

@@ -19,8 +19,12 @@ infostander_admin_screen_new_activation_code:
     defaults:  { _controller: InfostanderAdminBundle:Screen:newActivationCode }
 
 infostander_admin_slide:
-   pattern: /slide/index/{showarchived}
-   defaults: { _controller: InfostanderAdminBundle:Slide:index, showarchived: 0 }
+   pattern: /slide/index
+   defaults: { _controller: InfostanderAdminBundle:Slide:index }
+
+infostander_admin_slide_toggle_showarchived:
+  pattern: /slide/togglearchived
+  defaults: { _controller: InfostanderAdminBundle:Slide:toggleShowArchived }
 
 infostander_admin_slide_add:
     pattern: /slide/add

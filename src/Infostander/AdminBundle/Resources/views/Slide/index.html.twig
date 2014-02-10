@@ -20,7 +20,7 @@
                     <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'slide.index.add'|trans }}</button>
                 </span>
             </form>
-            <form class="form-button" action="{% if showarchived %}{{ path('infostander_admin_slide', {'showarchived': 0}) }}{% else %}{{ path('infostander_admin_slide', {'showarchived': 1}) }}{% endif %}" method="get">
+            <form class="form-button" action="{{ path('infostander_admin_slide_toggle_showarchived') }}" method="post">
                 <span class="btn-group btn-group-xs">
                     <button type="submit" class="btn btn-lg btn-primary btn-block">{% if showarchived %}{{ 'slide.index.archived.hide'|trans }}{% else %}{{ 'slide.index.archived.show'|trans }}{% endif %}</button>
                 </span>
