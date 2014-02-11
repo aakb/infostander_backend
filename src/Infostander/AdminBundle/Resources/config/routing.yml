@@ -38,6 +38,10 @@ infostander_admin_slide_archived:
     path:      /slide/archived/{id}
     defaults:  { _controller: InfostanderAdminBundle:Slide:toggleArchived }
 
+infostander_admin_booking_change_sort_order:
+    path: /booking/sortorder/{id}/{updown}
+    defaults:  { _controller: InfostanderAdminBundle:Booking:changeSortOrder }
+
 infostander_admin_booking:
     path:      /booking
     defaults:  { _controller: InfostanderAdminBundle:Booking:index }

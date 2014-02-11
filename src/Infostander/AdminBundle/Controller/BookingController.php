@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BookingController extends Controller {
   public function indexAction() {
-    $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findAll();
+    $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findBy(array(), array('sortOrder' => 'desc'));
 
     return $this->render('InfostanderAdminBundle:Booking:index.html.twig', array(
       'bookings' => $bookings
@@ -29,8 +29,11 @@ class BookingController extends Controller {
     if ($form->isValid()) {
       $manager = $this->getDoctrine()->getManager();
 
+      $largestSortOrderBooking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneBy(array(), array('sortOrder' => 'desc'));
+
       $booking->setStartDate(new \DateTime($booking->getStartDate()));
       $booking->setEndDate(new \DateTime($booking->getEndDate()));
+      $booking->setSortOrder($largestSortOrderBooking->getSortOrder() + 1);
 
       $manager->persist($booking);
       $manager->flush();
@@ -41,5 +44,29 @@ class BookingController extends Controller {
     return $this->render('InfostanderAdminBundle:Booking:add.html.twig', array(
       'form' => $form->createView(), 'slides'=>$slides
     ));
+  }
+
+  public function changeSortOrderAction($id, $updown) {
+    $manager = $this->getDoctrine()->getManager();
+
+    $booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneBy(array('id' => $id));
+    $bookingSortOrder = $booking->getSortOrder();
+
+    if ($updown == 'up') {
+      $change = 1;
+    }
+    else {
+      $change = -1;
+    }
+
+    $otherBooking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneBy(array('sortOrder' => $bookingSortOrder + $change));
+    if ($otherBooking) {
+      $booking->setSortOrder($bookingSortOrder + $change);
+      $manager->flush();
+      $otherBooking->setSortOrder($bookingSortOrder);
+      $manager->flush();
+    }
+
+    return $this->redirect($this->generateUrl("infostander_admin_booking"));
   }
 }

@@ -3,9 +3,9 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-  <link href="/css/booking.css" rel="stylesheet"/>
-  <link href="/codebase/dhtmlxscheduler.css" rel="stylesheet" type="text/css"/>
   <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/codebase/dhtmlxscheduler.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/booking.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
@@ -18,7 +18,7 @@
       </span>
     </form>
     <div class="schedule-overview">
-      <div id="scheduler_here" class="dhx_cal_container" style='width: 1000px; height: 500px;'>
+      <div id="scheduler_here" class="dhx_cal_container">
         <div class="dhx_cal_navline">
           <div class="dhx_cal_prev_button">&nbsp;</div>
           <div class="dhx_cal_next_button">&nbsp;</div>
@@ -44,11 +44,34 @@
 {% block javascripts %}
   <script src="/codebase/dhtmlxscheduler.js" type="text/javascript"></script>
   <script src="/codebase/ext/dhtmlxscheduler_timeline.js" type="text/javascript"></script>
+  <script src="/codebase/ext/dhtmlxscheduler_container_autoresize.js"></script>
   <script src="/codebase/locale/locale_da.js" charset="utf-8"></script>
   <script type="text/javascript">
+    var p = '{{ path('infostander_admin_booking') }}';
+
+    function changeSortOrder(id, up) {
+      if (up) {
+        window.location.href = p + "/sortorder/" + id + "/up";
+      } else {
+        window.location.href = p + "/sortorder/" + id + "/down";
+      }
+    }
+
+    function updateLineColors() {
+      // Add styles to events
+      $(".dhx_cal_event_line").each(function(index) {
+        if (index % 2 == 1) {
+          $(this).addClass("line-odd");
+        } else {
+          $(this).addClass("line-even");
+        }
+      });
+    }
+
     $(function() {
       scheduler.config.xml_date="%Y-%m-%d %H:%i";
       scheduler.config.fix_tab_position = false;
+      scheduler.config.readonly = true;
 
       scheduler.locale.labels.timeline_day_tab = "{{ 'booking.index.day'|trans }}";
       scheduler.locale.labels.timeline_week_tab = "{{ 'booking.index.week'|trans }}";
@@ -59,12 +82,14 @@
       var bookingIDs = [];
 
       {% for booking in bookings %}
-      bookingIDs.push({key: '{{ loop.index }}', label: '{{ booking.title }}' });
-      bookingArray.push({ id: '{{ booking.id }}', text: '{{ booking.title }}', start_date: '{{ booking.startdate | date('Y-m-d H:i') }}', end_date: '{{ booking.enddate | date('Y-m-d H:i') }}', booking_id: '{{ loop.index }}' })
+      bookingIDs.push({key: '{{ loop.index }}', label: '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span><span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span>{{ booking.title }}' });
+      bookingArray.push({ id: '{{ booking.id }}', text: '', start_date: '{{ booking.startdate | date('Y-m-d H:i') }}', end_date: '{{ booking.enddate | date('Y-m-d H:i') }}', booking_id: '{{ loop.index }}' })
       {% endfor %}
 
       scheduler.createTimelineView({
         name:"timeline_day",
+        section_autoheight: false,
+        dy: 25,
         x_unit:"hour",//measuring unit of the X-Axis.
         x_date:"%H:%i", //date format of the X-Axis
         x_step:2,      //X-Axis step in 'x_unit's
@@ -79,8 +104,10 @@
 
       scheduler.createTimelineView({
         name:"timeline_week",
+        section_autoheight: false,
+        dy: 25,
         x_unit:"day",//measuring unit of the X-Axis.
-        x_date:"%d / %m", //date format of the X-Axis
+        x_date:"%D %d / %m", //date format of the X-Axis
         x_step:1,      //X-Axis step in 'x_unit's
         x_size:7,      //X-Axis length specified as the total number of 'x_step's
         x_start:0,     //X-Axis offset in 'x_unit's
@@ -93,6 +120,8 @@
 
       scheduler.createTimelineView({
         name:"timeline_month",
+        section_autoheight: false,
+        dy: 25,
         x_unit:"day",//measuring unit of the X-Axis.
         x_date:"%d / %m", //date format of the X-Axis
         x_step:2,      //X-Axis step in 'x_unit's
@@ -108,6 +137,16 @@
       scheduler.init('scheduler_here', new Date(),"timeline_month");
 
       scheduler.parse(bookingArray, "json");
+
+      scheduler.attachEvent("onViewChange", function(section, isOpen, allSections){
+        updateLineColors();
+      });
+
+      scheduler.attachEvent("onSchedulerResize", function(section, isOpen, allSections){
+        updateLineColors();
+      });
+
+      updateLineColors();
     });
 
 

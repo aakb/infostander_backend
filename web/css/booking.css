@@ -6,7 +6,57 @@
   margin-bottom: 10px;
 }
 
+.schedule-overview {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
 .booking-form-button-nofloat {
   margin-bottom: 20px;
 }
 
+.dhx_cal_container .dhx_scheduler_timeline_day {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  width: 100%; min-height: 500px;
+}
+
+.dhx_matrix_scell {
+  border-left: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.dhx_cal_data {
+  padding-bottom: 0px;
+}
+
+.dhx_cal_header {
+  border: 0;
+}
+
+.dhx_cal_header div div {
+  border: 0;
+}
+
+.dhx_matrix_cell {
+  border-bottom: 0;
+}
+
+.line-even {
+  background-color: #1796b0;
+}
+
+.line-odd {
+  background-color: #245269;
+}
+
+.booking-arrow-up {
+  float: right;
+  margin-right: 5px;
+}
+
+.booking-arrow-down {
+  float: left;
+  margin-left: 5px;
+}

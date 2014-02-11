@@ -37,6 +37,10 @@ class Booking
    */
   protected $endDate;
 
+  /**
+   * @ORM\Column(type="integer", name="sort_order")
+   */
+  protected $sortOrder;
 
 
   public function getId() {
@@ -73,5 +77,13 @@ class Booking
 
   public function setSlideId($slideId) {
     $this->slideId = $slideId;
+  }
+
+  public function getSortOrder() {
+    return $this->sortOrder;
+  }
+
+  public function setSortOrder($sortOrder) {
+    $this->sortOrder = $sortOrder;
   }
 }
