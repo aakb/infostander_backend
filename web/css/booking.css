@@ -57,6 +57,11 @@
 }
 
 .booking-arrow-down {
+  float: right;
+  margin-right: 5px;
+}
+
+.booking-wrench {
   float: left;
   margin-left: 5px;
 }

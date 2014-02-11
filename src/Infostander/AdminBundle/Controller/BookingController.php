@@ -46,10 +46,43 @@ class BookingController extends Controller {
     ));
   }
 
+  public function editAction(Request $request, $id) {
+    $manager = $this->getDoctrine()->getManager();
+    $booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneById($id);
+    if (!$booking) {
+      return $this->redirect($this->generateUrl("infostander_admin_booking"));
+    }
+
+    $booking->setStartDate(date("d-m-Y H:i", date_timestamp_get($booking->getStartDate())));
+    $booking->setEndDate(date("d-m-Y H:i", date_timestamp_get($booking->getEndDate())));
+
+    $slides = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findBy(array('archived' => false), array('title' => 'asc'));
+
+    $form = $this->createForm('booking', $booking, array(
+      'choice_options' => $slides
+    ));
+
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+
+      $booking->setStartDate(new \DateTime($booking->getStartDate()));
+      $booking->setEndDate(new \DateTime($booking->getEndDate()));
+
+      $manager->flush();
+
+      return $this->redirect($this->generateUrl("infostander_admin_booking"));
+    }
+
+    return $this->render('InfostanderAdminBundle:Booking:edit.html.twig', array(
+      'form' => $form->createView(), 'slides'=>$slides, 'id'=>$id, 'slide_id'=>$booking->getSlideId()
+    ));
+  }
+
   public function changeSortOrderAction($id, $updown) {
     $manager = $this->getDoctrine()->getManager();
 
-    $booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneBy(array('id' => $id));
+    $booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneById($id);
     $bookingSortOrder = $booking->getSortOrder();
 
     if ($updown == 'up') {

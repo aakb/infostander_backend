@@ -46,7 +46,7 @@ booking:
     month: Måned
   add:
     information: På denne side kan du oprette en booking
-    save: Opret booking
+    save: Gem booking
     title: Titel
     startdate: Start dato og tidspunkt
     enddate: Slut dato og tidspunkt

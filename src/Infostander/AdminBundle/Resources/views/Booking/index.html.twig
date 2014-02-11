@@ -47,14 +47,18 @@
   <script src="/codebase/ext/dhtmlxscheduler_container_autoresize.js"></script>
   <script src="/codebase/locale/locale_da.js" charset="utf-8"></script>
   <script type="text/javascript">
-    var p = '{{ path('infostander_admin_booking') }}';
+    var pathToBooking = '{{ path('infostander_admin_booking') }}';
 
     function changeSortOrder(id, up) {
       if (up) {
-        window.location.href = p + "/sortorder/" + id + "/up";
+        window.location.href = pathToBooking + "/sortorder/" + id + "/up";
       } else {
-        window.location.href = p + "/sortorder/" + id + "/down";
+        window.location.href = pathToBooking + "/sortorder/" + id + "/down";
       }
+    }
+
+    function editEvent(id) {
+      window.location.href = pathToBooking + "/edit/" + id;
     }
 
     function updateLineColors() {
@@ -78,11 +82,11 @@
       scheduler.locale.labels.timeline_month_tab ="{{ 'booking.index.month'|trans }}";
 
       // Load data from the db
-      var bookingArray = [];
       var bookingIDs = [];
+      var bookingArray = [];
 
       {% for booking in bookings %}
-      bookingIDs.push({key: '{{ loop.index }}', label: '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span><span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span>{{ booking.title }}' });
+      bookingIDs.push({key: '{{ loop.index }}', label: '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span><span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span><span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span>{{ booking.title }}' });
       bookingArray.push({ id: '{{ booking.id }}', text: '', start_date: '{{ booking.startdate | date('Y-m-d H:i') }}', end_date: '{{ booking.enddate | date('Y-m-d H:i') }}', booking_id: '{{ loop.index }}' })
       {% endfor %}
 

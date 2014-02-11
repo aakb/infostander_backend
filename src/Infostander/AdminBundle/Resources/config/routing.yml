@@ -50,6 +50,10 @@ infostander_admin_booking_add:
     path:      /booking/add
     defaults:  { _controller: InfostanderAdminBundle:Booking:add }
 
+infostander_admin_booking_edit:
+    path:      /booking/edit/{id}
+    defaults:  { _controller: InfostanderAdminBundle:Booking:edit }
+
 infostander_admin_api_screen_activate:
   path:       /api/screen/activate
   defaults:   { _controller: InfostanderAdminBundle:Api:screenActivate }
