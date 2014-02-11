@@ -22,11 +22,6 @@
       {{ form_errors(form.enddate) }}
 
       {{ form_widget(form.title) }}
-      {{ form_widget(form.slideid) }}
-
-      <div class="slide-container">
-        <img class="slide-thumb img-thumbnail" src="" alt="" id="slide-preview" />
-      </div>
 
       <div class="input-group date form-last" id="datetimepickerStart">
         {{ form_widget(form.startdate) }}
@@ -39,6 +34,12 @@
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
+      </div>
+
+      {{ form_widget(form.slideid) }}
+
+      <div class="slide-container">
+        <img class="slide-thumb img-thumbnail" src="" alt="" id="slide-preview" />
       </div>
 
       {{ form_rest(form) }}
