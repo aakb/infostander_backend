@@ -8,7 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BookingController extends Controller {
   public function indexAction() {
-    return $this->render('InfostanderAdminBundle:Booking:index.html.twig');
+    $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findAll();
+
+    return $this->render('InfostanderAdminBundle:Booking:index.html.twig', array(
+      'bookings' => $bookings
+    ));
   }
 
   public function addAction(Request $request) {

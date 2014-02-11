@@ -25,13 +25,13 @@
           <div class="dhx_cal_today_button"></div>
           <div class="dhx_cal_date"></div>
           <span class="btn-group btn-group-sm">
-            <div class="btn btn-lg btn-default btn-block" name="timeline_day_tab" style="margin-left: 20px;"></div>
+            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_day_tab" style="margin-left: 20px;"></div>
           </span>
           <span class="btn-group btn-group-sm">
-            <div class="btn btn-lg btn-default btn-block" name="timeline_week_tab" style="margin-left: 20px;" ></div>
+            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_week_tab" style="margin-left: 20px;" ></div>
           </span>
           <span class="btn-group btn-group-sm">
-            <div class="btn btn-lg btn-default btn-block" name="timeline_month_tab" style="margin-left: 20px;"></div>
+            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_month_tab" style="margin-left: 20px;"></div>
           </span>
         </div>
         <div class="dhx_cal_header"></div>
@@ -50,9 +50,18 @@
       scheduler.config.xml_date="%Y-%m-%d %H:%i";
       scheduler.config.fix_tab_position = false;
 
-      scheduler.locale.labels.timeline_day_tab = "Dag";
-      scheduler.locale.labels.timeline_week_tab = "Uge";
-      scheduler.locale.labels.timeline_month_tab ="Måned";
+      scheduler.locale.labels.timeline_day_tab = "{{ 'booking.index.day'|trans }}";
+      scheduler.locale.labels.timeline_week_tab = "{{ 'booking.index.week'|trans }}";
+      scheduler.locale.labels.timeline_month_tab ="{{ 'booking.index.month'|trans }}";
+
+      // Load data from the db
+      var bookingArray = [];
+      var bookingIDs = [];
+
+      {% for booking in bookings %}
+      bookingIDs.push({key: '{{ loop.index }}', label: '{{ booking.title }}' });
+      bookingArray.push({ id: '{{ booking.id }}', text: '{{ booking.title }}', start_date: '{{ booking.startdate | date('Y-m-d H:i') }}', end_date: '{{ booking.enddate | date('Y-m-d H:i') }}', booking_id: '{{ loop.index }}' })
+      {% endfor %}
 
       scheduler.createTimelineView({
         name:"timeline_day",
@@ -63,7 +72,7 @@
         x_start:0,     //X-Axis offset in 'x_unit's
         x_length:12,    //number of 'x_step's that will be scrolled at a time
         y_unit:         //sections of the view (titles of Y-Axis)
-          [{key:1, label:"sd"}],
+          bookingIDs,
         y_property:"booking_id", //mapped data property
         render:"bar"             //view mode
       });
@@ -77,7 +86,7 @@
         x_start:0,     //X-Axis offset in 'x_unit's
         x_length:7,    //number of 'x_step's that will be scrolled at a time
         y_unit:         //sections of the view (titles of Y-Axis)
-          [{key:1, label:"sd"}],
+          bookingIDs,
         y_property:"booking_id", //mapped data property
         render:"bar"             //view mode
       });
@@ -91,14 +100,14 @@
         x_start:0,     //X-Axis offset in 'x_unit's
         x_length:15,    //number of 'x_step's that will be scrolled at a time
         y_unit:         //sections of the view (titles of Y-Axis)
-          [{key:1, label:"sd"}],
+          bookingIDs, //[{key:1, label:"month"}],
         y_property:"booking_id", //mapped data property
         render:"bar"             //view mode
       });
 
       scheduler.init('scheduler_here', new Date(),"timeline_month");
 
-      scheduler.parse([{id:1, text:"Møde", start_date:"2014-02-04 14:00",end_date:"2014-02-06 17:00", booking_id: "1"}], "json");
+      scheduler.parse(bookingArray, "json");
     });
 
 
