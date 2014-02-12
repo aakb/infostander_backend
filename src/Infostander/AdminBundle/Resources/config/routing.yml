@@ -2,6 +2,10 @@ infostander_admin_homepage:
     pattern:  /
     defaults: { _controller: InfostanderAdminBundle:Booking:index }
 
+infostander_admin_user:
+  pattern: /user
+  defaults: { _controller: InfostanderAdminBundle:User:index }
+
 infostander_admin_screen:
     pattern:  /screen
     defaults: { _controller: InfostanderAdminBundle:Screen:index }

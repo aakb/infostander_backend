@@ -12,7 +12,7 @@
                 <li><a href="{{ path('infostander_admin_slide') }}">Slides</a></li>
                 <li><a href="{{ path('infostander_admin_screen') }}">Skærme</a></li>
                 {% if is_granted("ROLE_SUPER_ADMIN") %}
-                    <li><a href="{{ path('fos_user_registration_register') }}">Opret bruger</a></li>
+                    <li><a href="{{ path('infostander_admin_user') }}">Brugere</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
