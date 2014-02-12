@@ -3,7 +3,7 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-    <link href="/css/users.css" rel="stylesheet">
+    <link href="/css/user.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -11,14 +11,14 @@
         <div class="screen-div-top">
             <h2>{{ 'user.index.title'|trans }}</h2>
             <p>{{ 'user.index.information'|trans }}.</p>
-            <form class="screen-form-button-nofloat" action="{{ path('fos_user_registration_register') }}" method="get">
+            <form class="user-form-button-nofloat" action="{{ path('fos_user_registration_register') }}" method="get">
                 <span class="btn-group btn-group-xs">
                     <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'user.index.add'|trans }}</button>
                 </span>
             </form>
         </div>
         {% for user in users %}
-        <div class="users-user">
+        <div class="users-user {{ cycle(['users-user-odd', 'users-user-even'], loop.index) }}">
           <span class="users-username">{{ user.username }}</span>
         </div>
         {% endfor %}

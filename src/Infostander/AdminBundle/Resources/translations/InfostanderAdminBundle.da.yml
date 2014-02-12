@@ -36,7 +36,7 @@ navbar:
   logout: Log ud
 scheduler:
   title: Planlægning
-  text: På denne side kan du planlægge hvornår hvilke slides skal vises på pylonerne
+  text: På denne side kan du planlægge hvornår hvilke slides skal vises på pylonerne.
 booking:
   index:
     title: Planlæg
@@ -53,3 +53,8 @@ booking:
     slideid: Hvilket slide skal vises?
   edit:
     information: På denne side kan du redigere en booking
+user:
+  index:
+    add: Opret bruger
+    information: På denne side kan du se hvilke brugere der er oprettet, og oprette nye. Nyoprettede brugere har rettigheder til hele systemet med undtagelse af oprettelse af nye brugere
+    title: Brugere

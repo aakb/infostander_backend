@@ -1,0 +1,15 @@
+.users-user {
+  padding: 5px;
+}
+
+.users-user-even {
+  background-color: #ccc;
+}
+
+.users-user-odd {
+  background-color: #ddd;
+}
+
+.user-form-button-nofloat {
+  margin-bottom: 20px;
+}
