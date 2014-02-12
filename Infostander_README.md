@@ -13,18 +13,10 @@ $ brew install composer
 Without brew. Go to project directory:
 
 <pre>
-$ curl -s http://getcomposer.org/installer | php
+$ curl -sS http://getcomposer.org/installer | php
 </pre>
 
 This will download composer.phar to the project directory.
-
-###Setup project
-<pre>
-$ cp app/config/parameters.yml.dist app/config/parameters.yml
-</pre>
-
-Fill in relevant settings.
-
 
 ###Install dependencies for project
 With brew:
@@ -36,6 +28,19 @@ Without brew:
 <pre>
 $ php composer.phar install
 </pre>
+
+If there are problems with this, try with apc.enable_cli = Off in php.ini or from the cli:
+<pre>
+php -d apc.enable_cli=Off composer.phar install
+</pre>
+
+###Setup project
+<pre>
+$ cp app/config/parameters.yml.dist app/config/parameters.yml
+</pre>
+
+Fill in relevant settings.
+
 
 ###Setup DB
 <pre>
@@ -50,6 +55,10 @@ app/cache/
 app/logs/
 </pre>
 
+###Set up webserver
+<pre>
+http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+</pre>
 
 ###Check system configuration
 Check that local system is properly configured for Symfony.
@@ -58,9 +67,9 @@ Check that local system is properly configured for Symfony.
 $ php app/check.php
 </pre>
 
-> returns 0: mandatory requirements are met, 1 otherwise.
+> Look for ERROR or WARNING and correct these.
 
-Check config link in browser
+Check config link in browser to run check requirements for the web server.
 
 <pre>
 http://[path_to_project/app/web]/config.php
