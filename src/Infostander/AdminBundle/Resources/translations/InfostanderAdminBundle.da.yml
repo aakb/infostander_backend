@@ -51,3 +51,5 @@ booking:
     startdate: Start dato og tidspunkt
     enddate: Slut dato og tidspunkt
     slideid: Hvilket slide skal vises?
+  edit:
+    information: På denne side kan du redigere en booking

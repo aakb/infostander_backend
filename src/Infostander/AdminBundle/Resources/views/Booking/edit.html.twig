@@ -10,7 +10,7 @@
 
 {% block body %}
   <div class="container">
-    <p>{{ 'booking.add.information'|trans }}.</p>
+    <p>{{ 'booking.edit.information'|trans }}.</p>
 
     <form action="{{ path('infostander_admin_booking_edit', {'id' : id } ) }}" {{ form_enctype(form) }}
       method="POST" class="form-signin fos_user_registration_register">

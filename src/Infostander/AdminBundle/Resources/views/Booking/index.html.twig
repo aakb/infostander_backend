@@ -3,7 +3,6 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-  <link href="/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="/codebase/dhtmlxscheduler.css" rel="stylesheet" type="text/css"/>
   <link href="/css/booking.css" rel="stylesheet"/>
 {% endblock %}
@@ -25,13 +24,13 @@
           <div class="dhx_cal_today_button"></div>
           <div class="dhx_cal_date"></div>
           <span class="btn-group btn-group-sm">
-            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_day_tab" style="margin-left: 20px;"></div>
+            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_day_tab" style="margin-left: 0px;"></div>
           </span>
           <span class="btn-group btn-group-sm">
-            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_week_tab" style="margin-left: 20px;" ></div>
+            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_week_tab" style="margin-left: 0px;" ></div>
           </span>
           <span class="btn-group btn-group-sm">
-            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_month_tab" style="margin-left: 20px;"></div>
+            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_month_tab" style="margin-left: 0px;"></div>
           </span>
         </div>
         <div class="dhx_cal_header"></div>
@@ -91,51 +90,48 @@
       {% endfor %}
 
       scheduler.createTimelineView({
-        name:"timeline_day",
-        section_autoheight: false,
-        dy: 25,
-        x_unit:"hour",//measuring unit of the X-Axis.
-        x_date:"%H:%i", //date format of the X-Axis
-        x_step:2,      //X-Axis step in 'x_unit's
-        x_size:12,      //X-Axis length specified as the total number of 'x_step's
-        x_start:0,     //X-Axis offset in 'x_unit's
-        x_length:12,    //number of 'x_step's that will be scrolled at a time
-        y_unit:         //sections of the view (titles of Y-Axis)
-          bookingIDs,
-        y_property:"booking_id", //mapped data property
-        render:"bar"             //view mode
+        name:"timeline_day",        // Tab name
+        section_autoheight: false,  // Auto height
+        dy: 23,                     // Event height
+        x_unit: "hour",             // Measuring unit of the X-Axis.
+        x_date: "%H:%i",            // Date format of the X-Axis
+        x_step: 2,                  // X-Axis step in 'x_unit's
+        x_size: 12,                 // X-Axis length specified as the total number of 'x_step's
+        x_start: 0,                 // X-Axis offset in 'x_unit's
+        x_length: 12,               // Number of 'x_step's that will be scrolled at a time
+        y_unit: bookingIDs,         // Sections of the view (titles of Y-Axis)
+        y_property: "booking_id",   // Mapped data property
+        render: "bar"               // View mode
       });
 
       scheduler.createTimelineView({
-        name:"timeline_week",
+        name: "timeline_week",
         section_autoheight: false,
-        dy: 25,
-        x_unit:"day",//measuring unit of the X-Axis.
-        x_date:"%D %d / %m", //date format of the X-Axis
-        x_step:1,      //X-Axis step in 'x_unit's
-        x_size:7,      //X-Axis length specified as the total number of 'x_step's
-        x_start:0,     //X-Axis offset in 'x_unit's
-        x_length:7,    //number of 'x_step's that will be scrolled at a time
-        y_unit:         //sections of the view (titles of Y-Axis)
-          bookingIDs,
-        y_property:"booking_id", //mapped data property
-        render:"bar"             //view mode
+        dy: 23,
+        x_unit: "day",
+        x_date: "%D %d / %m",
+        x_step: 1,
+        x_size: 7,
+        x_start: 0,
+        x_length: 7,
+        y_unit: bookingIDs,
+        y_property: "booking_id",
+        render: "bar"
       });
 
       scheduler.createTimelineView({
-        name:"timeline_month",
+        name: "timeline_month",
         section_autoheight: false,
-        dy: 25,
-        x_unit:"day",//measuring unit of the X-Axis.
-        x_date:"%d / %m", //date format of the X-Axis
-        x_step:2,      //X-Axis step in 'x_unit's
-        x_size:15,      //X-Axis length specified as the total number of 'x_step's
-        x_start:0,     //X-Axis offset in 'x_unit's
-        x_length:15,    //number of 'x_step's that will be scrolled at a time
-        y_unit:         //sections of the view (titles of Y-Axis)
-          bookingIDs, //[{key:1, label:"month"}],
-        y_property:"booking_id", //mapped data property
-        render:"bar"             //view mode
+        dy: 23,
+        x_unit: "day",
+        x_date: "%d / %m",
+        x_step: 2,
+        x_size: 15,
+        x_start: 0,
+        x_length: 15,
+        y_unit: bookingIDs,
+        y_property:"booking_id",
+        render:"bar"
       });
 
       scheduler.init('scheduler_here', new Date(),"timeline_month");
