@@ -1,10 +1,9 @@
-Infostander Backend
-===================
+#Infostander Backend
 
-#Information
+##Information
 This project consists of the backend for infostander. The backend is a symfony project. 
 
-#Installation instructions
+##Installation instructions
 ###Get composer
 With brew (global install)
 <pre>
