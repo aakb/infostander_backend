@@ -48,11 +48,6 @@ $ php app/console doctrine:schema:update
 Make sure the webserver has access to 
 <pre>
 app/cache/
-</pre>
-
-and 
-
-<pre>
 app/logs/
 </pre>
 
