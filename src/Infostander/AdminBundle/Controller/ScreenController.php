@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Screen controller.
+ *
+ * @TODO missing descriptions.
+ */
 
 namespace Infostander\AdminBundle\Controller;
 
@@ -6,18 +12,32 @@ use Infostander\AdminBundle\Entity\Screen;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class ScreenController
+ *
+ * @TODO missing descriptions.
+ *
+ * @package Infostander\AdminBundle\Controller
+ */
 class ScreenController extends Controller {
+
+  /**
+   * @TODO missing descriptions.
+   *
+   * @return int
+   */
   private function getNewActivationCode() {
-    while(1) {
+    do {
       $code = rand(100000, 999999);
-
       $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findByActivationCode($code);
+    } while($screen != NULL);
 
-      if (!$screen)
-        return $code;
-    }
+    return $code;
   }
 
+  /**
+   * @TODO missing descriptions.
+   */
   public function indexAction() {
     $screens = $this->getDoctrine()
       ->getRepository('InfostanderAdminBundle:Screen')->findAll();
@@ -28,6 +48,9 @@ class ScreenController extends Controller {
     );
   }
 
+  /**
+   * @TODO missing descriptions.
+   */
   public function addAction(Request $request) {
     $screen = new Screen();
 
@@ -52,27 +75,30 @@ class ScreenController extends Controller {
     ));
   }
 
+  /**
+   * @TODO missing descriptions.
+   */
   public function deleteAction($id) {
     $screen = $this->getDoctrine()
       ->getRepository('InfostanderAdminBundle:Screen')->find($id);
 
     if ($screen->getToken() != "") {
-      // Send /screen/remove to middleware
+      // Send  post request to middleware (/screen/remove).
       $ch = curl_init();
-      $fields = array('token'=>$screen->getToken());
+      $fields = array('token' => $screen->getToken());
       $postvars = '';
-      foreach($fields as $key=>$value) {
+      foreach ($fields as $key => $value) {
         $postvars .= $key . $value;
       }
       $url = $this->container->getParameter("middleware_host") . "/screen/remove";
-      curl_setopt($ch,CURLOPT_URL,$url);
-      curl_setopt($ch,CURLOPT_POST,count($fields));
-      curl_setopt($ch,CURLOPT_POSTFIELDS,$postvars);
-      curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
-      curl_setopt($ch,CURLOPT_TIMEOUT, 20);
-      $res = curl_exec($ch);
-      curl_close ($ch);
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_POST, count($fields));
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+      curl_exec($ch);
+      curl_close($ch);
     }
 
     if ($screen != NULL) {
@@ -84,6 +110,9 @@ class ScreenController extends Controller {
     return $this->redirect($this->generateUrl("infostander_admin_screen"));
   }
 
+  /**
+   * @TODO missing descriptions.
+   */
   public function newActivationCodeAction($id) {
     $screen = $this->getDoctrine()
       ->getRepository('InfostanderAdminBundle:Screen')->find($id);
