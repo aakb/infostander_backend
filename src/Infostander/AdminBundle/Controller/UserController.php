@@ -1,10 +1,21 @@
 <?php
+/**
+ * @file
+ * @TODO missing descriptions.
+ */
 
 namespace Infostander\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @TODO missing descriptions.
+ */
 class UserController extends Controller {
+
+  /**
+   * @TODO missing descriptions.
+   */
   public function indexAction() {
     $users = $this->getDoctrine()->getRepository('InfostanderAdminBundle:User')->findBy(array(), array('username' => 'asc'));
 

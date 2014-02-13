@@ -1,17 +1,30 @@
 <?php
-
+/**
+ * @file
+ * @TODO missing descriptions.
+ */
 namespace Infostander\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @TODO missing descriptions.
+ */
 class ApiController extends Controller {
-  private function onlyResponseCode($responseCode) {
-    $response = new Response("", $responseCode);
+
+  /**
+   * @TODO missing descriptions.
+   */
+  private function onlyResponseCode($response_code) {
+    $response = new Response("", $response_code);
     return $response;
   }
 
+  /**
+   * @TODO missing descriptions.
+   */
   public function screenGetAction() {
     // Get request body as array.
     $request = Request::createFromGlobals();
@@ -31,10 +44,18 @@ class ApiController extends Controller {
     }
 
     // Generate the response.
-    $responseData = array('statusCode'=>200, 'id'=>$screen->getId(), 'name'=>$screen->getTitle(), 'groups'=>$screen->getGroups());
-    return new Response(json_encode($responseData), 200);
+    $response_data = array(
+      'statusCode' => 200,
+      'id' => $screen->getId(),
+      'name' => $screen->getTitle(),
+      'groups' => $screen->getGroups(),
+    );
+    return new Response(json_encode($response_data), 200);
   }
 
+  /**
+   * @TODO missing descriptions.
+   */
   public function screenActivateAction() {
     // Get request body as array.
     $request = Request::createFromGlobals();
