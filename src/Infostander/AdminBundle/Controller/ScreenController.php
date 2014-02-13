@@ -56,11 +56,31 @@ class ScreenController extends Controller {
     $screen = $this->getDoctrine()
       ->getRepository('InfostanderAdminBundle:Screen')->find($id);
 
+    if ($screen->getToken() != "") {
+      // Send /screen/remove to middleware
+      $ch = curl_init();
+      $fields = array('token'=>$screen->getToken());
+      $postvars = '';
+      foreach($fields as $key=>$value) {
+        $postvars .= $key . $value;
+      }
+      $url = $this->container->getParameter("middleware_host") . "/screen/remove";
+      curl_setopt($ch,CURLOPT_URL,$url);
+      curl_setopt($ch,CURLOPT_POST,count($fields));
+      curl_setopt($ch,CURLOPT_POSTFIELDS,$postvars);
+      curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch,CURLOPT_CONNECTTIMEOUT ,3);
+      curl_setopt($ch,CURLOPT_TIMEOUT, 20);
+      $res = curl_exec($ch);
+      curl_close ($ch);
+    }
+
     if ($screen != NULL) {
       $manager = $this->getDoctrine()->getManager();
       $manager->remove($screen);
       $manager->flush();
     }
+
     return $this->redirect($this->generateUrl("infostander_admin_screen"));
   }
 
