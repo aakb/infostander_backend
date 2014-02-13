@@ -8,8 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApiController extends Controller {
   private function onlyResponseCode($responseCode) {
-    $response = new Response();
-    $response->headers->set("Status", $responseCode);
+    $response = new Response("", $responseCode);
     return $response;
   }
 
@@ -33,7 +32,7 @@ class ApiController extends Controller {
 
     // Generate the response.
     $responseData = array('statusCode'=>200, 'id'=>$screen->getId(), 'name'=>$screen->getTitle(), 'groups'=>$screen->getGroups());
-    return new Response(json_encode($responseData));
+    return new Response(json_encode($responseData), 200);
   }
 
   public function screenActivateAction() {
