@@ -83,20 +83,23 @@ class ScreenController extends Controller {
       ->getRepository('InfostanderAdminBundle:Screen')->find($id);
 
     if ($screen->getToken() != "") {
+      $json = json_encode(array(
+        'token' => $screen->getToken(),
+      ));
+
       // Send  post request to middleware (/screen/remove).
-      $ch = curl_init();
-      $fields = array('token' => $screen->getToken());
-      $postvars = '';
-      foreach ($fields as $key => $value) {
-        $postvars .= $key . $value;
-      }
       $url = $this->container->getParameter("middleware_host") . "/screen/remove";
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_POST, count($fields));
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
+      $ch = curl_init($url);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $json);;
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-type: application/json',
+        'Content-Length: ' . strlen($json),
+      ));
+
       curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
-      curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 5);
       curl_exec($ch);
       curl_close($ch);
     }
