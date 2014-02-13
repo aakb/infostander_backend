@@ -42,7 +42,7 @@ $ cp app/config/parameters.yml.dist app/config/parameters.yml
 Fill in relevant settings.
 
 
-###Setup DB
+###Setup DB and after changing an entity
 <pre>
 $ php app/console doctrine:schema:update
 </pre>

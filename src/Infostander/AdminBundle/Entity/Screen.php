@@ -38,6 +38,11 @@ class Screen
    */
   protected $activationCode;
 
+  /**
+   * @ORM\Column(type="json_array", name="groups")
+   */
+  protected $groups;
+
   public function getId() {
     return $this->id;
   }
@@ -72,5 +77,13 @@ class Screen
 
   public function setActivationCode($activationCode) {
     $this->activationCode = $activationCode;
+  }
+
+  public function getGroups() {
+    return $this->groups;
+  }
+
+  public function setGroups($groups) {
+    $this->groups = $groups;
   }
 }

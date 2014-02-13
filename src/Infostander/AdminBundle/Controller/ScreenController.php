@@ -38,6 +38,7 @@ class ScreenController extends Controller {
     if ($form->isValid()) {
       $screen->setActivationCode($this->getNewActivationCode());
       $screen->setToken("");
+      $screen->setGroups(array("infostander"));
 
       $manager = $this->getDoctrine()->getManager();
       $manager->persist($screen);

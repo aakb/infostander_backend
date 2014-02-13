@@ -31,7 +31,7 @@ class ApiController extends Controller {
     }
 
     // Generate the response.
-    $responseData = array('statusCode'=>200, 'id'=>$screen->getId(), 'name'=>$screen->getTitle(), 'groups'=>array());
+    $responseData = array('statusCode'=>200, 'id'=>$screen->getId(), 'name'=>$screen->getTitle(), 'groups'=>$screen->getGroups());
     return new Response(json_encode($responseData));
   }
 
@@ -61,7 +61,7 @@ class ApiController extends Controller {
     $manager->flush();
 
     // Generate the response.
-    $responseData = array('statusCode'=>200, 'id'=>$screen->getId(), 'name'=>$screen->getTitle(), 'groups'=>array());
+    $responseData = array('statusCode'=>200, 'id'=>$screen->getId(), 'name'=>$screen->getTitle(), 'groups'=>$screen->getGroups());
     return new Response(json_encode($responseData));
   }
 }
