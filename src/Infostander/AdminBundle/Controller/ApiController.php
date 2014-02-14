@@ -14,22 +14,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @TODO missing descriptions.
+ * Class ApiController
+ *
+ * Controller for the API.
+ *
+ * @package Infostander\AdminBundle\Controller
  */
 class ApiController extends Controller
 {
 
     /**
-     * @TODO missing descriptions.
+     * Return a response with only a HTTP status code.
      */
-    private function onlyResponseCode($response_code)
+    protected function onlyResponseCode($response_code)
     {
         $response = new Response("", $response_code);
         return $response;
     }
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the screenGet action.
      */
     public function screenGetAction()
     {
@@ -42,7 +46,7 @@ class ApiController extends Controller
             return $this->onlyResponseCode(403);
         }
 
-        // Get the screen entity på token.
+        // Get the screen entity with the given token.
         $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findOneByToken($body->token);
 
         // Test for valid screen.
@@ -57,11 +61,13 @@ class ApiController extends Controller
             'name' => $screen->getTitle(),
             'groups' => $screen->getGroups(),
         );
+
+        // Return the json response.
         return new Response(json_encode($response_data), 200);
     }
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the screenActivate action.
      */
     public function screenActivateAction()
     {
@@ -82,7 +88,7 @@ class ApiController extends Controller
             return $this->onlyResponseCode(403);
         }
 
-        // Set token in screen and persist to database.
+        // Set token in screen and persist the screen to the db.
         $screen->setToken($body->token);
         $screen->setActivationCode(0);
         $manager = $this->getDoctrine()->getManager();
