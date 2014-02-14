@@ -27,6 +27,9 @@ class SlideController extends Controller
 
     /**
      * Handler for the index action.
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
@@ -56,6 +59,9 @@ class SlideController extends Controller
      *
      * Sets the cookie "SHOW_ARCHIVED", that is toggled between 0 and 1,
      * depending on whether the archived slides should be shown in the slide index page or not.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function toggleShowArchivedAction(Request $request)
     {
@@ -83,6 +89,9 @@ class SlideController extends Controller
 
     /**
      * Handler for the add action.
+     *
+     * @param Request $request
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -117,6 +126,9 @@ class SlideController extends Controller
 
     /**
      * Handler for the delete action.
+     *
+     * @param $id
+     * @return RedirectResponse
      */
     public function deleteAction($id)
     {
@@ -137,6 +149,9 @@ class SlideController extends Controller
 
     /**
      * Handler for the toggle archived action.
+     *
+     * @param $id
+     * @return RedirectResponse
      */
     public function toggleArchivedAction($id)
     {

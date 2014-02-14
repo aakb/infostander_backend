@@ -43,6 +43,8 @@ class ScreenController extends Controller
 
     /**
      * Handler for the index action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -58,6 +60,9 @@ class ScreenController extends Controller
 
     /**
      * Handler for the add action.
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -94,6 +99,9 @@ class ScreenController extends Controller
 
     /**
      * Handler for the delete action.
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction($id)
     {
@@ -133,6 +141,9 @@ class ScreenController extends Controller
 
     /**
      * Handler for the new activation code action.
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function newActivationCodeAction($id)
     {

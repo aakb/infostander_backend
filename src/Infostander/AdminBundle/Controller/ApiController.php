@@ -25,6 +25,9 @@ class ApiController extends Controller
 
     /**
      * Return a response with only a HTTP status code.
+     *
+     * @param $response_code
+     * @return Response
      */
     protected function onlyResponseCode($response_code)
     {
@@ -34,6 +37,8 @@ class ApiController extends Controller
 
     /**
      * Handler for the screenGet action.
+     *
+     * @return Response
      */
     public function screenGetAction()
     {
@@ -68,6 +73,8 @@ class ApiController extends Controller
 
     /**
      * Handler for the screenActivate action.
+     *
+     * @return Response
      */
     public function screenActivateAction()
     {

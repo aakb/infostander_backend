@@ -23,6 +23,8 @@ class UserController extends Controller
 
     /**
      * Handler for the index action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {

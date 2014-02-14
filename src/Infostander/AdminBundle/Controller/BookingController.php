@@ -25,6 +25,8 @@ class BookingController extends Controller
 
     /**
      * Handler for the index action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -43,6 +45,9 @@ class BookingController extends Controller
 
     /**
      * Handler for the add action.
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function addAction(Request $request)
     {
@@ -98,6 +103,10 @@ class BookingController extends Controller
 
     /**
      * Handler for the edit action.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, $id)
     {
@@ -153,6 +162,10 @@ class BookingController extends Controller
 
     /**
      * Handler for the changeSortOrder action.
+     *
+     * @param $id
+     * @param $updown
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function changeSortOrderAction($id, $updown)
     {
