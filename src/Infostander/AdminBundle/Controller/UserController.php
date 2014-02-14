@@ -12,18 +12,28 @@ namespace Infostander\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @TODO missing descriptions.
+ * Class UserController
+ *
+ * Controller for users.
+ *
+ * @package Infostander\AdminBundle\Controller
  */
 class UserController extends Controller
 {
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the index action.
      */
     public function indexAction()
     {
-        $users = $this->getDoctrine()->getRepository('InfostanderAdminBundle:User')->findBy(array(), array('username' => 'asc'));
+        // Get all users from the db.
+        $users = $this->getDoctrine()->getRepository('InfostanderAdminBundle:User')
+            ->findBy(
+                array(),
+                array('username' => 'asc')
+            );
 
+        // Return the rendering of the User:index template.
         return $this->render(
             'InfostanderAdminBundle:User:index.html.twig',
             array('users' => $users)
