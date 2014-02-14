@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Class BookingType
+ *
  * @package Infostander\AdminBundle\Form\Type
  */
 class BookingType extends AbstractType

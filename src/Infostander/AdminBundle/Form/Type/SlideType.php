@@ -17,12 +17,64 @@ class SlideType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', array('label' => 'slide.add.title', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'form-control', 'placeholder' => 'slide.add.title')));
-        $builder->add('description', 'textarea', array('label' => 'slide.add.description', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('rows' => '5', 'class' => 'form-control form-last', 'placeholder' => 'slide.add.description')));
-        $builder->add('image', 'file', array('label' => 'slide.add.image', 'translation_domain' => 'InfostanderAdminBundle'));
-        $builder->add('save', 'submit', array('label' => 'slide.add.save', 'translation_domain' => 'InfostanderAdminBundle', 'attr' => array('class' => 'btn btn-lg btn-primary btn-block')));
+        // Add the title field.
+        $builder->add(
+            'title',
+            'text',
+            array(
+                'label' => 'slide.add.title',
+                'translation_domain' => 'InfostanderAdminBundle',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'slide.add.title'
+                )
+            )
+        );
+
+        // Add the description field.
+        $builder->add(
+            'description',
+            'textarea',
+            array(
+                'label' => 'slide.add.description',
+                'translation_domain' => 'InfostanderAdminBundle',
+                'attr' => array(
+                    'rows' => '5',
+                    'class' => 'form-control form-last',
+                    'placeholder' => 'slide.add.description'
+                )
+            )
+        );
+
+        // Add the image field.
+        $builder->add(
+            'image',
+            'file',
+            array(
+                'label' => 'slide.add.image',
+                'translation_domain' => 'InfostanderAdminBundle'
+            )
+        );
+
+        // Add the save button.
+        $builder->add(
+            'save',
+            'submit',
+            array(
+                'label' => 'slide.add.save',
+                'translation_domain' => 'InfostanderAdminBundle',
+                'attr' => array(
+                    'class' => 'btn btn-lg btn-primary btn-block'
+                )
+            )
+        );
     }
 
+    /**
+     * Set the default options
+     *
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -30,6 +82,11 @@ class SlideType extends AbstractType
         ));
     }
 
+    /**
+     * Return the name of the form type
+     *
+     * @return string
+     */
     public function getName()
     {
         return 'slide';
