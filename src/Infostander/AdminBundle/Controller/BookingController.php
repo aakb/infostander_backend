@@ -183,6 +183,7 @@ class BookingController extends Controller
         }
 
         // Get the booking to change sort order with.
+        // TODO: Find smallest / largest sortOrder, larger or smaller, than current sortOrder
         $other_booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')
             ->findOneBy(
                 array('sortOrder' => $booking_sort_order + $change)

@@ -136,7 +136,8 @@ class SlideController extends Controller
         $slide = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->find($id);
 
         // Get bookings with the given slide.
-        $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findBy(array("slideId" => $id));
+        $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')
+            ->findBy(array("slideId" => $id));
 
         if ($bookings) {
             return $this->render('InfostanderAdminBundle:Information:message.html.twig', array(
