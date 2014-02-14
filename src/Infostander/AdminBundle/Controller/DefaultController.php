@@ -11,12 +11,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @TODO missing descriptions.
  */
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
-  /**
-   * @TODO missing descriptions.
-   */
-  public function indexAction() {
-    return $this->render('InfostanderAdminBundle:Default:index.html.twig');
-  }
+    /**
+     * @TODO missing descriptions.
+     */
+    public function indexAction()
+    {
+        return $this->render('InfostanderAdminBundle:Default:index.html.twig');
+    }
 }

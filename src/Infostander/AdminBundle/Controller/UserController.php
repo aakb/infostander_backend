@@ -11,17 +11,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @TODO missing descriptions.
  */
-class UserController extends Controller {
+class UserController extends Controller
+{
 
-  /**
-   * @TODO missing descriptions.
-   */
-  public function indexAction() {
-    $users = $this->getDoctrine()->getRepository('InfostanderAdminBundle:User')->findBy(array(), array('username' => 'asc'));
+    /**
+     * @TODO missing descriptions.
+     */
+    public function indexAction()
+    {
+        $users = $this->getDoctrine()->getRepository('InfostanderAdminBundle:User')->findBy(array(), array('username' => 'asc'));
 
-    return $this->render(
-      'InfostanderAdminBundle:User:index.html.twig',
-      array('users' => $users)
-    );
-  }
+        return $this->render(
+            'InfostanderAdminBundle:User:index.html.twig',
+            array('users' => $users)
+        );
+    }
 }
