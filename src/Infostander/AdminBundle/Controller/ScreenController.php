@@ -1,9 +1,10 @@
 <?php
 /**
  * @file
- * Screen controller.
+ * This file is a part of the Infostander AdminBundle.
  *
- * @TODO missing descriptions.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Infostander\AdminBundle\Controller;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class ScreenController
  *
- * @TODO missing descriptions.
+ * Controller for screens.
  *
  * @package Infostander\AdminBundle\Controller
  */
@@ -23,14 +24,17 @@ class ScreenController extends Controller
 {
 
     /**
-     * @TODO missing descriptions.
+     * Generates a new unique activation code in the interval between 100000 and 999999.
      *
      * @return int
      */
-    private function getNewActivationCode()
+    protected function getNewActivationCode()
     {
         do {
+            // Pick a random activation code between 100000 and 999999.
             $code = rand(100000, 999999);
+
+            // Test if the activation code already exists in the db.
             $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findByActivationCode($code);
         } while ($screen != null);
 
@@ -38,13 +42,14 @@ class ScreenController extends Controller
     }
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the index action.
      */
     public function indexAction()
     {
-        $screens = $this->getDoctrine()
-            ->getRepository('InfostanderAdminBundle:Screen')->findAll();
+        // Get all the Screens.
+        $screens = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findAll();
 
+        // Return the rendering of the Screen:index template.
         return $this->render(
             'InfostanderAdminBundle:Screen:index.html.twig',
             array('screens' => $screens)
@@ -52,35 +57,43 @@ class ScreenController extends Controller
     }
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the add action.
      */
     public function addAction(Request $request)
     {
+        // Make a new screen.
         $screen = new Screen();
 
+        // Generate the form for the screen.
         $form = $this->createForm('screen', $screen);
 
+        // Handle the request.
         $form->handleRequest($request);
 
+        // If the form has been submitted, make persist the screen.
         if ($form->isValid()) {
+            // Set default values for the screen.
             $screen->setActivationCode($this->getNewActivationCode());
             $screen->setToken("");
             $screen->setGroups(array("infostander"));
 
+            // Persist the screen to the db.
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($screen);
             $manager->flush();
 
+            // Redirect to the Screen:index page.
             return $this->redirect($this->generateUrl("infostander_admin_screen"));
         }
 
+        // Return the rendering of the Screen:add template.
         return $this->render('InfostanderAdminBundle:Screen:add.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the delete action.
      */
     public function deleteAction($id)
     {
@@ -119,7 +132,7 @@ class ScreenController extends Controller
     }
 
     /**
-     * @TODO missing descriptions.
+     * Handler for the new activation code action.
      */
     public function newActivationCodeAction($id)
     {
