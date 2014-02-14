@@ -44,6 +44,7 @@ booking:
         day: Dag
         week: Uge
         month: Måned
+        confirm_delete: Vil du slette denne booking
     add:
         information: På denne side kan du oprette en booking
         save: Gem booking

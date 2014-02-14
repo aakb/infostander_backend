@@ -205,4 +205,26 @@ class BookingController extends Controller
         // Redirect to the Booking:index page.
         return $this->redirect($this->generateUrl("infostander_admin_booking"));
     }
+
+    /**
+     * Handler for the delete action.
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function deleteAction($id)
+    {
+        // Get the booking with $id.
+        $booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneById($id);
+
+        // Remove the booking, if it exists
+        if ($booking) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->remove($booking);
+            $manager->flush();
+        }
+
+        // Redirect to the Booking:index page.
+        return $this->redirect($this->generateUrl("infostander_admin_booking"));
+    }
 }

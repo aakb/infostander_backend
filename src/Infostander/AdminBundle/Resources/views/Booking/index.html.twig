@@ -56,6 +56,13 @@
       }
     }
 
+    function deleteEvent(id) {
+      var conf = confirm('{{ 'booking.index.confirm_delete'|trans }}?');
+      if (conf == true) {
+        window.location.href = pathToBooking + "/delete/" + id;
+      }
+    }
+
     function editEvent(id) {
       window.location.href = pathToBooking + "/edit/" + id;
     }
@@ -65,8 +72,10 @@
       $(".dhx_cal_event_line").each(function(index) {
         if (index % 2 == 1) {
           $(this).addClass("line-odd");
+          $(this).height("100%");
         } else {
           $(this).addClass("line-even");
+          $(this).height("100%");
         }
       });
     }
@@ -85,14 +94,13 @@
       var bookingArray = [];
 
       {% for booking in bookings %}
-      bookingIDs.push({key: '{{ loop.index }}', label: '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span><span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span><span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span>{{ booking.title }}' });
+      bookingIDs.push({key: '{{ loop.index }}', label: '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span><span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span><span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span><span onclick="deleteEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-remove-circle"></span>{{ booking.title }}' });
       bookingArray.push({ id: '{{ booking.id }}', text: '', start_date: '{{ booking.startdate | date('Y-m-d H:i') }}', end_date: '{{ booking.enddate | date('Y-m-d H:i') }}', booking_id: '{{ loop.index }}' })
       {% endfor %}
 
       scheduler.createTimelineView({
         name:"timeline_day",        // Tab name
-        section_autoheight: false,  // Auto height
-        dy: 23,                     // Event height
+        section_autoheight: true,   // Auto height
         x_unit: "hour",             // Measuring unit of the X-Axis.
         x_date: "%H:%i",            // Date format of the X-Axis
         x_step: 2,                  // X-Axis step in 'x_unit's
@@ -106,8 +114,7 @@
 
       scheduler.createTimelineView({
         name: "timeline_week",
-        section_autoheight: false,
-        dy: 23,
+        section_autoheight: true,
         x_unit: "day",
         x_date: "%D %d / %m",
         x_step: 1,
@@ -121,8 +128,7 @@
 
       scheduler.createTimelineView({
         name: "timeline_month",
-        section_autoheight: false,
-        dy: 23,
+        section_autoheight: true,
         x_unit: "day",
         x_date: "%d / %m",
         x_step: 2,
