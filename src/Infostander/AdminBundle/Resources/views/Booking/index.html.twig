@@ -3,158 +3,200 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-  <link href="/codebase/dhtmlxscheduler.css" rel="stylesheet" type="text/css"/>
-  <link href="/css/booking.css" rel="stylesheet"/>
+    <link href="/codebase/dhtmlxscheduler.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/booking.css" rel="stylesheet"/>
 {% endblock %}
 
 {% block body %}
-  <div class="container">
-    <h2 class="scheduler-title">{{ 'scheduler.title'|trans }}</h2>
-    <p>{{ 'scheduler.text'|trans }}</p>
-    <form class="booking-form-button-nofloat" action="{{ path('infostander_admin_booking_add') }}" method="get">
-      <span class="btn-group btn-group-xs">
-        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'booking.index.add'|trans }}</button>
-      </span>
-    </form>
-    <div class="schedule-overview">
-      <div id="scheduler_here" class="dhx_cal_container">
-        <div class="dhx_cal_navline">
-          <div class="dhx_cal_prev_button">&nbsp;</div>
-          <div class="dhx_cal_next_button">&nbsp;</div>
-          <div class="dhx_cal_today_button"></div>
-          <div class="dhx_cal_date"></div>
-          <span class="btn-group btn-group-sm">
-            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_day_tab" style="margin-left: 0px;"></div>
-          </span>
-          <span class="btn-group btn-group-sm">
-            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_week_tab" style="margin-left: 0px;" ></div>
-          </span>
-          <span class="btn-group btn-group-sm">
-            <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_month_tab" style="margin-left: 0px;"></div>
-          </span>
+    <div class="container">
+        <h2 class="scheduler-title">{{ 'scheduler.title'|trans }}</h2>
+
+        <p>{{ 'scheduler.text'|trans }}</p>
+
+        <form class="booking-form-button-nofloat" action="{{ path('infostander_admin_booking_add') }}" method="get">
+            <span class="btn-group btn-group-xs">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'booking.index.add'|trans }}</button>
+            </span>
+        </form>
+        <div class="schedule-overview">
+            <div id="scheduler_here" class="dhx_cal_container">
+                <div class="dhx_cal_navline">
+                    <div class="dhx_cal_prev_button">&nbsp;</div>
+                    <div class="dhx_cal_next_button">&nbsp;</div>
+                    <div class="dhx_cal_today_button"></div>
+                    <div class="dhx_cal_date"></div>
+                    <span class="btn-group btn-group-sm">
+                        <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_day_tab"></div>
+                    </span>
+                    <span class="btn-group btn-group-sm">
+                        <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_week_tab"></div>
+                    </span>
+                    <span class="btn-group btn-group-sm">
+                        <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_month_tab"></div>
+                    </span>
+                </div>
+                <div class="dhx_cal_header"></div>
+                <div class="dhx_cal_data"></div>
+            </div>
         </div>
-        <div class="dhx_cal_header"></div>
-        <div class="dhx_cal_data"></div>
-      </div>
     </div>
-  </div>
 {% endblock %}
 
 {% block javascripts %}
-  <script src="/codebase/dhtmlxscheduler.js" type="text/javascript"></script>
-  <script src="/codebase/ext/dhtmlxscheduler_timeline.js" type="text/javascript"></script>
-  <script src="/codebase/ext/dhtmlxscheduler_container_autoresize.js"></script>
-  <script src="/codebase/locale/locale_da.js" charset="utf-8"></script>
-  <script type="text/javascript">
-    var pathToBooking = '{{ path('infostander_admin_booking') }}';
+    <script src="/codebase/dhtmlxscheduler.js" type="text/javascript"></script>
+    <script src="/codebase/ext/dhtmlxscheduler_timeline.js" type="text/javascript"></script>
+    <script src="/codebase/ext/dhtmlxscheduler_container_autoresize.js"></script>
+    <script src="/codebase/locale/locale_da.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var pathToBooking = '{{ path('infostander_admin_booking') }}';
 
-    function changeSortOrder(id, up) {
-      if (up) {
-        window.location.href = pathToBooking + "/sortorder/" + id + "/up";
-      } else {
-        window.location.href = pathToBooking + "/sortorder/" + id + "/down";
-      }
-    }
-
-    function deleteEvent(id) {
-      var conf = confirm('{{ 'booking.index.confirm_delete'|trans }}?');
-      if (conf == true) {
-        window.location.href = pathToBooking + "/delete/" + id;
-      }
-    }
-
-    function editEvent(id) {
-      window.location.href = pathToBooking + "/edit/" + id;
-    }
-
-    function updateLineColors() {
-      // Add styles to events
-      $(".dhx_cal_event_line").each(function(index) {
-        if (index % 2 == 1) {
-          $(this).addClass("line-odd");
-          $(this).height("100%");
-        } else {
-          $(this).addClass("line-even");
-          $(this).height("100%");
+        /**
+         * Function to call the backend to change sort order (up or down) for a booking.
+         *
+         * @param id
+         * @param up true for up, else down.
+         */
+        function changeSortOrder(id, up) {
+            if (up) {
+                window.location.href = pathToBooking + "/sortorder/" + id + "/up";
+            } else {
+                window.location.href = pathToBooking + "/sortorder/" + id + "/down";
+            }
         }
-      });
-    }
 
-    $(function() {
-      scheduler.config.xml_date="%Y-%m-%d %H:%i";
-      scheduler.config.fix_tab_position = false;
-      scheduler.config.readonly = true;
+        /**
+         * Function to call the backend to delete a booking.
+         *
+         * @param id
+         */
+        function deleteEvent(id) {
+            var conf = confirm('{{ 'booking.index.confirm_delete'|trans }}?');
+            if (conf == true) {
+                window.location.href = pathToBooking + "/delete/" + id;
+            }
+        }
 
-      scheduler.locale.labels.timeline_day_tab = "{{ 'booking.index.day'|trans }}";
-      scheduler.locale.labels.timeline_week_tab = "{{ 'booking.index.week'|trans }}";
-      scheduler.locale.labels.timeline_month_tab ="{{ 'booking.index.month'|trans }}";
+        /**
+         * Function to call the backend to edit a booking.
+         *
+         * @param id
+         */
+        function editEvent(id) {
+            window.location.href = pathToBooking + "/edit/" + id;
+        }
 
-      // Load data from the db
-      var bookingIDs = [];
-      var bookingArray = [];
+        /**
+         * Updates the colors and the height of the lines in the scheduler.
+         */
+        function updateLineColors() {
+            // Add styles to events
+            $(".dhx_cal_event_line").each(function (index) {
+                if (index % 2 == 1) {
+                    $(this).addClass("line-odd");
+                    $(this).height("100%");
+                } else {
+                    $(this).addClass("line-even");
+                    $(this).height("100%");
+                }
+            });
+        }
 
-      {% for booking in bookings %}
-      bookingIDs.push({key: '{{ loop.index }}', label: '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span><span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span><span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span><span onclick="deleteEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-remove-circle"></span>{{ booking.title }}' });
-      bookingArray.push({ id: '{{ booking.id }}', text: '', start_date: '{{ booking.startdate | date('Y-m-d H:i') }}', end_date: '{{ booking.enddate | date('Y-m-d H:i') }}', booking_id: '{{ loop.index }}' })
-      {% endfor %}
+        // Called when page is loaded.
+        $(function () {
+            // Config for the dhtmlx scheduler.
+            scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+            scheduler.config.fix_tab_position = false;
+            scheduler.config.readonly = true;
+            scheduler.locale.labels.timeline_day_tab = "{{ 'booking.index.day'|trans }}";
+            scheduler.locale.labels.timeline_week_tab = "{{ 'booking.index.week'|trans }}";
+            scheduler.locale.labels.timeline_month_tab = "{{ 'booking.index.month'|trans }}";
 
-      scheduler.createTimelineView({
-        name:"timeline_day",        // Tab name
-        section_autoheight: true,   // Auto height
-        x_unit: "hour",             // Measuring unit of the X-Axis.
-        x_date: "%H:%i",            // Date format of the X-Axis
-        x_step: 2,                  // X-Axis step in 'x_unit's
-        x_size: 12,                 // X-Axis length specified as the total number of 'x_step's
-        x_start: 0,                 // X-Axis offset in 'x_unit's
-        x_length: 12,               // Number of 'x_step's that will be scrolled at a time
-        y_unit: bookingIDs,         // Sections of the view (titles of Y-Axis)
-        y_property: "booking_id",   // Mapped data property
-        render: "bar"               // View mode
-      });
+            // Load data from the db
+            var bookingIDs = [];
+            var bookingArray = [];
 
-      scheduler.createTimelineView({
-        name: "timeline_week",
-        section_autoheight: true,
-        x_unit: "day",
-        x_date: "%D %d / %m",
-        x_step: 1,
-        x_size: 7,
-        x_start: 0,
-        x_length: 7,
-        y_unit: bookingIDs,
-        y_property: "booking_id",
-        render: "bar"
-      });
+            // Fill arrays.
+            // Hack: The buttons for each booking is added in the label of the booking.
+            {% for booking in bookings %}
+            bookingIDs.push({
+                    key: '{{ loop.index }}',
+                    label:
+                        '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span>' +
+                        '<span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span>' +
+                        '<span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span>' +
+                        '<span onclick="deleteEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-remove-circle"></span>' +
+                        '{{ booking.title }}'
+            });
+            bookingArray.push({
+                id: '{{ booking.id }}',
+                text: '',
+                start_date: '{{ booking.startdate | date('Y-m-d H:i') }}',
+                end_date: '{{ booking.enddate | date('Y-m-d H:i') }}',
+                booking_id: '{{ loop.index }}'
+            });
+            {% endfor %}
 
-      scheduler.createTimelineView({
-        name: "timeline_month",
-        section_autoheight: true,
-        x_unit: "day",
-        x_date: "%d / %m",
-        x_step: 2,
-        x_size: 15,
-        x_start: 0,
-        x_length: 15,
-        y_unit: bookingIDs,
-        y_property:"booking_id",
-        render:"bar"
-      });
+            // Setup "Day" tab.
+            scheduler.createTimelineView({
+                name: "timeline_day",       // Tab name
+                section_autoheight: true,   // Auto height
+                x_unit: "hour",             // Measuring unit of the X-Axis.
+                x_date: "%H:%i",            // Date format of the X-Axis
+                x_step: 2,                  // X-Axis step in 'x_unit's
+                x_size: 12,                 // X-Axis length specified as the total number of 'x_step's
+                x_start: 0,                 // X-Axis offset in 'x_unit's
+                x_length: 12,               // Number of 'x_step's that will be scrolled at a time
+                y_unit: bookingIDs,         // Sections of the view (titles of Y-Axis)
+                y_property: "booking_id",   // Mapped data property
+                render: "bar"               // View mode
+            });
 
-      scheduler.init('scheduler_here', new Date(),"timeline_month");
+            // Setup "Week" tab.
+            scheduler.createTimelineView({
+                name: "timeline_week",
+                section_autoheight: true,
+                x_unit: "day",
+                x_date: "%D %d / %m",
+                x_step: 1,
+                x_size: 7,
+                x_start: 0,
+                x_length: 7,
+                y_unit: bookingIDs,
+                y_property: "booking_id",
+                render: "bar"
+            });
 
-      scheduler.parse(bookingArray, "json");
+            // Setup "Month" tab.
+            scheduler.createTimelineView({
+                name: "timeline_month",
+                section_autoheight: true,
+                x_unit: "day",
+                x_date: "%d / %m",
+                x_step: 2,
+                x_size: 15,
+                x_start: 0,
+                x_length: 15,
+                y_unit: bookingIDs,
+                y_property: "booking_id",
+                render: "bar"
+            });
 
-      scheduler.attachEvent("onViewChange", function(section, isOpen, allSections){
-        updateLineColors();
-      });
+            // Initialise scheduler with "Month" as default view.
+            scheduler.init('scheduler_here', new Date(), "timeline_month");
 
-      scheduler.attachEvent("onSchedulerResize", function(section, isOpen, allSections){
-        updateLineColors();
-      });
+            // Input data.
+            scheduler.parse(bookingArray, "json");
 
-      updateLineColors();
-    });
+            // Make sure line colors are updated when the scheduler view is changed.
+            scheduler.attachEvent("onViewChange", function (section, isOpen, allSections) {
+                updateLineColors();
+            });
+            scheduler.attachEvent("onSchedulerResize", function (section, isOpen, allSections) {
+                updateLineColors();
+            });
 
-
-  </script>
+            // Set colors of bookings.
+            updateLineColors();
+        });
+    </script>
 {% endblock %}
