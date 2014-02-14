@@ -54,8 +54,13 @@ booking:
         slideid: Hvilket slide skal vises?
     edit:
         information: På denne side kan du redigere en booking
+    messages:
+        cannot_delete_booked_slide_redirect: Gå tilbage
+        cannot_delete_booked_slide: Slidet kan ikke slettes da det indgår i en (eller flere) bookinger. Fjern først bookingerne.
 user:
     index:
         add: Opret bruger
         information: På denne side kan du se hvilke brugere der er oprettet, og oprette nye. Nyoprettede brugere har rettigheder til hele systemet med undtagelse af oprettelse af nye brugere
         title: Brugere
+info:
+    title: Information

@@ -1,0 +1,13 @@
+.info-message {
+    border: 1px solid #ddd;
+    background-color: #fefefe;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #cc3c3c;
+    font-weight: bold;
+}
+
+.info-redirect {
+    margin-top: 20px;
+}

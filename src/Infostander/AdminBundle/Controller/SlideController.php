@@ -135,6 +135,17 @@ class SlideController extends Controller
         // Get the slide with $id.
         $slide = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->find($id);
 
+        // Get bookings with the given slide.
+        $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findBy(array("slideId" => $id));
+
+        if ($bookings) {
+            return $this->render('InfostanderAdminBundle:Information:message.html.twig', array(
+                'info' => 'booking.messages.cannot_delete_booked_slide',
+                'redirect' => $this->generateUrl("infostander_admin_slide"),
+                'redirectMessage' => 'booking.messages.cannot_delete_booked_slide_redirect'
+            ));
+        }
+
         // If the slide exists, remove the slide.
         if ($slide != null) {
             // Delete the slide from the db.
