@@ -263,7 +263,16 @@ class BookingController extends Controller
      */
     public function pushChannelsAction()
     {
-        $channel = array();
+        // Build default channel array.
+        $channel = array(
+            'channelID' => '1',
+            'channelContent' => array(
+                'logo' => '',
+            ),
+            'groups' => array(
+                'infostander',
+            ),
+        );
 
         $now = date_timestamp_get(new \DateTime(date('Y-m-d H:i:s')));
 
@@ -272,8 +281,6 @@ class BookingController extends Controller
 
         $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
 
-
-        $channel['logo'] = '';
         $slides = array();
 
         foreach ($bookings as $booking) {
@@ -283,31 +290,35 @@ class BookingController extends Controller
 
             // If the the slide should be shown now, add it to the bookings that should be sent to the middleware
             if ($start <= $now && $now <= $end) {
-                $slide = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findOneById($booking->getSlideId());
+                // Load slide.
+                $slide = $this->getDoctrine()
+                    ->getRepository('InfostanderAdminBundle:Slide')
+                    ->findOneById($booking->getSlideId());
 
-                $channelEntry = array();
-                $channelEntry['slideID'] = $booking->getSlideId();
-                $channelEntry['title'] = $booking->getTitle();
-                $channelEntry['color'] = '';
-                $channelEntry['logo']  = '';
-                $channelEntry['subHeadline'] = '';
-                $channelEntry['text'] = '';
-                $channelEntry['channel'] = '';
-                $channelEntry['layout'] = 'infostander';
+                // Set basic slide information.
+                $channelEntry = array(
+                    'slideID' => $booking->getSlideId(),
+                    'title' => $booking->getTitle(),
+                    'layout' => 'infostander',
+                );
 
+                // Add image to slide information.
                 $path = $helper->asset($slide, 'image');
+                $imgArray = array(
+                    'image' => array(
+                        $path,
+                    ),
+                );
 
-                $imgArray = array();
-                $imgArray['image'] = array($path);
-
-                $channelEntry['media'] = array($imgArray);
-
+                $channelEntry['media'] = $imgArray;
                 $slides[] = $channelEntry;
             }
         }
 
-        $channel['slides'] = $slides;
+        // Add slide to channel.
+        $channel['channelContent']['slides'] = $slides;
 
+        // Encode the channel as JSON data.
         $json = json_encode($channel);
 
         // Send  post request to middleware (/push/channel).
