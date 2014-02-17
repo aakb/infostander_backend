@@ -91,3 +91,9 @@ vich_uploader:
             directory_namer:    ~     # specify a directory namer service id for this entity, null default
             delete_on_remove:   true  # determines whether to delete file upon removal of entity
             inject_on_load:     false  # determines whether to inject a File instance upon load
+
+services:
+    infostander.command.scheduler:
+        class: Infostander\AdminBundle\Command\ScheduleCommand
+        tags:
+            -  { name: console.command }

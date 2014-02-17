@@ -13,11 +13,17 @@
 
         <p>{{ 'scheduler.text'|trans }}</p>
 
-        <form class="booking-form-button-nofloat" action="{{ path('infostander_admin_booking_add') }}" method="get">
+        <form class="form-button" action="{{ path('infostander_admin_booking_add') }}" method="get">
             <span class="btn-group btn-group-xs">
                 <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'booking.index.add'|trans }}</button>
             </span>
         </form>
+        <form class="form-button" action="{{ path('infostander_admin_booking_push_channels') }}" method="get">
+            <span class="btn-group btn-group-xs">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'booking.index.push_channels'|trans }}</button>
+            </span>
+        </form>
+
         <div class="schedule-overview">
             <div id="scheduler_here" class="dhx_cal_container">
                 <div class="dhx_cal_navline">

@@ -255,4 +255,76 @@ class BookingController extends Controller
         // Redirect to the Booking:index page.
         return $this->redirect($this->generateUrl("infostander_admin_booking"));
     }
+
+    /**
+     * Pushes channels to middleware
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function pushChannelsAction()
+    {
+        $channel = array();
+
+        $now = date_timestamp_get(new \DateTime(date('Y-m-d H:i:s')));
+
+        // Get bookings where present time is between the start and end date
+        $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findAll();
+
+        $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
+
+
+        $channel['logo'] = '';
+        $slides = array();
+
+        foreach ($bookings as $booking) {
+            $start = date_timestamp_get($booking->getStartDate());
+            $end =   date_timestamp_get($booking->getEndDate());
+
+
+            // If the the slide should be shown now, add it to the bookings that should be sent to the middleware
+            if ($start <= $now && $now <= $end) {
+                $slide = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Slide')->findOneById($booking->getSlideId());
+
+                $channelEntry = array();
+                $channelEntry['slideID'] = $booking->getSlideId();
+                $channelEntry['title'] = $booking->getTitle();
+                $channelEntry['color'] = '';
+                $channelEntry['logo']  = '';
+                $channelEntry['subHeadline'] = '';
+                $channelEntry['text'] = '';
+                $channelEntry['channel'] = '';
+                $channelEntry['layout'] = 'infostander';
+
+                $path = $helper->asset($slide, 'image');
+
+                $imgArray = array();
+                $imgArray['image'] = array($path);
+
+                $channelEntry['media'] = array($imgArray);
+
+                $slides[] = $channelEntry;
+            }
+        }
+
+        $channel['slides'] = $slides;
+
+        $json = json_encode($channel);
+
+        // Send  post request to middleware (/push/channel).
+        $url = $this->container->getParameter("middleware_host") . "/push/channel";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-type: application/json',
+            'Content-Length: ' . strlen($json),
+        ));
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_exec($ch);
+        curl_close($ch);
+
+        return $this->redirect($this->generateUrl("infostander_admin_booking"));
+    }
 }

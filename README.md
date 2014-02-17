@@ -61,6 +61,12 @@ app/cache/
 app/logs/
 </pre>
 
+Furthermore, make sure the webserver has access to 
+<pre>
+web/images/
+</pre>
+which is the folder where the uploaded images will reside.
+
 ###Set up webserver
 <pre>
 http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html

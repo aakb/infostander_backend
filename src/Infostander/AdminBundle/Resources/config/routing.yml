@@ -62,6 +62,10 @@ infostander_admin_booking_edit:
     path:      /booking/edit/{id}
     defaults:  { _controller: InfostanderAdminBundle:Booking:edit }
 
+infostander_admin_booking_push_channels:
+    path:      /booking/push/channels
+    defaults:  { _controller: InfostanderAdminBundle:Booking:pushChannels }
+
 infostander_admin_api_screen_activate:
     path:       /api/screen/activate
     defaults:   { _controller: InfostanderAdminBundle:Api:screenActivate }
