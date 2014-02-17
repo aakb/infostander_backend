@@ -3,6 +3,12 @@
 ##Information
 This project consists of the backend for infostander. The backend is a symfony project. 
 
+###Helpful commands
+To clear cache
+<pre>
+php app/console cache:clear
+</pre>
+
 ##Installation instructions
 ###Get composer
 With brew (global install)
@@ -85,3 +91,4 @@ $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword]
 
 
 ###Ready to go!
+
