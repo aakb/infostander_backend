@@ -34,7 +34,7 @@ class BookingController extends Controller
         $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')
             ->findBy(
                 array(),
-                array('sortOrder' => 'desc')
+                array('sortOrder' => 'asc')
             );
 
         // Return the rendering of the Booking:index template.
@@ -172,27 +172,46 @@ class BookingController extends Controller
         // Get the booking with $id.
         $booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findOneById($id);
 
+        // Make sure booking exists.
+        if (!$booking) {
+            return $this->redirect($this->generateUrl("infostander_admin_booking"));
+        }
+
         // Get the current sort order of the booking.
         $booking_sort_order = $booking->getSortOrder();
 
-        // Find the change to the sort order dependant on the $updown parameter.
+        // Get the next booking in the given sort order
+        $em = $this->getDoctrine()->getManager();
         if ($updown == 'up') {
-            $change = 1;
+            $query = $em->createQuery(
+                'SELECT p
+                FROM InfostanderAdminBundle:Booking p
+                WHERE p.sortOrder > :sort_order
+                ORDER BY p.sortOrder ASC'
+            )->setParameter('sort_order', $booking_sort_order)
+            ->setMaxResults(1);
         } else {
-            $change = -1;
+            $query = $em->createQuery(
+                'SELECT p
+                FROM InfostanderAdminBundle:Booking p
+                WHERE p.sortOrder < :sort_order
+                ORDER BY p.sortOrder DESC'
+            )->setParameter('sort_order', $booking_sort_order)
+            ->setMaxResults(1);
+        }
+        $other_booking = $query->getSingleResult();
+
+        // Make sure booking exists.
+        if (!$other_booking) {
+            return $this->redirect($this->generateUrl("infostander_admin_booking"));
         }
 
-        // Get the booking to change sort order with.
-        // TODO: Find smallest / largest sortOrder, larger or smaller, than current sortOrder
-        $other_booking = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')
-            ->findOneBy(
-                array('sortOrder' => $booking_sort_order + $change)
-            );
+        $other_booking_sort_order = $other_booking->getSortOrder();
 
         // If there is a booking to change order with, do it.
         if ($other_booking) {
             // Set the sortOrder of the booking to the sort order of the other booking + the change.
-            $booking->setSortOrder($booking_sort_order + $change);
+            $booking->setSortOrder($other_booking_sort_order);
 
             // Persist the change to the booking.
             $manager = $this->getDoctrine()->getManager();

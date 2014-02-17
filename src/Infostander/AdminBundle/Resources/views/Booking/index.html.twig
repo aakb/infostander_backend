@@ -121,8 +121,8 @@
             bookingIDs.push({
                     key: '{{ loop.index }}',
                     label:
-                        '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span>' +
-                        '<span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span>' +
+                        '<span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span>' +
+                        '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span>' +
                         '<span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span>' +
                         '<span onclick="deleteEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-remove-circle"></span>' +
                         '{{ booking.title }}'
