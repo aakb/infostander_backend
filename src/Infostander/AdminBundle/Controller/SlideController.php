@@ -38,10 +38,10 @@ class SlideController extends Controller
             ->getRepository('InfostanderAdminBundle:Slide')->findBy(array(), array('title' => 'asc'));
 
         // Get show archived cookie.
-        $show_archived = 0;
-        $show_archived_cookie = $request->cookies->get('SHOW_ARCHIVED');
-        if (isset($show_archived_cookie)) {
-            $show_archived = $show_archived_cookie;
+        $showArchived = 0;
+        $showArchivedCookie = $request->cookies->get('SHOW_ARCHIVED');
+        if (isset($showArchivedCookie)) {
+            $showArchived = $showArchivedCookie;
         }
 
         // Return the result of rendering the Slide:index template.
@@ -49,7 +49,7 @@ class SlideController extends Controller
             'InfostanderAdminBundle:Slide:index.html.twig',
             array(
                 'slides' => $slides,
-                'showarchived' => $show_archived
+                'showarchived' => $showArchived
             )
         );
     }
@@ -66,20 +66,20 @@ class SlideController extends Controller
     public function toggleShowArchivedAction(Request $request)
     {
         // Get SHOW_ARCHIVED cookie.
-        $show_archived_cookie = $request->cookies->get('SHOW_ARCHIVED');
+        $showArchivedCookie = $request->cookies->get('SHOW_ARCHIVED');
 
         // Find the new value for the cookie by toggling the previous set value.
-        $show_archived = 1;
-        if (isset($show_archived_cookie)) {
-            if ($show_archived_cookie == 1) {
-                $show_archived = 0;
+        $showArchived = 1;
+        if (isset($showArchivedCookie)) {
+            if ($showArchivedCookie == 1) {
+                $showArchived = 0;
             } else {
-                $show_archived = 1;
+                $showArchived = 1;
             }
         }
 
         // Make the cookie.
-        $cookie = new Cookie('SHOW_ARCHIVED', $show_archived, 0, '/', null, false, false);
+        $cookie = new Cookie('SHOW_ARCHIVED', $showArchived, 0, '/', null, false, false);
 
         // Set the cookie and redirect to Slide:index page.
         $response = new RedirectResponse($this->generateUrl("infostander_admin_slide"));

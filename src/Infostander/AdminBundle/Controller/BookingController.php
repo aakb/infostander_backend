@@ -72,7 +72,7 @@ class BookingController extends Controller
         // If this is a submit of the form, persist the new booking.
         if ($form->isValid()) {
             // Find the largest sort order number in the db.
-            $largest_sort_order_booking = $this->getDoctrine()
+            $largestSortOrderBooking = $this->getDoctrine()
                 ->getRepository('InfostanderAdminBundle:Booking')
                 ->findOneBy(
                     array(),
@@ -82,8 +82,8 @@ class BookingController extends Controller
             $newSortOrder = 1;
 
             // If other bookings exist, set sort order to one higher.
-            if ($largest_sort_order_booking) {
-                $newSortOrder = $largest_sort_order_booking->getSortOrder() + 1;
+            if ($largestSortOrderBooking) {
+                $newSortOrder = $largestSortOrderBooking->getSortOrder() + 1;
             }
 
             // Set sortOrder to 1 higher than previous largest sortOrder.
@@ -186,7 +186,7 @@ class BookingController extends Controller
         }
 
         // Get the current sort order of the booking.
-        $booking_sort_order = $booking->getSortOrder();
+        $bookingSortOrder = $booking->getSortOrder();
 
         // Get the next booking in the given sort order
         $em = $this->getDoctrine()->getManager();
@@ -196,7 +196,7 @@ class BookingController extends Controller
                 FROM InfostanderAdminBundle:Booking p
                 WHERE p.sortOrder > :sort_order
                 ORDER BY p.sortOrder ASC'
-            )->setParameter('sort_order', $booking_sort_order)
+            )->setParameter('sort_order', $bookingSortOrder)
             ->setMaxResults(1);
         } else {
             $query = $em->createQuery(
@@ -204,29 +204,29 @@ class BookingController extends Controller
                 FROM InfostanderAdminBundle:Booking p
                 WHERE p.sortOrder < :sort_order
                 ORDER BY p.sortOrder DESC'
-            )->setParameter('sort_order', $booking_sort_order)
+            )->setParameter('sort_order', $bookingSortOrder)
             ->setMaxResults(1);
         }
-        $other_booking = $query->getSingleResult();
+        $otherBooking = $query->getSingleResult();
 
         // Make sure booking exists.
-        if (!$other_booking) {
+        if (!$otherBooking) {
             return $this->redirect($this->generateUrl("infostander_admin_booking"));
         }
 
-        $other_booking_sort_order = $other_booking->getSortOrder();
+        $otherBookingSortOrder = $otherBooking->getSortOrder();
 
         // If there is a booking to change order with, do it.
-        if ($other_booking) {
+        if ($otherBooking) {
             // Set the sortOrder of the booking to the sort order of the other booking + the change.
-            $booking->setSortOrder($other_booking_sort_order);
+            $booking->setSortOrder($otherBookingSortOrder);
 
             // Persist the change to the booking.
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
 
             // Persist the change to the other booking.
-            $other_booking->setSortOrder($booking_sort_order);
+            $otherBooking->setSortOrder($bookingSortOrder);
             $manager->flush();
         }
 
