@@ -78,8 +78,16 @@ class BookingController extends Controller
                     array(),
                     array('sortOrder' => 'desc')
                 );
+
+            $newSortOrder = 1;
+
+            // If other bookings exist, set sort order to one higher.
+            if ($largest_sort_order_booking) {
+                $newSortOrder = $largest_sort_order_booking->getSortOrder() + 1;
+            }
+
             // Set sortOrder to 1 higher than previous largest sortOrder.
-            $booking->setSortOrder($largest_sort_order_booking->getSortOrder() + 1);
+            $booking->setSortOrder($newSortOrder);
 
             // Change dates to DateTime.
             $booking->setStartDate(new \DateTime($booking->getStartDate()));
