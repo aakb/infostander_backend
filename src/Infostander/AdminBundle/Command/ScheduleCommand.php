@@ -18,6 +18,8 @@ class ScheduleCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln("Start updating schedule...");
-
+        $middlewareCommunication = $this->getContainer()->get('infostander.middleware.communication');
+        $middlewareCommunication->pushChannels();
+        $output->writeln("Done!");
     }
 }

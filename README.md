@@ -98,3 +98,10 @@ $ php app/console fos:user:create [admin_username] [test@example.com] [p@ssword]
 
 ###Ready to go!
 
+##Scheduler setup
+The scheduler needs to be registered in cron. The command that needs to be called is
+<pre>
+php app/console infostander:schedule
+</pre>
+This command loops throught the bookings and sends a list of all the bookings that should be shown now to the middleware. This depends on the "path_to_web" paramter set in parameters.yml. This parameter should point to the webfolder of the project.
+
