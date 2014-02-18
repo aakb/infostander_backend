@@ -274,7 +274,7 @@ class BookingController extends Controller
             ),
         );
 
-        $now = date_timestamp_get(new \DateTime(date('Y-m-d H:i:s')));
+        $now = date_timestamp_get(date_create());
 
         // Get bookings where present time is between the start and end date
         $bookings = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Booking')->findAll();
@@ -303,7 +303,10 @@ class BookingController extends Controller
                 );
 
                 // Add image to slide information.
-                $path = $helper->asset($slide, 'image');
+                $request = Request::createFromGlobals();
+                $path = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath() .
+                    $helper->asset($slide, 'image');
+
                 $imgArray = array(
                     'image' => array(
                         $path,
