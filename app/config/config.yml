@@ -97,3 +97,7 @@ services:
         class: Infostander\AdminBundle\Command\ScheduleCommand
         tags:
             -  { name: console.command }
+    infostander.middleware.communication:
+        class: Infostander\AdminBundle\Services\MiddlewareCommunication
+        calls:
+          - [ setContainer,[ @service_container ] ]
