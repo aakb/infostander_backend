@@ -41,4 +41,24 @@ class UserController extends Controller
             array('users' => $users)
         );
     }
+
+    public function deleteAction($id)
+    {
+        // Get user with $id
+        $user = $this->getDoctrine()
+            ->getRepository('InfostanderAdminBundle:User')->find($id);
+
+        // Check that user exists and is not the super admin
+        if (!$user || $user->hasRole('ROLE_SUPER_ADMIN')) {
+            return $this->redirect($this->generateUrl("infostander_admin_user"));
+        }
+
+        // Remove user from db
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
+
+        // Redirect to User:index
+        return $this->redirect($this->generateUrl("infostander_admin_user"));
+    }
 }

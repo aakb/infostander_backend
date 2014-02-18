@@ -36,9 +36,10 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
-        - { path: ^/api/, role: ROLE_NO_ACCESS }
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - { path: ^/api, role: ROLE_NO_ACCESS }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/user, role: ROLE_SUPER_ADMIN }
         - { path: ^/register, role: ROLE_SUPER_ADMIN }
         - { path: ^/resetting, role: ROLE_ADMIN }
         - { path: ^/, role: ROLE_ADMIN }

@@ -63,5 +63,8 @@ user:
         add: Opret bruger
         information: På denne side kan du se hvilke brugere der er oprettet, og oprette nye. Nyoprettede brugere har rettigheder til hele systemet med undtagelse af oprettelse af nye brugere
         title: Brugere
+        delete: Slet bruger
+        super_admin: Super Admin
+        confirm_delete: Er du sikker på at du vil slette den pågældende bruger?
 info:
     title: Information

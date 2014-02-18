@@ -1,15 +1,31 @@
 .users-user {
-  padding: 5px;
+    padding: 5px;
 }
 
 .users-user-even {
-  background-color: #ccc;
+    background-color: #ccc;
 }
 
 .users-user-odd {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .user-form-button-nofloat {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.users-username {
+    font-weight: bold;
+}
+
+.users-email {
+}
+
+.users-buttons {
+    float: right;
+    text-align: right;
+}
+
+.users-button {
+    margin-left: 10px;
 }

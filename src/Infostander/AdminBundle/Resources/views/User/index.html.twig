@@ -19,8 +19,26 @@
         </div>
         {% for user in users %}
         <div class="users-user {{ cycle(['users-user-odd', 'users-user-even'], loop.index) }}">
-          <span class="users-username">{{ user.username }}</span>
+            <div class="users-buttons">
+                {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
+                <div onclick="helpers.confirmRedirect('{{ path('infostander_admin_user_delete', {'id': user.id }) }}', '{{ 'user.index.confirm_delete'|trans }}')">
+                    {{ 'user.index.delete'|trans }}<div class="users-button glyphicon glyphicon-remove-circle"></div>
+                </div>
+                {% else %}
+                [{{ 'user.index.super_admin'|trans }}]
+                {% endif %}
+            </div>
+            <div class="users-username">
+                {{ user.username }}
+            </div>
+            <div class="users-email">
+                {{ user.email }}
+            </div>
         </div>
         {% endfor %}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="/js/helpers.js"></script>
 {% endblock %}

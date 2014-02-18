@@ -3,8 +3,12 @@ infostander_admin_homepage:
     defaults: { _controller: InfostanderAdminBundle:Booking:index }
 
 infostander_admin_user:
-    pattern: /user
+    pattern: /users
     defaults: { _controller: InfostanderAdminBundle:User:index }
+
+infostander_admin_user_delete:
+    pattern: /users/delete/{id}
+    defaults: { _controller: InfostanderAdminBundle:User:delete }
 
 infostander_admin_screen:
     pattern:  /screen
