@@ -3,11 +3,10 @@
 namespace Infostander\AdminBundle\Services;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\HttpFoundation\Request;
 
 class MiddlewareCommunication extends ContainerAware
 {
-    public function pushChannels($pathPrefix)
+    public function pushChannels()
     {
         // Build default channel array.
         $channel = array(
@@ -48,8 +47,8 @@ class MiddlewareCommunication extends ContainerAware
                     'layout' => 'infostander',
                 );
 
-                // Add image to slide information.
-                $path = $pathPrefix . $helper->asset($slide, 'image');
+                // Form absolute path to image.
+                $path = $this->container->getParameter('path_to_web') . $helper->asset($slide, 'image');
 
                 $imgArray = array(
                     'image' => array(

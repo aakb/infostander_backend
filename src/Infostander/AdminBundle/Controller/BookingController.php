@@ -51,7 +51,6 @@ class BookingController extends Controller
      */
     public function addAction(Request $request)
     {
-        // Make a new Booking.
         $booking = new Booking();
 
         // Find all slides that are not archived.
@@ -263,11 +262,8 @@ class BookingController extends Controller
      */
     public function pushChannelsAction()
     {
-        $request = Request::createFromGlobals();
-        $pathPrefix = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
-
         $middlewareCommunication = $this->get('infostander.middleware.communication');
-        $middlewareCommunication->pushChannels($pathPrefix);
+        $middlewareCommunication->pushChannels();
 
         return $this->redirect($this->generateUrl("infostander_admin_booking"));
     }
