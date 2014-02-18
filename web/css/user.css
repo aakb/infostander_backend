@@ -24,6 +24,7 @@
 .users-buttons {
     float: right;
     text-align: right;
+    cursor: default;
 }
 
 .users-button {

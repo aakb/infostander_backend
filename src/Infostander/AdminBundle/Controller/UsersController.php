@@ -12,15 +12,14 @@ namespace Infostander\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Class UserController
+ * Class UsersController
  *
  * Controller for users.
  *
  * @package Infostander\AdminBundle\Controller
  */
-class UserController extends Controller
+class UsersController extends Controller
 {
-
     /**
      * Handler for the index action.
      *
@@ -37,11 +36,17 @@ class UserController extends Controller
 
         // Return the rendering of the User:index template.
         return $this->render(
-            'InfostanderAdminBundle:User:index.html.twig',
+            'InfostanderAdminBundle:Users:index.html.twig',
             array('users' => $users)
         );
     }
 
+    /**
+     * Delete a user.
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteAction($id)
     {
         // Get user with $id

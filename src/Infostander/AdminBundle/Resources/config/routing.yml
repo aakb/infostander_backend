@@ -4,11 +4,11 @@ infostander_admin_homepage:
 
 infostander_admin_user:
     pattern: /users
-    defaults: { _controller: InfostanderAdminBundle:User:index }
+    defaults: { _controller: InfostanderAdminBundle:Users:index }
 
 infostander_admin_user_delete:
     pattern: /users/delete/{id}
-    defaults: { _controller: InfostanderAdminBundle:User:delete }
+    defaults: { _controller: InfostanderAdminBundle:Users:delete }
 
 infostander_admin_screen:
     pattern:  /screen
