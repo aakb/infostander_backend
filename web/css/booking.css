@@ -53,16 +53,19 @@
 .booking-arrow-up {
   float: right;
   margin-right: 5px;
+    cursor: pointer;
 }
 
 .booking-arrow-down {
   float: right;
   margin-right: 5px;
+    cursor: pointer;
 }
 
 .booking-wrench {
   float: left;
   margin-left: 5px;
+    cursor: pointer;
 }
 
 .dhx_cal_event_line {

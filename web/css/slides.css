@@ -33,6 +33,7 @@
 .slide-delete {
   float: right;
   margin: 2px;
+    cursor: pointer;
 }
 
 .slide-delete:hover {
