@@ -48,7 +48,7 @@ class MiddlewareCommunication extends ContainerAware
                 );
 
                 // Form absolute path to image.
-                $path = $this->container->getParameter('path_to_web') . $helper->asset($slide, 'image');
+                $path = $this->container->getParameter('absolute_path_to_server') . $helper->asset($slide, 'image');
 
                 $imgArray = array(
                     'image' => array(
