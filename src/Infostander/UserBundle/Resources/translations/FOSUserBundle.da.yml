@@ -21,6 +21,10 @@ security:
 
 # Profile
 profile:
+    index:
+        headline: Profil
+        edit_link: Rediger
+        change_password: Skift kodeord
     show:
         username: Brugernavn
         email: Email

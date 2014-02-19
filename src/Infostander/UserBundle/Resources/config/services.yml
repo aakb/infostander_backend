@@ -1,12 +1,13 @@
 parameters:
-#    infostander_user.example.class: Infostander\UserBundle\Example
 
 services:
-#    infostander_user.example:
-#        class: %infostander_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
     infostander_user.registration.form.type:
         class: Infostander\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: infostander_user_registration }
+    infostander_user.change_password.form.type:
+        class: Infostander\UserBundle\Form\Type\ChangePasswordFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: infostander_user_change_password }

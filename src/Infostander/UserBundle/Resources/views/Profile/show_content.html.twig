@@ -1,0 +1,19 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+    <h2>{{ 'profile.index.headline'|trans }}</h2>
+    <form class="form-button" action="{{ path('fos_user_profile_edit') }}" method="get">
+        <span class="btn-group btn-group-xs">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'profile.index.edit_link'|trans }}</button>
+        </span>
+    </form>
+    <form class="form-button" action="{{ path('fos_user_change_password') }}" method="get">
+        <span class="btn-group btn-group-xs">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'profile.index.change_password'|trans }}</button>
+        </span>
+    </form>
+    <div class="fos_user_user_show">
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    </div>
+</div>

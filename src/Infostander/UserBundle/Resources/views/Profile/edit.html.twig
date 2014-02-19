@@ -1,0 +1,10 @@
+{% extends "FOSUserBundle::layout_loggedin.html.twig" %}
+
+{% block stylesheets %}
+    <!-- Custom styles for this template -->
+    <link href="/css/forms.css" rel="stylesheet">
+{% endblock %}
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock fos_user_content %}
