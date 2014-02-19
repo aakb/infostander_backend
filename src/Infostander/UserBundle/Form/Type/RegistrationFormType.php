@@ -18,7 +18,8 @@ class RegistrationFormType extends BaseType
                     'translation_domain' => 'FOSUserBundle',
                     'attr' => array(
                         'class'=>'form-control',
-                        'placeholder' => 'form.email'
+                        'placeholder' => 'form.email',
+                        'autocomplete' => 'off'
                     )
                 )
             )
@@ -30,7 +31,8 @@ class RegistrationFormType extends BaseType
                     'translation_domain' => 'FOSUserBundle',
                     'attr' => array(
                         'class'=>'form-control',
-                        'placeholder' => 'form.username'
+                        'placeholder' => 'form.username',
+                        'autocomplete' => 'off'
                     )
                 )
             )
@@ -46,13 +48,15 @@ class RegistrationFormType extends BaseType
                         'label' => 'form.password',
                         'attr' => array(
                             'class'=>'form-control',
-                            'placeholder'=>'form.password')
+                            'placeholder'=>'form.password',
+                            'autocomplete' => 'off')
                     ),
                     'second_options' => array(
                         'label' => 'form.password_confirmation',
                         'attr' => array(
                             'class'=>'form-control form-register form-last',
-                            'placeholder'=>'form.password_confirmation'
+                            'placeholder'=>'form.password_confirmation',
+                            'autocomplete' => 'off'
                         )
                     ),
                 'invalid_message' => 'fos_user.password.mismatch',
