@@ -159,4 +159,40 @@ class ScreenController extends Controller
         }
         return $this->redirect($this->generateUrl("infostander_admin_screen"));
     }
+
+    /**
+     * Handler for the reload action
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function reloadAction($id)
+    {
+        $screenIDs = array(
+            $id
+        );
+
+        $json = json_encode(array(
+            'screens' => $screenIDs,
+            'groups'  => array()
+        ));
+
+        // Send post request to middleware (/screen/reload).
+        $url = $this->container->getParameter("middleware_host") . "/screen/reload";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-type: application/json',
+            'Content-Length: ' . strlen($json),
+        ));
+
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_exec($ch);
+        curl_close($ch);
+
+        return $this->redirect($this->generateUrl("infostander_admin_screen"));
+    }
 }

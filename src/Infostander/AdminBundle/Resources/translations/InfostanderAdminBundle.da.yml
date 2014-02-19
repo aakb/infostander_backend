@@ -14,6 +14,7 @@ screen:
         information: På denne side kan du administrere dine skærme
         activation_code: Aktiveringskode
         activated: Aktiveret
+        reload_screen: Genindlæs
 slide:
     add:
         title: Titel

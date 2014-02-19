@@ -30,6 +30,11 @@
                         <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.new_activation_code'|trans }}</button>
                     </span>
                 </form>
+                <form class="screen-form-button" action="{{ path('infostander_admin_screen_reload', { 'id': screen.id }) }}" method="post">
+                    <span class="btn-group btn-group-xs">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.reload_screen'|trans }}</button>
+                    </span>
+                </form>
                 <div class="screen-title">{{ screen.title }}</div>
                 {% if screen.token == "" %}
                     <div class="screen-token screen-not-activated-text">{{ 'screen.index.activation_code'|trans }}: {{ screen.activationCode }}</div>

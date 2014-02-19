@@ -26,6 +26,11 @@ infostander_admin_screen_new_activation_code:
     path:      /screen/new_activation_code/{id}
     defaults:  { _controller: InfostanderAdminBundle:Screen:newActivationCode }
 
+
+infostander_admin_screen_reload:
+    path:      /screen/reload/{id}
+    defaults:  { _controller: InfostanderAdminBundle:Screen:reload }
+
 infostander_admin_slide:
     pattern: /slide
     defaults: { _controller: InfostanderAdminBundle:Slide:index }
