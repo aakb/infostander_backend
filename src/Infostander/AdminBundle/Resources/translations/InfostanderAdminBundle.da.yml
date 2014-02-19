@@ -70,3 +70,11 @@ user:
         confirm_delete: Er du sikker på at du vil slette den pågældende bruger?
 info:
     title: Information
+navbar:
+    booking: Planlægning
+    slides: Slides
+    screens: Skærme
+    users: Brugere
+    profile: Din profil
+    logout: Log ud
+    headline: Infostander

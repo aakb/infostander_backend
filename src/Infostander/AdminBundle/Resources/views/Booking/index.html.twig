@@ -261,7 +261,7 @@
             });
 
             // Initialise scheduler with "Month" as default view.
-            scheduler.init('scheduler_here', getFirstOfMonth(new Date()), "timeline_month");
+            scheduler.init('scheduler_here', new Date(), "timeline_month");
 
             // Input data.
             scheduler.parse(bookingArray, "json");
