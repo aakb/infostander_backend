@@ -76,6 +76,9 @@ fos_user:
     registration:
         form:
             type: infostander_user_registration
+    change_password:
+        form:
+            type: infostander_user_change_password
 
 # VichUploader
 vich_uploader:

@@ -40,12 +40,16 @@ class ProfileFormType extends AbstractType
 
         $this->buildUserForm($builder, $options);
 
-        $builder->add('current_password', 'password', array(
-            'label' => 'form.current_password',
-            'translation_domain' => 'FOSUserBundle',
-            'mapped' => false,
-            'constraints' => $constraint,
-        ));
+        $builder->add(
+            'current_password',
+            'password',
+            array(
+                'label' => 'form.current_password',
+                'translation_domain' => 'FOSUserBundle',
+                'mapped' => false,
+                'constraints' => $constraint,
+            )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
