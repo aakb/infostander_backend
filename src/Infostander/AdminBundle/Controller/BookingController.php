@@ -12,6 +12,7 @@ namespace Infostander\AdminBundle\Controller;
 use Infostander\AdminBundle\Entity\Booking;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\NoResultException;
 
 /**
  * Class BookingController
@@ -206,10 +207,11 @@ class BookingController extends Controller
             )->setParameter('sort_order', $bookingSortOrder)
             ->setMaxResults(1);
         }
-        $otherBooking = $query->getSingleResult();
 
-        // Make sure booking exists.
-        if (!$otherBooking) {
+        $otherBooking = null;
+        try {
+            $otherBooking = $query->getSingleResult();
+        } catch (NoResultException $e) {
             return $this->redirect($this->generateUrl("infostander_admin_booking"));
         }
 
