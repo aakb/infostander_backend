@@ -23,6 +23,12 @@
                 <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'booking.index.push_channels'|trans }}</button>
             </span>
         </form>
+        <span class="btn-group btn-group-xs">
+            <div class="btn btn-lg btn-primary btn-block" onclick="scheduler.toPDF('/codebase/scheduler-pdf-php/generate.php', 'color')">
+                {{ 'booking.index.save_as_pdf'|trans }}
+            </div>
+        </span>
+
 
         <div class="schedule-overview">
             <div id="scheduler_here" class="dhx_cal_container">
@@ -51,7 +57,8 @@
 {% block javascripts %}
     <script src="/codebase/dhtmlxscheduler.js" type="text/javascript"></script>
     <script src="/codebase/ext/dhtmlxscheduler_timeline.js" type="text/javascript"></script>
-    <script src="/codebase/ext/dhtmlxscheduler_container_autoresize.js"></script>
+    <script src="/codebase/ext/dhtmlxscheduler_container_autoresize.js" type="text/javascript"></script>
+    <script src="/codebase/ext/dhtmlxscheduler_pdf.js" type="text/javascript"></script>
     <script src="/codebase/locale/locale_da.js" charset="utf-8"></script>
     <script type="text/javascript">
         var pathToBooking = '{{ path('infostander_admin_booking') }}';

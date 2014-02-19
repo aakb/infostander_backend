@@ -47,6 +47,7 @@ booking:
         month: Måned
         confirm_delete: Vil du slette denne booking
         push_channels: Send indhold til skærme
+        save_as_pdf: Gem som PDF
     add:
         information: På denne side kan du oprette en booking
         save: Gem booking
