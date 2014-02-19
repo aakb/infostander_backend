@@ -11,3 +11,8 @@ services:
         arguments: [%fos_user.model.user.class%]
         tags:
             - { name: form.type, alias: infostander_user_change_password }
+    infostander_user.profile.form.type:
+        class: Infostander\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: infostander_user_profile }
