@@ -22,7 +22,7 @@ class MiddlewareCommunication extends ContainerAware
         $now = date_timestamp_get(date_create());
 
         // Get bookings where present time is between the start and end date
-        $bookings = $this->container->get('doctrine')->getRepository('InfostanderAdminBundle:Booking')->findAll();
+        $bookings = $this->container->get('doctrine')->getRepository('InfostanderAdminBundle:Booking')->findBy(array(), array('sortOrder' => 'asc'));
 
         $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
 
