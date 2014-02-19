@@ -33,18 +33,22 @@
         <div class="schedule-overview">
             <div id="scheduler_here" class="dhx_cal_container">
                 <div class="dhx_cal_navline">
-                    <div class="dhx_cal_prev_button">&nbsp;</div>
-                    <div class="dhx_cal_next_button">&nbsp;</div>
                     <div class="dhx_cal_today_button"></div>
-                    <div class="dhx_cal_date"></div>
+                    <div class="dhx_cal_date cal_date"></div>
                     <span class="btn-group btn-group-sm">
-                        <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_day_tab"></div>
+                        <div class="btn btn-lg btn-default btn-block dhx_cal_prev_button1"><</div>
                     </span>
                     <span class="btn-group btn-group-sm">
-                        <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_week_tab"></div>
+                        <div class="btn btn-lg btn-default btn-block dhx_cal_next_button1">></div>
                     </span>
                     <span class="btn-group btn-group-sm">
-                        <div class="dhx_cal_tab btn btn-lg btn-default btn-block" name="timeline_month_tab"></div>
+                        <div class="btn btn-lg btn-default btn-block" onclick="showDayView()">{{ 'booking.index.day'|trans }}</div>
+                    </span>
+                    <span class="btn-group btn-group-sm">
+                        <div class="btn btn-lg btn-default btn-block" onclick="showWeekView()">{{ 'booking.index.week'|trans }}</div>
+                    </span>
+                    <span class="btn-group btn-group-sm">
+                        <div class="btn btn-lg btn-default btn-block" onclick="showMonthView()">{{ 'booking.index.month'|trans }}</div>
                     </span>
                 </div>
                 <div class="dhx_cal_header"></div>
@@ -112,6 +116,68 @@
                     $(this).height("100%");
                 }
             });
+        }
+
+        /**
+         * Show the day view
+         * If change is set change the date according to the change specified (1 or -1)
+         *
+         * @param change
+         */
+        function showDayView(change) {
+            var d = new Date();
+            if (change) {
+                d = scheduler.getState().date;
+                d.setDate(d.getDate() + change);
+            }
+
+            scheduler.setCurrentView(d, 'timeline_day');
+        }
+
+        /**
+         * Show the week view
+         * If change is set change the date according to the change specified (1 or -1)
+         *
+         * @param change
+         */
+        function showWeekView(change) {
+            var d = new Date();
+            if (change) {
+                d = scheduler.getState().date;
+                d.setDate(d.getDate() + change * 7);
+            }
+            var newDate = scheduler.date.week_start(d);
+
+            scheduler.setCurrentView(newDate, 'timeline_week');
+        }
+
+        /**
+         * Show the month view
+         * If change is set change the date according to the change specified (1 or -1)
+         *
+         * @param change
+         */
+        function showMonthView(change) {
+            var d = new Date();
+            if (change) {
+                d = scheduler.getState().date;
+                d.setMonth(d.getMonth() + change)
+            }
+
+            var newDate = scheduler.date.month_start(d);
+
+            scheduler.setCurrentView(newDate, 'timeline_month');
+        }
+
+        /**
+         * Return the first day of the month of a given date
+         *
+         * @param date
+         * @returns {*}
+         */
+        function getFirstOfMonth(date) {
+            date.setDate(1);
+            return date;
         }
 
         // Called when page is loaded.
@@ -184,29 +250,54 @@
                 name: "timeline_month",
                 section_autoheight: true,
                 x_unit: "day",
-                x_date: "%d / %m",
+                x_date: "%d",
                 x_step: 2,
-                x_size: 15,
+                x_size: 16,
                 x_start: 0,
-                x_length: 15,
+                x_length: 16,
                 y_unit: bookingIDs,
                 y_property: "booking_id",
                 render: "bar"
             });
 
             // Initialise scheduler with "Month" as default view.
-            scheduler.init('scheduler_here', new Date(), "timeline_month");
+            scheduler.init('scheduler_here', getFirstOfMonth(new Date()), "timeline_month");
 
             // Input data.
             scheduler.parse(bookingArray, "json");
 
             // Make sure line colors are updated when the scheduler view is changed.
-            scheduler.attachEvent("onViewChange", function (section, isOpen, allSections) {
+            scheduler.attachEvent("onViewChange", function (new_mode, new_date) {
                 updateLineColors();
             });
             scheduler.attachEvent("onSchedulerResize", function (section, isOpen, allSections) {
                 updateLineColors();
             });
+
+            $(".dhx_cal_prev_button1").on("click", function() {
+                var mode = scheduler.getState().mode;
+
+                if (mode == 'timeline_month') {
+                    showMonthView(-1);
+                } else if (mode == 'timeline_week') {
+                    showWeekView(-1);
+                } else if (mode == 'timeline_day') {
+                    showDayView(-1);
+                }
+            });
+
+            $(".dhx_cal_next_button1").on("click", function() {
+                var mode = scheduler.getState().mode;
+
+                if (mode == 'timeline_month') {
+                    showMonthView(1);
+                } else if (mode == 'timeline_week') {
+                    showWeekView(1);
+                } else if (mode == 'timeline_day') {
+                    showDayView(1);
+                }
+            });
+
 
             // Set colors of bookings.
             updateLineColors();

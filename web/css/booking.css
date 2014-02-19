@@ -72,3 +72,11 @@
   box-sizing: content-box;
   border-radius: 0;
 }
+
+.dhx_cal_today_button {
+    right: 0;
+}
+
+.cal_date {
+    margin-left: 50px;
+}
