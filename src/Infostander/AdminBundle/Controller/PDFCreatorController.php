@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 require_once dirname(__FILE__).('/../Services/ScheduleToPDF/pdfGenerator.php');
 require_once dirname(__FILE__).('/../Services/ScheduleToPDF/pdfWrapper.php');
-require_once dirname(__FILE__).('/../Services/ScheduleToPDF/tcpdf_ext.php');
 
 /**
  * Class PDFCreatorController
@@ -36,5 +35,8 @@ class PDFCreatorController extends Controller
         $xml = new \SimpleXMLElement($xmlString, LIBXML_NOCDATA);
         $scPDF = new \schedulerPDF();
         $scPDF->printScheduler($xml);
+
+        // Redirect to the Booking:index page.
+        return $this->redirect($this->generateUrl("infostander_admin_booking"));
     }
 }
