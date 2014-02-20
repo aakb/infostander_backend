@@ -94,7 +94,9 @@ class MiddlewareCommunication extends ContainerAware
         ));
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        curl_exec($ch);
+        if (!$result = curl_exec($ch)) {
+            trigger_error(curl_error($ch));
+        }
         curl_close($ch);
     }
 }
