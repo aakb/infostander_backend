@@ -1,6 +1,6 @@
 <?php
 
-require_once('./tcpdf/tcpdf.php');
+require_once dirname(__FILE__).('/tcpdf/tcpdf.php');
 
 class TCPDFExt extends TCPDF {
 

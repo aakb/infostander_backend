@@ -82,3 +82,6 @@ infostander_admin_api_screen_get:
     path:       /api/screen/get
     defaults:   { _controller: InfostanderAdminBundle:Api:screenGet }
 
+infostander_admin_booking_generate_pdf:
+    path:       /booking/pdf
+    defaults:   { _controller: InfostanderAdminBundle:PDFCreator:generate }

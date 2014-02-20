@@ -24,7 +24,7 @@
             </span>
         </form>
         <span class="btn-group btn-group-xs">
-            <div class="btn btn-lg btn-primary btn-block" onclick="scheduler.toPDF('/codebase/scheduler-pdf-php/generate.php', 'color')">
+            <div class="btn btn-lg btn-primary btn-block" onclick="scheduler.toPDF('{{ path('infostander_admin_booking_generate_pdf') }}', 'color')">
                 {{ 'booking.index.save_as_pdf'|trans }}
             </div>
         </span>
