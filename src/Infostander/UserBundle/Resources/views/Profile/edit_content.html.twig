@@ -2,7 +2,6 @@
 
 <div class="container">
     <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-signin fos_user_profile_edit">
-        {#{{ form_widget(form) }}#}
 
         {{ form_errors(form) }}
         {{ form_errors(form.username) }}

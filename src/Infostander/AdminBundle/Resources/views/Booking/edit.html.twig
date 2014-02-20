@@ -3,79 +3,79 @@
 {% trans_default_domain 'InfostanderAdminBundle' %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css"/>
-  <link rel="stylesheet" href="/css/forms.css"/>
-  <link rel="stylesheet" href="/css/booking.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="/css/forms.css"/>
+    <link rel="stylesheet" href="/css/booking.css"/>
 {% endblock %}
 
 {% block body %}
-  <div class="container">
-    <p>{{ 'booking.edit.information'|trans }}.</p>
+    <div class="container">
+        <p>{{ 'booking.edit.information'|trans }}.</p>
 
-    <form action="{{ path('infostander_admin_booking_edit', {'id' : id } ) }}" {{ form_enctype(form) }}
-      method="POST" class="form-signin fos_user_registration_register">
-      <h2 class="form-signin-heading">{{ 'booking.add.save'|trans }}</h2>
+        <form action="{{ path('infostander_admin_booking_edit', {'id' : id } ) }}" {{ form_enctype(form) }}
+              method="POST" class="form-signin fos_user_registration_register">
+            <h2 class="form-signin-heading">{{ 'booking.add.save'|trans }}</h2>
 
-      {{ form_errors(form) }}
-      {{ form_errors(form.title) }}
-      {{ form_errors(form.startdate) }}
-      {{ form_errors(form.enddate) }}
+            {{ form_errors(form) }}
+            {{ form_errors(form.title) }}
+            {{ form_errors(form.startdate) }}
+            {{ form_errors(form.enddate) }}
 
-      {{ form_widget(form.title) }}
+            {{ form_widget(form.title) }}
 
-      <div class="input-group date form-last" id="datetimepickerStart">
-        {{ form_widget(form.startdate) }}
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-      </div>
-      <div class="input-group date form-last" id="datetimepickerEnd">
-        {{ form_widget(form.enddate) }}
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-      </div>
+            <div class="input-group date form-last" id="datetimepickerStart">
+                {{ form_widget(form.startdate) }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <div class="input-group date form-last" id="datetimepickerEnd">
+                {{ form_widget(form.enddate) }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
 
-      {{ form_widget(form.slideid) }}
+            {{ form_widget(form.slideid) }}
 
-      <div class="slide-container">
-        <img class="slide-thumb img-thumbnail" src="" alt="" id="slide-preview" />
-      </div>
+            <div class="slide-container">
+                <img class="slide-thumb img-thumbnail" src="" alt="" id="slide-preview"/>
+            </div>
 
-      {{ form_rest(form) }}
-    </form>
-  </div>
+            {{ form_rest(form) }}
+        </form>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
-  <script src="/js/moment.min.js" type="text/javascript"></script>
-  <script src="/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-  <script src="/js/locales/bootstrap-datetimepicker.da.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    $(function () {
-      $('#datetimepickerStart').datetimepicker({
-        language: 'da'
-      });
+    <script src="/js/moment.min.js" type="text/javascript"></script>
+    <script src="/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/js/locales/bootstrap-datetimepicker.da.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepickerStart').datetimepicker({
+                language: 'da'
+            });
 
-      $('#datetimepickerEnd').datetimepicker({
-        language: 'da'
-      });
+            $('#datetimepickerEnd').datetimepicker({
+                language: 'da'
+            });
 
-      // Setup image preview
-      var imagePaths = [];
-      {% for slide in slides %}
-      imagePaths[{{ slide.id }}] =  "{{ vich_uploader_asset((slide), 'image') }}";
-      {% endfor %}
+            // Setup image preview
+            var imagePaths = [];
+            {% for slide in slides %}
+            imagePaths[{{ slide.id }}] = "{{ vich_uploader_asset((slide), 'image') }}";
+            {% endfor %}
 
-      $('#slide-preview').attr("src", "{{ vich_uploader_asset((slides|first), 'image') }}");
+            $('#slide-preview').attr("src", "{{ vich_uploader_asset((slides|first), 'image') }}");
 
-      $('#booking_slideid').change(function() {
-        $('#slide-preview').attr("src", imagePaths[$(this).val()]);
-      });
+            $('#booking_slideid').change(function () {
+                $('#slide-preview').attr("src", imagePaths[$(this).val()]);
+            });
 
-      $('#booking_slideid').attr("selected", {{ slide_id }});
+            $('#booking_slideid').attr("selected", {{ slide_id }});
 
-      $('#slide-preview').attr("src", imagePaths[{{ slide_id }}]);
-    });
-  </script>
+            $('#slide-preview').attr("src", imagePaths[{{ slide_id }}]);
+        });
+    </script>
 {% endblock %}

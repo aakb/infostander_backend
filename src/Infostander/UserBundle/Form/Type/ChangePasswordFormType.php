@@ -1,4 +1,11 @@
 <?php
+/**
+ * @file
+ * This file is a part of the Infostander UserBundle which is a modification of the FOSUserBundle.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Infostander\UserBundle\Form\Type;
 
@@ -7,8 +14,23 @@ use Symfony\Component\Security\Core\Validator\Constraint\UserPassword as OldUser
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use FOS\UserBundle\Form\Type\ChangePasswordFormType as BaseType;
 
+/**
+ * Class ChangePasswordFormType
+ *
+ * Overrides the ChangePasswordFormType from the FOSUserBundle
+ *
+ * @package Infostander\UserBundle\Form\Type
+ */
 class ChangePasswordFormType extends BaseType
 {
+    /**
+     * Builds the form
+     *
+     * Differences from FOSUserBundle are added attributes to the input fields.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (class_exists('Symfony\Component\Security\Core\Validator\Constraints\UserPassword')) {
@@ -43,6 +65,11 @@ class ChangePasswordFormType extends BaseType
         ));
     }
 
+    /**
+     * Returns the name of the form
+     *
+     * @return string
+     */
     public function getName()
     {
         return 'infostander_user_change_password';

@@ -34,6 +34,7 @@ class User extends BaseUser
     {
         parent::__construct();
 
+        // Since we only have admin users
         $this->addRole("ROLE_ADMIN");
     }
 }

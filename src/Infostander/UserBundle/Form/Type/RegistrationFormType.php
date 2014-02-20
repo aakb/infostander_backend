@@ -1,12 +1,32 @@
 <?php
+/**
+ * @file
+ * This file is a part of the Infostander UserBundle which is a modification of the FOSUserBundle.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Infostander\UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
+/**
+ * Class RegistrationFormType
+ *
+ * @package Infostander\UserBundle\Form\Type
+ */
 class RegistrationFormType extends BaseType
 {
+    /**
+     * Builds the form
+     *
+     * Differences from FOSUserBundle are added attributes to the input fields.
+     *
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -64,6 +84,11 @@ class RegistrationFormType extends BaseType
             );
     }
 
+    /**
+     * Returns the name of the form
+     *
+     * @return string
+     */
     public function getName()
     {
         return 'infostander_user_registration';
