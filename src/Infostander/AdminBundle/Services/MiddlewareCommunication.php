@@ -98,7 +98,7 @@ class MiddlewareCommunication extends ContainerAware
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 
         if (!$result = curl_exec($ch)) {
-            $logger = $this->get('logger');
+            $logger = $this->container->get('logger');
             $logger->error(curl_error($ch));
         }
 
