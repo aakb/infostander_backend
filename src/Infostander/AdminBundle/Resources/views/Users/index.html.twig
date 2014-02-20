@@ -22,7 +22,7 @@
             <div class="users-buttons">
                 {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
                 <div >
-                    {{ 'user.index.delete'|trans }}<div onclick="helpers.confirmRedirect('{{ path('infostander_admin_user_delete', {'id': user.id }) }}', '{{ 'user.index.confirm_delete'|trans }}')" class="users-button users-button-delete glyphicon glyphicon-remove-circle"></div>
+                    <div onclick="helpers.confirmRedirect('{{ path('infostander_admin_user_delete', {'id': user.id }) }}', '{{ 'user.index.confirm_delete'|trans }}')" title="{{ 'user.index.delete'|trans }}" class="users-button users-button-delete glyphicon glyphicon-remove-circle"></div>
                 </div>
                 {% else %}
                 [{{ 'user.index.super_admin'|trans }}]

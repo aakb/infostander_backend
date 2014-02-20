@@ -200,10 +200,10 @@
             bookingIDs.push({
                     key: '{{ loop.index }}',
                     label:
-                        '<span onclick="changeSortOrder({{ booking.id }}, true);" class="booking-arrow-down glyphicon glyphicon-arrow-down"></span>' +
-                        '<span onclick="changeSortOrder({{ booking.id }}, false);" class="booking-arrow-up glyphicon glyphicon-arrow-up"></span>' +
-                        '<span onclick="editEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-wrench"></span>' +
-                        '<span onclick="deleteEvent({{ booking.id }})" class="booking-wrench glyphicon glyphicon-remove-circle"></span>' +
+                        '<span title="{{ 'booking.index.order_down'|trans }}" onclick="changeSortOrder({{ booking.id }}, true);" class="booking-button booking-arrow-down glyphicon glyphicon-arrow-down"></span>' +
+                        '<span title="{{ 'booking.index.order_up'|trans }}" onclick="changeSortOrder({{ booking.id }}, false);" class="booking-button booking-arrow-up glyphicon glyphicon-arrow-up"></span>' +
+                        '<span title="{{ 'booking.index.edit'|trans }}" onclick="editEvent({{ booking.id }})" class="booking-button booking-wrench glyphicon glyphicon-wrench"></span>' +
+                        '<span title="{{ 'booking.index.delete'|trans }}" onclick="deleteEvent({{ booking.id }})" class="booking-button booking-delete glyphicon glyphicon-remove-circle"></span>' +
                         '{{ booking.title }}'
             });
             bookingArray.push({

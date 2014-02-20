@@ -33,6 +33,8 @@ slide:
         archived:
             show: Vis arkiverede slides
             hide: Skjul arkiverede slides
+        hide: Skjul slide
+        show: Vis slide
 navbar:
     logout: Log ud
 scheduler:
@@ -48,6 +50,10 @@ booking:
         confirm_delete: Vil du slette denne booking
         push_channels: Send indhold til skærme
         save_as_pdf: Gem oversigt som PDF
+        delete: Slet booking
+        edit: Rediger booking
+        order_up: Flyt booking op
+        order_down: Flyt booking ned
     add:
         information: På denne side kan du oprette en booking
         save: Gem booking
