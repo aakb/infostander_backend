@@ -87,6 +87,8 @@ class MiddlewareCommunication extends ContainerAware
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-type: application/json',
@@ -97,6 +99,10 @@ class MiddlewareCommunication extends ContainerAware
         if (!$result = curl_exec($ch)) {
             trigger_error(curl_error($ch));
         }
+
+        $logger = $this->get('logger');
+        $logger->info($result);
+
         curl_close($ch);
     }
 }
