@@ -52,7 +52,8 @@ class BookingType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'booking.add.startdate',
-                    'data-format' => 'DD-MM-YYYY HH:mm'
+                    'data-format' => 'DD-MM-YYYY HH:mm',
+                    'disabled' => 'disabled'
                 )
             )
         );
@@ -67,7 +68,8 @@ class BookingType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'booking.add.enddate',
-                    'data-format' => 'DD-MM-YYYY HH:mm'
+                    'data-format' => 'DD-MM-YYYY HH:mm',
+                    'disabled' => 'disabled'
                 )
             )
         );
