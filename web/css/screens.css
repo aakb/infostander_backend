@@ -1,19 +1,10 @@
-.screen-div {
-  background-color: #ddd;
+.screen-form-button {
+  float: right;
   padding: 5px;
 }
 
-.screen-div-even {
-  background-color: #ccc;
-}
-
-.screen-form-button {
-  float: right;
-  padding: 10px;
-}
-
 .screen-form-button-nofloat {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .screen-title {
@@ -31,4 +22,15 @@
 
 .screen-not-activated-text {
   color: #aa0000;
+}
+
+.screen-container {
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    float: left;
+    white-space: normal;
+    overflow: hidden;
 }

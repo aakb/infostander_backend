@@ -18,7 +18,7 @@
             </form>
         </div>
         {% for user in users %}
-        <div class="users-user {{ cycle(['users-user-odd', 'users-user-even'], loop.index) }}">
+        <div class="user-container">
             <div class="users-buttons">
                 {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
                 <div >

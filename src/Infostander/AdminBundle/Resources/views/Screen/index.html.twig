@@ -18,7 +18,7 @@
             </form>
         </div>
         {% for screen in screens %}
-        <div class="screen-div {{ cycle(['screen-div-odd', 'screen-div-even'], loop.index) }}">
+        <div class="screen-container">
             <div class="screen-header">
                 <form class="screen-form-button" action="{{ path('infostander_admin_screen_delete', { 'id': screen.id }) }}" method="post">
                     <span class="btn-group btn-group-xs">
