@@ -218,7 +218,8 @@
             // Setup "Day" tab.
             scheduler.createTimelineView({
                 name: "timeline_day",       // Tab name
-                section_autoheight: true,   // Auto height
+                section_autoheight: false,  // Auto height
+                dy: 30,                     // Line height
                 x_unit: "hour",             // Measuring unit of the X-Axis.
                 x_date: "%H:%i",            // Date format of the X-Axis
                 x_step: 2,                  // X-Axis step in 'x_unit's
@@ -233,7 +234,8 @@
             // Setup "Week" tab.
             scheduler.createTimelineView({
                 name: "timeline_week",
-                section_autoheight: true,
+                section_autoheight: false,
+                dy: 30,
                 x_unit: "day",
                 x_date: "%D %d / %m",
                 x_step: 1,
@@ -248,7 +250,8 @@
             // Setup "Month" tab.
             scheduler.createTimelineView({
                 name: "timeline_month",
-                section_autoheight: true,
+                section_autoheight: false,
+                dy: 30,
                 x_unit: "day",
                 x_date: "%d",
                 x_step: 2,
