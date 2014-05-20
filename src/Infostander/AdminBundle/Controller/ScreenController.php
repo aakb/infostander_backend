@@ -82,6 +82,10 @@ class ScreenController extends Controller
             $screen->setToken("");
             $screen->setGroups(array("infostander"));
 
+            if (is_null($screen->getDescription())) {
+                $screen->setDescription("");
+            }
+
             // Persist the screen to the db.
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($screen);

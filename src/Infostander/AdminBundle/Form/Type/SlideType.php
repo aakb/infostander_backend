@@ -42,6 +42,7 @@ class SlideType extends AbstractType
             'description',
             'textarea',
             array(
+                'required' => false,
                 'label' => 'slide.add.description',
                 'translation_domain' => 'InfostanderAdminBundle',
                 'attr' => array(

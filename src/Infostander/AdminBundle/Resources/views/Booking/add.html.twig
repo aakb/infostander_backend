@@ -71,7 +71,7 @@
 
             $('#slide-preview').attr("src", "{{ vich_uploader_asset((slides|first), 'image') }}");
             $('#booking_slideid').change(function () {
-                $('#slide-preview').attr("src", imagePaths[$(this).val()]);
+              $('#slide-preview').attr("src", imagePaths[$(this).val()]);
             });
         });
     </script>

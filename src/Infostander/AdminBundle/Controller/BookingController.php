@@ -61,6 +61,11 @@ class BookingController extends Controller
                 array('title' => 'asc')
             );
 
+        if (count($slides) === 0) {
+            // Redirect to the Booking:index page.
+            return $this->redirect($this->generateUrl("infostander_admin_booking"));
+        }
+
         // Create the form for the booking, with the non-archived slides as option.
         $form = $this->createForm('booking', $booking, array(
             'choice_options' => $slides,

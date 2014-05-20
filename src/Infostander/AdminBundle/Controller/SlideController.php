@@ -109,6 +109,10 @@ class SlideController extends Controller
             // Set the archived value of the slide.
             $slide->setArchived(false);
 
+            if (is_null($slide->getDescription())) {
+                $slide->setDescription("");
+            }
+
             // Persist the slide to the db.
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($slide);
