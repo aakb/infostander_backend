@@ -97,7 +97,6 @@ class ApiController extends Controller
 
         // Set token in screen and persist the screen to the db.
         $screen->setToken($body->token);
-        $screen->setActivationCode(0);
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($screen);
         $manager->flush();

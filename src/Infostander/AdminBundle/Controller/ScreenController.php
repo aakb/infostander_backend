@@ -31,8 +31,8 @@ class ScreenController extends Controller
     protected function getNewActivationCode()
     {
         do {
-            // Pick a random activation code between 100000 and 999999.
-            $code = rand(100000, 999999);
+            // Pick a random activation code between 100000000 and 999999999.
+            $code = rand(100000000, 999999999);
 
             // Test if the activation code already exists in the db.
             $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findByActivationCode($code);

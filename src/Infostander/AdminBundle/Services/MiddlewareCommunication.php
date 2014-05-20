@@ -58,8 +58,10 @@ class MiddlewareCommunication extends ContainerAware
                 // Set basic slide information.
                 $channelEntry = array(
                     'slideID' => $booking->getSlideId(),
-                    'title' => $booking->getTitle(),
-                    'layout' => 'infostander',
+                    'title'   => $booking->getTitle(),
+                    'start'   => $start,
+                    'end'     => $end,
+                    'layout'  => 'infostander',
                 );
 
                 // Form absolute path to image.
