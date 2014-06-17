@@ -172,12 +172,14 @@ class ScreenController extends Controller
      */
     public function reloadAction($id)
     {
-        $screenIDs = array(
-            $id
+        $screen = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->find($id);
+
+        $tokens = array(
+            $screen->getToken(),
         );
 
         $json = json_encode(array(
-            'screens' => $screenIDs,
+            'screens' => $tokens,
             'groups'  => array()
         ));
 
