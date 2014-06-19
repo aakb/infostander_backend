@@ -71,8 +71,14 @@ class ScreenController extends Controller
         foreach ($screens as $screen) {
           if (property_exists($beats, $screen->getToken()) && !empty($beats->{$screen->getToken()})) {
             $screen->setHeartbeat($beats->{$screen->getToken()});
+
+            // Save the updated screen to DB.
+            $em->persist($screen);
           }
         }
+
+        // Ensure that all changes are store in the local database.
+        $em->flush();
 
         // Return the rendering of the Screen:index template.
         return $this->render(
@@ -111,7 +117,7 @@ class ScreenController extends Controller
         return $content;
       }
 
-      return array();
+      return '{}';
     }
 
     /**
