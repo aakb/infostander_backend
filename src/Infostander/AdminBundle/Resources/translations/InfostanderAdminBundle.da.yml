@@ -15,6 +15,7 @@ screen:
         activation_code: Aktiveringskode
         activated: Aktiveret
         reload_screen: Genindlæs
+        heartbeat: Sidst set
 slide:
     add:
         title: Titel

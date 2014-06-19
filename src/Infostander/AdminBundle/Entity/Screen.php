@@ -55,6 +55,11 @@ class Screen
      */
     protected $groups;
 
+    /**
+     * @ORM\Column(type="integer", name="heartbeat")
+     */
+    protected $heartbeat = 0;
+
     public function getId()
     {
         return $this->id;
@@ -108,5 +113,28 @@ class Screen
     public function setGroups($groups)
     {
         $this->groups = $groups;
+    }
+
+    /**
+     * Set heartbeat
+     *
+     * @param integer $heartbeat
+     * @return Screen
+     */
+    public function setHeartbeat($heartbeat)
+    {
+        $this->heartbeat = $heartbeat;
+
+        return $this;
+    }
+
+    /**
+     * Get heartbeat
+     *
+     * @return integer 
+     */
+    public function getHeartbeat()
+    {
+        return $this->heartbeat;
     }
 }

@@ -12,6 +12,7 @@ namespace Infostander\AdminBundle\Controller;
 use Infostander\AdminBundle\Entity\Screen;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Query;
 
 /**
  * Class ScreenController
@@ -48,14 +49,69 @@ class ScreenController extends Controller
      */
     public function indexAction()
     {
+        // Get all tokens for screens that have tokens.
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->getRepository('InfostanderAdminBundle:Screen')->createQueryBuilder('s');
+        $query = $qb->select('s.token')
+           ->where('s.token != :str')
+           ->setParameter('str', '')
+           ->getQuery();
+        $tokens = $query->getArrayResult();
+
+        // Flatten the array.
+        $tokens = array_map('current', $tokens);
+
+        // Get heartbeats from middleware.
+        $beats = json_decode($this->getHeartbeats($tokens));
+
         // Get all the Screens.
         $screens = $this->getDoctrine()->getRepository('InfostanderAdminBundle:Screen')->findAll();
+
+        // Add times to screens
+        foreach ($screens as $screen) {
+          if (property_exists($beats, $screen->getToken()) && !empty($beats->{$screen->getToken()})) {
+            $screen->setHeartbeat($beats->{$screen->getToken()});
+          }
+        }
 
         // Return the rendering of the Screen:index template.
         return $this->render(
             'InfostanderAdminBundle:Screen:index.html.twig',
             array('screens' => $screens)
         );
+    }
+
+    private function getHeartbeats($tokens) {
+      $json = json_encode(array(
+        'screens' => $tokens,
+      ));
+
+      // Send post request to middleware (/screen/reload).
+      $url = $this->container->getParameter("middleware_host") . "/status";
+      $ch = curl_init($url);
+      curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        'Content-type: application/json',
+        'Content-Length: ' . strlen($json),
+      ));
+
+      curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
+      // Get information.
+      $content = curl_exec($ch);
+      $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+      // Close connection.
+      curl_close($ch);
+
+      if ($http_status == 200) {
+        return $content;
+      }
+
+      return array();
     }
 
     /**
