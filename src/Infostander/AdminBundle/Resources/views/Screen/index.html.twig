@@ -18,7 +18,7 @@
             </form>
         </div>
         {% for screen in screens %}
-        <div class="screen-div {{ cycle(['screen-div-odd', 'screen-div-even'], loop.index) }}">
+        <div class="screen-container">
             <div class="screen-header">
                 <form class="screen-form-button" action="{{ path('infostander_admin_screen_delete', { 'id': screen.id }) }}" method="post">
                     <span class="btn-group btn-group-xs">
@@ -30,15 +30,17 @@
                         <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.new_activation_code'|trans }}</button>
                     </span>
                 </form>
+                <form class="screen-form-button" action="{{ path('infostander_admin_screen_reload', { 'id': screen.id }) }}" method="post">
+                    <span class="btn-group btn-group-xs">
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'screen.index.reload_screen'|trans }}</button>
+                    </span>
+                </form>
                 <div class="screen-title">{{ screen.title }}</div>
                 {% if screen.token == "" %}
                     <div class="screen-token screen-not-activated-text">{{ 'screen.index.activation_code'|trans }}: {{ screen.activationCode }}</div>
                 {% else %}
-                    {% if screen.activationCode == 0 %}
-                        <div class="screen-token screen-activated-text">{{ 'screen.index.activated'|trans }}</div>
-                    {% else %}
-                        <div class="screen-token screen-activated-text">{{ 'screen.index.activated'|trans }} - {{ 'screen.index.new_activation_code'|trans }}: {{ screen.activationCode }}</div>
-                    {% endif %}
+                    <div class="screen-token screen-activated-text">{{ 'screen.index.activated'|trans }} - {{ 'screen.index.activation_code'|trans }}: {{ screen.activationCode }}</div>
+                    <div class="screen-token screen-heartbeat">{{ 'screen.index.heartbeat'|trans }}: {{ screen.heartbeat|date('d/m/Y H:i:s') }}</div>
                 {% endif %}
             </div>
             <div class="screen-description">{{ screen.description }}</div>

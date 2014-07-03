@@ -1,60 +1,87 @@
 screen:
-  add:
-    title: Titel
-    description: Beskrivelse
-    save: Opret skærm
-    information: På denne side kan du oprette en ny skærm
-  index:
-    title: Skærme
-    token: Token
-    new_activation_code: Ny kode
-    delete: Slet skærm
-    confirm_delete: Bekræft sletning
-    add: Tilføj skærm
-    information: På denne side kan du administrere dine skærme
-    activation_code: Aktiveringskode
-    activated: Aktiveret
+    add:
+        title: Titel
+        description: Beskrivelse
+        save: Opret skærm
+        information: På denne side kan du oprette en ny skærm
+    index:
+        title: Skærme
+        token: Token
+        new_activation_code: Ny kode
+        delete: Slet skærm
+        confirm_delete: Bekræft sletning
+        add: Tilføj skærm
+        information: På denne side kan du administrere dine skærme
+        activation_code: Aktiveringskode
+        activated: Aktiveret
+        reload_screen: Genindlæs
+        heartbeat: Sidst set
 slide:
-  add:
-    title: Titel
-    description: Beskrivelse
-    save: Opret slide
-    image: Vælg billede
-    information: På denne side kan du oprette slides
-    change: Ændrer billede
-    select: Vælg billede
-    delete: Fjern billede
-  index:
-    title: Slides
-    information: På denne side kan du se hvilke slides er blevet uploadet
-    add: Tilføj slide
-    delete: Vil du slette slidet?
-    archived:
-      show: Vis arkiverede slides
-      hide: Skjul arkiverede slides
+    add:
+        title: Titel
+        description: Beskrivelse
+        save: Opret slide
+        image: Vælg billede
+        information: På denne side kan du oprette slides
+        change: Ændrer billede
+        select: Vælg billede
+        delete: Fjern billede
+    index:
+        title: Slides
+        information: På denne side kan du se hvilke slides er blevet uploadet
+        add: Tilføj slide
+        delete: Vil du slette slidet?
+        archived:
+            show: Vis arkiverede slides
+            hide: Skjul arkiverede slides
+        hide: Skjul slide
+        show: Vis slide
 navbar:
-  logout: Log ud
+    logout: Log ud
 scheduler:
-  title: Planlægning
-  text: På denne side kan du planlægge hvornår hvilke slides skal vises på pylonerne.
+    title: Planlægning
+    text: På denne side kan du planlægge hvornår hvilke slides skal vises på pylonerne.
 booking:
-  index:
-    title: Planlæg
-    add: Opret booking
-    day: Dag
-    week: Uge
-    month: Måned
-  add:
-    information: På denne side kan du oprette en booking
-    save: Gem booking
-    title: Titel
-    startdate: Start dato og tidspunkt
-    enddate: Slut dato og tidspunkt
-    slideid: Hvilket slide skal vises?
-  edit:
-    information: På denne side kan du redigere en booking
+    index:
+        title: Planlæg
+        add: Opret booking
+        day: Dag
+        week: Uge
+        month: Måned
+        confirm_delete: Vil du slette denne booking
+        push_channels: Send indhold til skærme
+        save_as_pdf: Gem oversigt som PDF
+        delete: Slet booking
+        edit: Rediger booking
+        order_up: Flyt booking op
+        order_down: Flyt booking ned
+    add:
+        information: På denne side kan du oprette en booking
+        save: Gem booking
+        title: Titel
+        startdate: Start dato og tidspunkt
+        enddate: Slut dato og tidspunkt
+        slideid: Hvilket slide skal vises?
+    edit:
+        information: På denne side kan du redigere en booking
+    messages:
+        cannot_delete_booked_slide_redirect: Gå tilbage
+        cannot_delete_booked_slide: Slidet kan ikke slettes da det indgår i en (eller flere) bookinger. Fjern først bookingerne.
 user:
-  index:
-    add: Opret bruger
-    information: På denne side kan du se hvilke brugere der er oprettet, og oprette nye. Nyoprettede brugere har rettigheder til hele systemet med undtagelse af oprettelse af nye brugere
-    title: Brugere
+    index:
+        add: Opret bruger
+        information: På denne side kan du se hvilke brugere der er oprettet, og oprette nye. Nyoprettede brugere har rettigheder til hele systemet med undtagelse af oprettelse af nye brugere
+        title: Brugere
+        delete: Slet bruger
+        super_admin: Super Admin
+        confirm_delete: Er du sikker på at du vil slette den pågældende bruger?
+info:
+    title: Information
+navbar:
+    booking: Planlægning
+    slides: Slides
+    screens: Skærme
+    users: Brugere
+    profile: Din profil
+    logout: Log ud
+    headline: Infostander

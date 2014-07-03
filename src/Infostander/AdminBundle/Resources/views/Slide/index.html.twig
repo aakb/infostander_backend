@@ -14,7 +14,7 @@
     <div class="container">
         <h2>{{ 'slide.index.title'|trans }}</h2>
         <p>{{ 'slide.index.information'|trans }}.</p>
-        <div>
+        <div class="slide-header">
             <form class="form-button" action="{{ path('infostander_admin_slide_add') }}" method="get">
                 <span class="btn-group btn-group-xs">
                     <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'slide.index.add'|trans }}</button>
@@ -30,13 +30,16 @@
 {% for slide in slides %}
     {% if showarchived or not slide.archived %}
         <div class="slide-container">
-            <img class="slide-thumb img-thumbnail {% if slide.archived %}slide-inactive{% endif %}" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
-            <div class="slide-title">
-                <span class="slide-delete glyphicon glyphicon-remove-circle" onclick="helpers.confirmRedirect('{{ path('infostander_admin_slide_delete', { 'id': slide.id }) }}', '{{ 'slide.index.delete'|trans }}');"></span>
-                <span class="slide-delete glyphicon {% if slide.archived %} glyphicon-eye-close {% else %} glyphicon-eye-open {% endif %}" onclick="helpers.redirect('{{ path('infostander_admin_slide_archived', { 'id': slide.id }) }}');"></span>
-                {{ slide.title }}
+            <span class="slide-delete glyphicon glyphicon-remove-circle" title="{{ 'slide.index.delete'|trans }}" onclick="helpers.confirmRedirect('{{ path('infostander_admin_slide_delete', { 'id': slide.id }) }}', '{{ 'slide.index.delete'|trans }}');"></span>
+            <span class="slide-delete glyphicon {% if slide.archived %} glyphicon-eye-open {% else %} glyphicon-eye-close {% endif %}" title="{% if slide.archived %} {{ 'slide.index.show'|trans }}{% else %} {{ 'slide.index.hide'|trans }} {% endif %}" onclick="helpers.redirect('{{ path('infostander_admin_slide_archived', { 'id': slide.id }) }}');"></span>
+            <div class="img-container">
+                <img class="slide-thumb img-thumbnail {% if slide.archived %}slide-inactive{% endif %}" src="{{ vich_uploader_asset(slide, 'image') }}" alt="{{ slide.title }}"  />
             </div>
-            <div class="slide-description">{{ slide.description }}</div>
+            <div class="slide-text">
+                <div class="slide-title">{{ slide.title }}</div>
+                <div class="slide-description">{{ slide.description }}</div>
+            </div>
+
         </div>
     {% endif %}
 {% endfor %}

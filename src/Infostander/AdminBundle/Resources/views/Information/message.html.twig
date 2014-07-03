@@ -1,0 +1,19 @@
+{% extends '::loggedin.html.twig' %}
+
+{% block stylesheets %}
+    <link href="/css/info.css" rel="stylesheet"/>
+{% endblock %}
+
+{% trans_default_domain 'InfostanderAdminBundle' %}
+
+{% block body %}
+    <div class="container">
+        <h2>{{ 'info.title'|trans }}</h2>
+        <div class="info-message">
+            <div>{{ info | trans }}</div>
+            <div class="info-redirect">
+                <a href="{{ redirect }}">{{ redirectMessage | trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,8 +3,12 @@ infostander_admin_homepage:
     defaults: { _controller: InfostanderAdminBundle:Booking:index }
 
 infostander_admin_user:
-  pattern: /user
-  defaults: { _controller: InfostanderAdminBundle:User:index }
+    pattern: /users
+    defaults: { _controller: InfostanderAdminBundle:Users:index }
+
+infostander_admin_user_delete:
+    pattern: /users/delete/{id}
+    defaults: { _controller: InfostanderAdminBundle:Users:delete }
 
 infostander_admin_screen:
     pattern:  /screen
@@ -22,13 +26,17 @@ infostander_admin_screen_new_activation_code:
     path:      /screen/new_activation_code/{id}
     defaults:  { _controller: InfostanderAdminBundle:Screen:newActivationCode }
 
+infostander_admin_screen_reload:
+    path:      /screen/reload/{id}
+    defaults:  { _controller: InfostanderAdminBundle:Screen:reload }
+
 infostander_admin_slide:
-   pattern: /slide
-   defaults: { _controller: InfostanderAdminBundle:Slide:index }
+    pattern: /slide
+    defaults: { _controller: InfostanderAdminBundle:Slide:index }
 
 infostander_admin_slide_toggle_showarchived:
-  pattern: /slide/togglearchived
-  defaults: { _controller: InfostanderAdminBundle:Slide:toggleShowArchived }
+    pattern: /slide/togglearchived
+    defaults: { _controller: InfostanderAdminBundle:Slide:toggleShowArchived }
 
 infostander_admin_slide_add:
     pattern: /slide/add
@@ -54,14 +62,26 @@ infostander_admin_booking_add:
     path:      /booking/add
     defaults:  { _controller: InfostanderAdminBundle:Booking:add }
 
+infostander_admin_booking_delete:
+    path:      /booking/delete/{id}
+    defaults:  { _controller: InfostanderAdminBundle:Booking:delete }
+
 infostander_admin_booking_edit:
     path:      /booking/edit/{id}
     defaults:  { _controller: InfostanderAdminBundle:Booking:edit }
 
+infostander_admin_booking_push_channels:
+    path:      /booking/push/channels
+    defaults:  { _controller: InfostanderAdminBundle:Booking:pushChannels }
+
 infostander_admin_api_screen_activate:
-  path:       /api/screen/activate
-  defaults:   { _controller: InfostanderAdminBundle:Api:screenActivate }
+    path:       /api/screen/activate
+    defaults:   { _controller: InfostanderAdminBundle:Api:screenActivate }
 
 infostander_admin_api_screen_get:
-  path:       /api/screen/get
-  defaults:   { _controller: InfostanderAdminBundle:Api:screenGet }
+    path:       /api/screen/get
+    defaults:   { _controller: InfostanderAdminBundle:Api:screenGet }
+
+infostander_admin_booking_generate_pdf:
+    path:       /booking/pdf
+    defaults:   { _controller: InfostanderAdminBundle:PDFCreator:generate }

@@ -1,0 +1,44 @@
+{%  extends '::loggedin.html.twig' %}
+
+{% trans_default_domain 'InfostanderAdminBundle' %}
+
+{% block stylesheets %}
+    <link href="/css/user.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="screen-div-top">
+            <h2>{{ 'user.index.title'|trans }}</h2>
+            <p>{{ 'user.index.information'|trans }}.</p>
+            <form class="user-form-button-nofloat" action="{{ path('fos_user_registration_register') }}" method="get">
+                <span class="btn-group btn-group-xs">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">{{ 'user.index.add'|trans }}</button>
+                </span>
+            </form>
+        </div>
+        {% for user in users %}
+        <div class="user-container">
+            <div class="users-buttons">
+                {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
+                <div >
+                    <div onclick="helpers.confirmRedirect('{{ path('infostander_admin_user_delete', {'id': user.id }) }}', '{{ 'user.index.confirm_delete'|trans }}')" title="{{ 'user.index.delete'|trans }}" class="users-button users-button-delete glyphicon glyphicon-remove-circle"></div>
+                </div>
+                {% else %}
+                [{{ 'user.index.super_admin'|trans }}]
+                {% endif %}
+            </div>
+            <div class="users-username">
+                {{ user.username }}
+            </div>
+            <div class="users-email">
+                {{ user.email }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="/js/helpers.js"></script>
+{% endblock %}

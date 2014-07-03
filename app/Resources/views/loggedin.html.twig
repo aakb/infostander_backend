@@ -1,22 +1,25 @@
 {% extends '::base.html.twig' %}
 
+{% trans_default_domain 'InfostanderAdminBundle' %}
+
 {% block navbar %}
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('infostander_admin_homepage') }}">Infostander</a>
+            <a class="navbar-brand" href="{{ path('infostander_admin_homepage') }}">{{ 'navbar.headline'|trans }}</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('infostander_admin_booking') }}">Planlægning</a></li>
-                <li><a href="{{ path('infostander_admin_slide') }}">Slides</a></li>
-                <li><a href="{{ path('infostander_admin_screen') }}">Skærme</a></li>
+                <li><a href="{{ path('infostander_admin_booking') }}">{{ 'navbar.booking'|trans }}</a></li>
+                <li><a href="{{ path('infostander_admin_slide') }}">{{ 'navbar.slides'|trans }}</a></li>
+                <li><a href="{{ path('infostander_admin_screen') }}">{{ 'navbar.screens'|trans }}</a></li>
                 {% if is_granted("ROLE_SUPER_ADMIN") %}
-                    <li><a href="{{ path('infostander_admin_user') }}">Brugere</a></li>
+                <li><a href="{{ path('infostander_admin_user') }}">{{ 'navbar.users'|trans }}</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('fos_user_security_logout') }}">Log ud</a></li>
+                <li><a href="{{ path('fos_user_profile_show') }}">{{ 'navbar.profile'|trans }}</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'navbar.logout'|trans }}</a></li>
             </ul>
         </div>
     </div>

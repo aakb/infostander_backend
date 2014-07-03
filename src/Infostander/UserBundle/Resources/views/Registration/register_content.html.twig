@@ -3,7 +3,6 @@
 <div class="container">
     <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin fos_user_registration_register">
         <h2 class="form-signin-heading">{{ 'registration.submit'|trans }}</h2>
-        {#{{ form_widget(form) }}#}
 
         {{ form_errors(form) }}
         {{ form_errors(form.username) }}

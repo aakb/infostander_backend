@@ -7,3 +7,6 @@
 .idea/
 clearcache.sh
 /web/images/
+composer.phar
+.DS_Store
+composer.lock

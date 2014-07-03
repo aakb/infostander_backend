@@ -1,0 +1,6 @@
+Infostander\AdminBundle\Entity\Booking:
+    properties:
+        startDate:
+            - Regex: "/^\d{2}-\d{2}\-\d{4} \d{2}:\d{2}/"
+        endDate:
+            - Regex: "/^\d{2}-\d{2}\-\d{4} \d{2}:\d{2}/"

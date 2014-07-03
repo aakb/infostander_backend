@@ -1,15 +1,35 @@
-.users-user {
-  padding: 5px;
-}
-
-.users-user-even {
-  background-color: #ccc;
-}
-
-.users-user-odd {
-  background-color: #ddd;
-}
-
 .user-form-button-nofloat {
-  margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.users-username {
+    font-weight: bold;
+}
+
+.users-email {
+}
+
+.users-buttons {
+    float: right;
+    text-align: right;
+}
+
+.users-button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.users-button-delete:hover {
+    color: #b00;
+}
+
+.user-container {
+    background-color: #fefefe;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    float: left;
+    white-space: normal;
+    overflow: hidden;
 }
